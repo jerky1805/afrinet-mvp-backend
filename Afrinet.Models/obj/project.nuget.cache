@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "K44b+CtJUnfs38JhgtEm+DSJVMFfaJiiPlBWkCpi5DoWb8la/Yec68x2VEfLp9DbUmeDirS8/1wXX3GS3cq6dg==",
+  "success": true,
+  "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj",
+  "expectedPackageFiles": [
+    "/Users/dapo/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
