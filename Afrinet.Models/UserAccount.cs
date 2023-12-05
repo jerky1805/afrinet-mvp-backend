@@ -1,7 +1,10 @@
-﻿namespace Afrinet.Models;
+﻿
+
+namespace Afrinet.Models;
 
 public class UserAccount
 {
+
     public string? Id { get; set; }
     public string? OtherNames { get; set; }
     public string? Surname { get; set; }
@@ -18,6 +21,17 @@ public class UserAccount
     public DateTime UpdatedAt { get; set; }
     public DateTime LastLogin { get; set; }
     public ServiceAccount ServiceAccount { get; set; } = new ServiceAccount();
-    public string? AccountType  { get; set; }
+
+    public string? ServiceAccountId {get; set;}
+    public string? AccountType { get; set; } //Agent , Subscriber
+    public string? MSISDN { get; set; }
+    public string? PIN { get; set; }
+    public long FailedPINAttempts { get; set; }
+    public DateTime PINChangedAt { get; set; }
+    public string? UserAccountRole { get; set; }
+    public List<TransactionLimit> TransactionLimits { get; set; } = new List<TransactionLimit>();
+    public ValueLimit BalanceLimit { get; set; } = new ValueLimit();
+    public List<string> Channels { get; set; } = new List<string>();
+    public string? WebLoginID { get; set; }
 
 }
