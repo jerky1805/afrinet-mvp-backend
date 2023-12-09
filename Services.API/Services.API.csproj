@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.300" />
     <PackageReference Include="AWSSDK.SQS" Version="3.7.300.15" />
+    <PackageReference Include="Azure.Storage.Queues" Version="12.17.1" />
     <PackageReference Include="LocalStack.Client" Version="1.4.1" />
     <PackageReference Include="LocalStack.Client.Extensions" Version="1.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />

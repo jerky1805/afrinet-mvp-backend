@@ -9,7 +9,7 @@
       "description": "Mooring Fee",
       "amount": 300,
       "currency": "USD",
-      "fee": "0",
+      "fee": 0,
       "status": "Initiated",
       "instruction": "Please do this"
     },

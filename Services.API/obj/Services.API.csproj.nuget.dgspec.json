@@ -169,6 +169,10 @@
               "target": "Package",
               "version": "[3.7.300.15, )"
             },
+            "Azure.Storage.Queues": {
+              "target": "Package",
+              "version": "[12.17.1, )"
+            },
             "LocalStack.Client": {
               "target": "Package",
               "version": "[1.4.1, )"

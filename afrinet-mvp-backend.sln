@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.API", "Services.AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Afrinet.Models", "Afrinet.Models\Afrinet.Models.csproj", "{FDCC3658-4DB5-4CD4-BC03-8DC6BEFF4390}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Afrinet.API.Contracts", "Afrinet.API.Contracts\Afrinet.API.Contracts.csproj", "{8F638943-8BD8-427C-AA70-2DFA62FB1A65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Processor", "Order.Processor\Order.Processor.csproj", "{5AB1EE92-E463-403E-BDE8-E841E374FCE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{FDCC3658-4DB5-4CD4-BC03-8DC6BEFF4390}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDCC3658-4DB5-4CD4-BC03-8DC6BEFF4390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDCC3658-4DB5-4CD4-BC03-8DC6BEFF4390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F638943-8BD8-427C-AA70-2DFA62FB1A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F638943-8BD8-427C-AA70-2DFA62FB1A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F638943-8BD8-427C-AA70-2DFA62FB1A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F638943-8BD8-427C-AA70-2DFA62FB1A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB1EE92-E463-403E-BDE8-E841E374FCE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB1EE92-E463-403E-BDE8-E841E374FCE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB1EE92-E463-403E-BDE8-E841E374FCE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB1EE92-E463-403E-BDE8-E841E374FCE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
