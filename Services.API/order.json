@@ -1,0 +1,31 @@
+{
+    "reference": "EMZ-03323-22321121",
+    "description": "Mooring Fee",
+    "amount": 300,
+    "currency": "USD",
+    "order": {
+      "id": "22244223323",
+      "reference": "EMZ-03323-22321121",
+      "description": "Mooring Fee",
+      "amount": 300,
+      "currency": "USD",
+      "fee": 0,
+      "status": "Initiated",
+      "instruction": "Please do this"
+    },
+    "paymentCustomer": {
+      "otherNames": "James",
+      "surname": "Purefoy",
+      "companyName": "Stirling Holdings",
+      "addressLine1": "37 Muirhead Rise",
+      "addressLine2": "",
+      "city": "Rugby",
+      "state": "Warwickshire",
+      "country": "United Kingdom",
+      "email": "james@stirling.com",
+      "createdAt": "2023-12-06T19:06:59.556Z",
+      "updatedAt": "2023-12-06T19:06:59.556Z",
+      "lastLogin": "2023-12-06T19:06:59.556Z",
+      "mobileNumber": "0776123227234"
+    }
+  }
