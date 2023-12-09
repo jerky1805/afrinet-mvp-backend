@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Afrinet.API.Contracts/1.0.0": {
+        "runtime": {
+          "Afrinet.API.Contracts.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Afrinet.API.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

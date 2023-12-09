@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Services.API/Services.API.csproj": {}
+    "/Users/dapo/dev/afrinet-mvp-backend/Services.API/Services.API.csproj": {}
   },
   "projects": {
-    "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj": {
+    "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/Afrinet.API.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj",
-        "projectName": "Afrinet.Models",
-        "projectPath": "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj",
+        "projectUniqueName": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/Afrinet.API.Contracts.csproj",
+        "projectName": "Afrinet.API.Contracts",
+        "projectPath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/Afrinet.API.Contracts.csproj",
         "packagesPath": "/Users/dapo/.nuget/packages/",
-        "outputPath": "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Afrinet.Models/obj/",
+        "outputPath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dapo/.nuget/NuGet/NuGet.Config"
@@ -20,7 +20,59 @@
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj",
+        "projectName": "Afrinet.Models",
+        "projectPath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj",
+        "packagesPath": "/Users/dapo/.nuget/packages/",
+        "outputPath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dapo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -59,33 +111,23 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.200/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Services.API/Services.API.csproj": {
+    "/Users/dapo/dev/afrinet-mvp-backend/Services.API/Services.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Services.API/Services.API.csproj",
+        "projectUniqueName": "/Users/dapo/dev/afrinet-mvp-backend/Services.API/Services.API.csproj",
         "projectName": "Services.API",
-        "projectPath": "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Services.API/Services.API.csproj",
+        "projectPath": "/Users/dapo/dev/afrinet-mvp-backend/Services.API/Services.API.csproj",
         "packagesPath": "/Users/dapo/.nuget/packages/",
-        "outputPath": "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Services.API/obj/",
+        "outputPath": "/Users/dapo/dev/afrinet-mvp-backend/Services.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dapo/.nuget/NuGet/NuGet.Config"
@@ -94,15 +136,17 @@
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj": {
-                "projectPath": "/Users/dapo/dev/afrinet/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj"
+              "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/Afrinet.API.Contracts.csproj": {
+                "projectPath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/Afrinet.API.Contracts.csproj"
+              },
+              "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj": {
+                "projectPath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/Afrinet.Models.csproj"
               }
             }
           }
@@ -117,9 +161,29 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AWSSDK.Extensions.NETCore.Setup": {
+              "target": "Package",
+              "version": "[3.7.300, )"
+            },
+            "AWSSDK.SQS": {
+              "target": "Package",
+              "version": "[3.7.300.15, )"
+            },
+            "LocalStack.Client": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            },
+            "LocalStack.Client.Extensions": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.3, )"
+            },
+            "Microsoft.Azure.ServiceBus": {
+              "target": "Package",
+              "version": "[5.2.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -137,20 +201,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[7.0.14, 7.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.14, 7.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -159,7 +209,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.200/RuntimeIdentifierGraph.json"
         }
       }
     }

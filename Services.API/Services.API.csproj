@@ -7,12 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.300" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.300.15" />
+    <PackageReference Include="LocalStack.Client" Version="1.4.1" />
+    <PackageReference Include="LocalStack.Client.Extensions" Version="1.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
+    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="5.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Afrinet.Models\Afrinet.Models.csproj" />
+    <ProjectReference Include="..\Afrinet.API.Contracts\Afrinet.API.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
