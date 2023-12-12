@@ -3,7 +3,7 @@
 namespace Afrinet.Models;
 public class HeadOffice
 {
-  
+
     public string? Id { get; set; }
     public string? CompanyName { get; set; }
     public string? AggregatorName { get; set; }
@@ -24,9 +24,16 @@ public class HeadOffice
     public string? State { get; set; }
     public string? Country { get; set; }
     public bool SuperAgent { get; set; }
-
+    public string? MSISDN { get; set; }
+    public string? PIN { get; set; }
+    public List<TransactionLimit> TransactionLimits { get; set; } = new List<TransactionLimit>();
+    public ValueLimit BalanceLimit { get; set; } = new ValueLimit();
     public List<Branch> Branches { get; set; } = new List<Branch>();
     public ServiceAccount ServiceAccount { get; set; } = new ServiceAccount();
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public string? Status { get; set; }
+    public string? ServiceAccountId {get; set;}
 
 
 }

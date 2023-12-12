@@ -1,0 +1,26 @@
+{
+    "organisationName": "Berrington-Hunsbury Ltd",
+    "mainContactEmail": "akindapo.adisa@gmail.com",
+    "mainContactName": "Dapo",
+    "mainContactOtherNames": "Adisa",
+    "mainContactMobileNumber": "07761308848",
+    "addressLine1": "37 Muirhead Rise",
+    "addressLine2": "Houlton",
+    "city": "Rugby",
+    "state": "Warwickshire",
+    "country": "United Kingdom",
+    "idType": "Passport",
+    "idNumber": "4453424242332",
+    "language": "English",
+    "createdAt": "2023-12-12T11:07:04.269Z",
+    "updatedAt": "2023-12-12T11:07:04.269Z",
+    "lastLogin": "2023-12-12T11:07:04.269Z",
+    "accountType": "Organisation",
+    "msisdn": "07761308848",
+    "failedPINAttempts": 0,
+    "pinChangedAt": "2023-12-12T11:07:04.269Z",
+    "userAccountRole": "Organisation",
+    "channels": [
+        "web"
+    ]
+  }

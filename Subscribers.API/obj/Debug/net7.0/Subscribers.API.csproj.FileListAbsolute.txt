@@ -98,3 +98,7 @@
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/runtimes/win/native/mongocrypt.dll
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/Afrinet.Models.dll
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/Afrinet.Models.pdb
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/org.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/agent.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/branch.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/head-office.json

@@ -21,8 +21,7 @@ public class UserAccount
     public DateTime UpdatedAt { get; set; }
     public DateTime LastLogin { get; set; }
     public ServiceAccount ServiceAccount { get; set; } = new ServiceAccount();
-
-    public string? ServiceAccountId {get; set;}
+    public string? ServiceAccountId { get; set; }
     public string? AccountType { get; set; } //Agent , Subscriber
     public string? MSISDN { get; set; }
     public string? PIN { get; set; }
@@ -33,5 +32,7 @@ public class UserAccount
     public ValueLimit BalanceLimit { get; set; } = new ValueLimit();
     public List<string> Channels { get; set; } = new List<string>();
     public string? WebLoginID { get; set; }
+    public string? Status { get; set; }
+
 
 }

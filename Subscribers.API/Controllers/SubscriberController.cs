@@ -71,7 +71,7 @@ public class SubscribersController : ControllerBase
 
             var services = Configuration.GetSection("SupportedServicesSubscribers").Get<List<Service>>();
             Wallet wallet = new Wallet()
-            {
+            { 
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
                 Currency = "KSH",
@@ -160,7 +160,7 @@ public class SubscribersController : ControllerBase
         catch (System.Exception ex)
         {
 
-            _logger.LogError(12, ex, "Error while Updating Subscriber -  {id}", id);
+            _logger.LogError(13, ex, "Error while Archiving Subscriber -  {id}", id);
             return Problem("Error while Removing Subscriber");
         }
 

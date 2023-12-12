@@ -3,18 +3,34 @@ using Subscribers.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<ServiceAccountDatabaseSettings> (
+builder.Services.Configure<ServiceAccountDatabaseSettings>(
     builder.Configuration.GetSection("ServiceAccountDatabase"));
 
-builder.Services.Configure<UserAccountDatabaseSettings> (
+builder.Services.Configure<UserAccountDatabaseSettings>(
     builder.Configuration.GetSection("UserAccountDatabase"));
 
-builder.Services.Configure<WalletDatabaseSettings> (
+builder.Services.Configure<WalletDatabaseSettings>(
     builder.Configuration.GetSection("WalletDatabase"));
+
+builder.Services.Configure<OrgAccountDatabaseSettings>(
+builder.Configuration.GetSection("OrgAccountDatabase"));
+
+builder.Services.Configure<HeadOfficeAccountDatabaseSettings>(
+builder.Configuration.GetSection("HeadOfficeAccountDatabase"));
+
+builder.Services.Configure<BranchAccountDatabaseSettings>(
+builder.Configuration.GetSection("BranchAccountDatabase"));
+
+builder.Services.Configure<AgentAccountDatabaseSettings>(
+builder.Configuration.GetSection("AgentAccountDatabase"));
 
 builder.Services.AddSingleton<ServiceAccountsService>();
 builder.Services.AddSingleton<UserAccountsService>();
 builder.Services.AddSingleton<WalletsService>();
+builder.Services.AddSingleton<OrgAccountsService>();
+builder.Services.AddSingleton<HeadOfficeAccountsService>();
+builder.Services.AddSingleton<BranchAccountsService>();
+builder.Services.AddSingleton<AgentAccountsService>();
 
 // Add services to the container.
 

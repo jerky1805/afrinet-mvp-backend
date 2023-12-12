@@ -13,7 +13,19 @@ public class Branch
     public string? City { get; set; }
     public string? State { get; set; }
     public string? Country { get; set; }
-    public ServiceAccount ServiceAccount { get; set; } = new ServiceAccount();
+    public string? MSISDN { get; set; }
+    public string? PIN { get; set; }
 
+    public string? HeadOfficeId { get; set; }
+    public ServiceAccount ServiceAccount { get; set; } = new ServiceAccount();
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+
+    public List<TransactionLimit> TransactionLimits { get; set; } = new List<TransactionLimit>();
+    public ValueLimit BalanceLimit { get; set; } = new ValueLimit();
+
+    public List<Branch> Branches { get; set; } = new List<Branch>();
+    public string? Status { get; set; }
+    public string? ServiceAccountId { get; set; }
 
 }
