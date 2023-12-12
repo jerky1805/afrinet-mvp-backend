@@ -98,6 +98,8 @@ public class AgentController : ControllerBase
             agentAccount.CreatedAt = DateTime.Now;
             agentAccount.Status = "Created";
 
+//TODO: Add Infrastructure for KYC 
+
             await _serviceAccountService.CreateServiceAccount(serviceAccount);
             await _agentAccountService.CreateAgentAccount(agentAccount);
 

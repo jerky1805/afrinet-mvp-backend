@@ -96,6 +96,8 @@ public class SubscribersController : ControllerBase
             userAccount.BalanceLimit = new ValueLimit() { Id = Guid.NewGuid().ToString(), LimitName = userAccount.UserAccountRole, MaximumValue = 600 };
             userAccount.TransactionLimits = transactionLimits;
             userAccount.CreatedAt = DateTime.Now;
+            
+//TODO: Add Infrastructure for KYC 
 
             await _serviceAccountService.CreateServiceAccount(serviceAccount);
             await _userAccountService.CreateUserAccount(userAccount);
