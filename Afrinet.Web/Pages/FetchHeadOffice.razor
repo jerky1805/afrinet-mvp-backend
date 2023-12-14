@@ -1,0 +1,117 @@
+﻿@page "/headoffice"
+@using Afrinet.Models
+@inject HttpClient Http
+
+<h1>Head Offices</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/headoffice/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Head Office
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Head Offices by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterHeadOffice" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (headOfficeList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th>Companny Name</th>
+            <th>Contact Surname</th>
+            <th>Contact Other Names</th>
+            <th>Contact E-mail</th>
+            <th>Contact Phone</th>
+            <th>Signatory Surname</th>
+            <th>Signatory Other Names</th>
+            <th>Signatory E-mail</th>
+            <th>Signatory Phone</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ho in headOfficeList)
+            {
+                <tr>
+                    <td>@ho.CompanyName</td>
+                    <td>@ho.MainContactName</td>
+                    <td>@ho.MainContactOtherNames</td>
+                    <td>@ho.MainContactEmail</td>
+                    <td>@ho.MainContactMobileNumber</td>
+                    <td>@ho.ContractSignatoryOtherNames.</td>
+                    <td>@ho.ContractSignatoryOtherNames</td>
+                    <td>@ho.ContractSignatoryEmail</td>
+                    <td>@ho.ContractSignatoryMobileNumber</td>
+                    <td>
+                        <a href='/headoffice/edit/@ho.Id' class="btn btn-outline-dark" role="button">
+                            Edit
+                        </a>
+                      @*   <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
+                            Delete
+                        </a> *@
+                        <a href='/branch/@ho.Id' class="btn btn-outline-dark" role="button">
+                            View Branches
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+
+@code {
+    protected List<HeadOffice> headOfficeList = new();
+    protected List<HeadOffice> searchHeadOfficeData = new();
+    protected HeadOffice headOffice = new();
+    protected string SearchString { get; set; } = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        await GetHeadOffice();
+    }
+    protected async Task GetHeadOffice()
+    {
+        headOfficeList = await Http.GetFromJsonAsync<List<HeadOffice>>("http://localhost:5032/api/HeadOffice");
+        searchHeadOfficeData = headOfficeList;
+    }
+    protected void FilterHeadOffice()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            headOfficeList = searchHeadOfficeData
+            .Where(x => x.CompanyName.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            headOfficeList = searchHeadOfficeData;
+        }
+    }
+    protected void DeleteConfirm(string Id)
+    {
+        headOffice = headOfficeList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        headOfficeList = searchHeadOfficeData;
+    }
+
+}

@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "kM3RaJhX/V/XZppMzwS+WZoRT0Dg5ivKoLOQBGzJ+2OKIQfSjgBVwBk/VezDKoVvOJ7z5g404GRlm7gJxOmPAw==",
+  "dgSpecHash": "Vdt33ijD4+B8zgMtREs+6DSTwNxDIWo20DafVUskWlaNZaEd6IWG83M+5XpCfFUpvE8G6GICVyU4OQu+Y0H+HA==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/Afrinet.API.Contracts.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/dapo/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,0 +1,114 @@
+﻿@page "/branch/{headOfficeId}"
+@using Afrinet.Models
+@inject HttpClient Http
+
+<h1>Head Offices</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/branch/add/' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Branch
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Branches by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterBranch" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (branchList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th>Branch Name</th>
+            <th>Contact Surname</th>
+            <th>Contact Other Names</th>
+            <th>Contact E-mail</th>
+            <th>Contact Phone</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var br in branchList)
+            {
+                <tr>
+                    <td>@br.BranchName</td>
+                    <td>@br.MainContactName</td>
+                    <td>@br.MainContactOtherNames</td>
+                    <td>@br.MainContactEmail</td>
+                    <td>@br.MainContactMobileNumber</td>
+
+                    <td>
+                        <a href='/branch/edit/@br.HeadOfficeId/@br.Id' class="btn btn-outline-dark" role="button">
+                            Edit
+                        </a>
+                      @*   <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
+                            Delete
+                        </a> *@
+                        <a href='/agent/@br.Id' class="btn btn-outline-dark" role="button">
+                            View Agents
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string? HeadOfficeId { get; set; }
+    protected List<Branch> branchList = new();
+    protected List<Branch> searchBranchData = new();
+    protected Branch branch = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetBranch();
+    }
+    protected async Task GetBranch()
+    {
+        branchList = await Http.GetFromJsonAsync<List<Branch>>("http://localhost:5032/api/Branch/" + HeadOfficeId );
+        searchBranchData = branchList;
+    }
+    protected void FilterBranch()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            branchList= searchBranchData
+            .Where(x => x.BranchName.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            branchList = searchBranchData;
+        }
+    }
+    protected void DeleteConfirm(string Id)
+    {
+        branch = branchList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        branchList = searchBranchData;
+    }
+
+}

@@ -81,7 +81,6 @@
 /Users/dapo/dev/afrinet/afrinet-mvp-backend/Subscribers.API/obj/Debug/net7.0/Subscribers.API.pdb
 /Users/dapo/dev/afrinet/afrinet-mvp-backend/Subscribers.API/obj/Debug/net7.0/Subscribers.API.genruntimeconfig.cache
 /Users/dapo/dev/afrinet/afrinet-mvp-backend/Subscribers.API/obj/Debug/net7.0/ref/Subscribers.API.dll
-/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/subscriber.json
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/AWSSDK.Core.dll
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/AWSSDK.SecurityToken.dll
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/DnsClient.dll
@@ -99,6 +98,8 @@
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/Afrinet.Models.dll
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/Afrinet.Models.pdb
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/org.json
-/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/agent.json
-/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/branch.json
-/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/head-office.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/test-data/agent.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/test-data/branch.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/test-data/head-office.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/test-data/subscriber.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/obj/Debug/net7.0/Subscribers.API.sourcelink.json

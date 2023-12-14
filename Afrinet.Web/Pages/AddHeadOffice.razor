@@ -1,0 +1,155 @@
+﻿@page "/headoffice/add"
+@page "/headoffice/edit/{id}"
+@using Afrinet.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>@Title Head Office</h1>
+<hr />
+<EditForm Model="@headOffice" OnValidSubmit="SaveHeadOffice">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Company Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Company Name</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.CompanyName" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.CompanyName)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 1</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.AddressLine1" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.AddressLine1)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 2</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.AddressLine2" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.AddressLine2)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">City</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.City" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.City)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">State</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.State" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.State)" />
+        </div>
+    </div>
+    <div>
+        <h3>Signatory Details</h3>
+        <div class="mb-3">
+            <label for="Signatory" class="form-label">Surname</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.ContractSignatoryName" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.ContractSignatoryName)" />
+        </div>
+        <div class="mb-3">
+            <label for="Signatory" class="form-label">Other Names</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.ContractSignatoryOtherNames" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.ContractSignatoryOtherNames)" />
+        </div>
+        <div class="mb-3">
+            <label for="Signatory" class="form-label">Mobile Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.ContractSignatoryMobileNumber" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.ContractSignatoryMobileNumber)" />
+        </div>
+        <div class="mb-3">
+            <label for="Signatory" class="form-label">Email</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.ContractSignatoryEmail" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.ContractSignatoryEmail)" />
+        </div>
+    </div>
+
+
+    <div>
+        <h3>Main Contact Details</h3>
+        <div class="mb-3">
+            <label for="Contact" class="form-label">Surname</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.MainContactName" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.MainContactName)" />
+        </div>
+        <div class="mb-3">
+            <label for="OtherName" class="form-label">Other Names</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.MainContactOtherNames" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.MainContactOtherNames)" />
+        </div>
+        <div class="mb-3">
+            <label for="Emailid" class="form-label">Main Contact E-mail</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.MainContactEmail" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.MainContactEmail)" />
+        </div>
+        <div class="mb-3">
+            <label for="Phone Number" class="form-label">Main Contact Phone Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.MainContactMobileNumber" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.MainContactMobileNumber)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" @onclick="SaveHeadOffice">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected HeadOffice headOffice = new();
+
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            headOffice = await Http.GetFromJsonAsync<HeadOffice>("http://localhost:5032/api/HeadOffice/" + Id);
+        }
+    }
+    protected async Task SaveHeadOffice()
+    {
+        if (headOffice.Id is not null)
+        {
+            await Http.PutAsJsonAsync("http://localhost:5032/api/HeadOffice/"+ headOffice.Id,  headOffice);
+        }
+        else
+        {
+            await Http.PostAsJsonAsync("http://localhost:5032/api/HeadOffice", headOffice);
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/headoffice");
+    }
+
+}

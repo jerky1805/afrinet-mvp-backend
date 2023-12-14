@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8E+iLPBcLMynpz0lbw6sKSKeHsx/YFjJLevO6sgRe4+GtVkKiVCbDcld6nB956B0FgKSjKF2q7Y7eDdFgGt2wA==",
+  "dgSpecHash": "ldWtlEjLCy3YOcXuAZz/5WLeV/6eDw964vLujdX2HjHu7RMjLNr2VOPjF9IoQaVnZ7FOaXJEjTU6td9+u8MfKg==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Agents.API/Agents.API.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,10 @@
     "/Users/dapo/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
     "/Users/dapo/.nuget/packages/system.security.accesscontrol/5.0.0/system.security.accesscontrol.5.0.0.nupkg.sha512",
     "/Users/dapo/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512",
-    "/Users/dapo/.nuget/packages/zstdsharp.port/0.6.2/zstdsharp.port.0.6.2.nupkg.sha512"
+    "/Users/dapo/.nuget/packages/zstdsharp.port/0.6.2/zstdsharp.port.0.6.2.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.14/microsoft.netcore.app.host.osx-arm64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

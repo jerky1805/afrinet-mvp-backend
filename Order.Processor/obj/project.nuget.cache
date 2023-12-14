@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "trxlqELqISXA9PJCknNagrjBCWXs/4lloP13wY4HQ64glG0ArVGXISfMy9zm7E2SxPCzghYW4KV64HuxLwfrpQ==",
+  "dgSpecHash": "ajRaUcQDAPmwKgY8b/L3SrtTjFVGx9R0YDjd/yJABfhf86ZwlkTCmXt5snwzN5L99v6VOC3vF43MvHGOIWaVjw==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Order.Processor/Order.Processor.csproj",
   "expectedPackageFiles": [
@@ -64,7 +64,10 @@
     "/Users/dapo/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
     "/Users/dapo/.nuget/packages/system.threading.tasks/4.0.11/system.threading.tasks.4.0.11.nupkg.sha512",
     "/Users/dapo/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "/Users/dapo/.nuget/packages/zstdsharp.port/0.6.2/zstdsharp.port.0.6.2.nupkg.sha512"
+    "/Users/dapo/.nuget/packages/zstdsharp.port/0.6.2/zstdsharp.port.0.6.2.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.14/microsoft.netcore.app.host.osx-arm64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

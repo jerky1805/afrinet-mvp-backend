@@ -38,12 +38,12 @@ public class BranchController : ControllerBase
     }
 
 
-    [HttpGet]
-    public async Task<List<Branch>> Get() =>
-         await _branchAccountService.GetBranchAccounts();
+    [HttpGet("{headOfficeId}")]
+    public async Task<List<Branch>> Get(string headOfficeId) =>
+         await _branchAccountService.GetBranchAccountsbyHeadOfficeId(headOfficeId);
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Branch>> Get(string id)
+    [HttpGet("{headOfficeId}/{id}")]
+    public async Task<ActionResult<Branch>> Get(string headOfficeId, string id)
     {
         var branchAccount = await _branchAccountService.GetBranchAccount(id);
 
@@ -52,8 +52,26 @@ public class BranchController : ControllerBase
             _logger.LogInformation("ERROR Finding a Branch Account: {id} from {Now}", id, DateTime.Now);
             return NotFound();
         }
+        if (branchAccount.HeadOfficeId != headOfficeId)
+        {
+            _logger.LogInformation("ERROR Head Office does not Match Branch Account's: {id} from {Now}", id, DateTime.Now);
+            return NotFound();
+        }
         return branchAccount;
     }
+
+    // [HttpGet]
+    // public async Task<ActionResult<Branch>> GetforHeadOffice(string id)
+    // {
+    //     var branchAccount = await _branchAccountService.GetBranchAccount(id);
+
+    //     if (branchAccount is null)
+    //     {
+    //         _logger.LogInformation("ERROR Finding a Branch Account: {id} from {Now}", id, DateTime.Now);
+    //         return NotFound();
+    //     }
+    //     return branchAccount;
+    // }
 
 
     [HttpPost]
@@ -66,12 +84,12 @@ public class BranchController : ControllerBase
             if (account is not null)
             {
                 _logger.LogInformation("Attempt to Create a Duplicate Branch!: {branchAccount} with {MSISDN} {Now}", branchAccount, DateTime.Now, branchAccount.MSISDN);
-                return Created( "Please Contact Support", branchAccount);
+                return Created("Please Contact Support", branchAccount);
             }
 
             var services = Configuration.GetSection("SupportedServicesAgents").Get<List<Service>>();
             Wallet wallet = new Wallet()
-            { 
+            {
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
                 Currency = "KSH",
@@ -124,6 +142,7 @@ public class BranchController : ControllerBase
             if (account is null)
             {
                 _logger.LogInformation("ERROR Finding a Branch Account: {id} from {Now}", id, DateTime.Now);
+                Console.WriteLine(" Branch Account: {id}",branchAccount);
                 return NotFound();
             }
 

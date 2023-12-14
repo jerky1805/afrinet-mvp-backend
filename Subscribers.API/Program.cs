@@ -13,16 +13,16 @@ builder.Services.Configure<WalletDatabaseSettings>(
     builder.Configuration.GetSection("WalletDatabase"));
 
 builder.Services.Configure<OrgAccountDatabaseSettings>(
-builder.Configuration.GetSection("OrgAccountDatabase"));
+    builder.Configuration.GetSection("OrgAccountDatabase"));
 
 builder.Services.Configure<HeadOfficeAccountDatabaseSettings>(
-builder.Configuration.GetSection("HeadOfficeAccountDatabase"));
+    builder.Configuration.GetSection("HeadOfficeAccountDatabase"));
 
 builder.Services.Configure<BranchAccountDatabaseSettings>(
-builder.Configuration.GetSection("BranchAccountDatabase"));
+    builder.Configuration.GetSection("BranchAccountDatabase"));
 
 builder.Services.Configure<AgentAccountDatabaseSettings>(
-builder.Configuration.GetSection("AgentAccountDatabase"));
+    builder.Configuration.GetSection("AgentAccountDatabase"));
 
 builder.Services.AddSingleton<ServiceAccountsService>();
 builder.Services.AddSingleton<UserAccountsService>();

@@ -1,0 +1,126 @@
+﻿@page "/branch/add"
+@page "/branch/edit/{headOfficeId}/{id}"
+@using Afrinet.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>@Title Head Office</h1>
+<hr />
+<EditForm Model="@branch" OnValidSubmit="SaveBranch">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Company Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Branch Name</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.BranchName" />
+            </div>
+            <ValidationMessage For="@(() => branch.BranchName)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 1</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.AddressLine1" />
+            </div>
+            <ValidationMessage For="@(() => branch.AddressLine1)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 2</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.AddressLine2" />
+            </div>
+            <ValidationMessage For="@(() => branch.AddressLine2)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">City</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.City" />
+            </div>
+            <ValidationMessage For="@(() => branch.City)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">State</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.State" />
+            </div>
+            <ValidationMessage For="@(() => branch.State)" />
+        </div>
+    </div>
+    
+    <div>
+        <h3>Main Contact Details</h3>
+        <div class="mb-3">
+            <label for="Contact" class="form-label">Surname</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.MainContactName" />
+            </div>
+            <ValidationMessage For="@(() => branch.MainContactName)" />
+        </div>
+        <div class="mb-3">
+            <label for="OtherName" class="form-label">Other Names</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.MainContactOtherNames" />
+            </div>
+            <ValidationMessage For="@(() => branch.MainContactOtherNames)" />
+        </div>
+        <div class="mb-3">
+            <label for="Emailid" class="form-label">Main Contact E-mail</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.MainContactEmail" />
+            </div>
+            <ValidationMessage For="@(() => branch.MainContactEmail)" />
+        </div>
+        <div class="mb-3">
+            <label for="Phone Number" class="form-label">Main Contact Phone Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.MainContactMobileNumber" />
+            </div>
+            <ValidationMessage For="@(() => branch.MainContactMobileNumber)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" @onclick="SaveBranch">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+        [Parameter]
+    public string? HeadOfficeId { get; set; }
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected Branch branch = new();
+
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            branch = await Http.GetFromJsonAsync<Branch>("http://localhost:5032/api/Branch/"+ HeadOfficeId + "/" + Id);
+        }
+    }
+    protected async Task SaveBranch()
+    {
+        if (branch.Id is not null)
+        {
+            await Http.PutAsJsonAsync("http://localhost:5032/api/Branch/"+ branch.Id,  branch);
+        }
+        else
+        {
+            await Http.PostAsJsonAsync("http://localhost:5032/api/Branch", branch);
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/branch/" + HeadOfficeId );
+    }
+
+}

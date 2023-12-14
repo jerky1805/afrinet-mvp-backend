@@ -23,3 +23,4 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Debug/net7.0/refint/Afrinet.Models.dll
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Debug/net7.0/Afrinet.Models.pdb
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Debug/net7.0/ref/Afrinet.Models.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Debug/net7.0/Afrinet.Models.sourcelink.json
