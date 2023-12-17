@@ -36,6 +36,7 @@ nps-> pbank : NPS routes Credit Request to AfriMoney's Partner Bank
 pbank-> nps : Bank Notifies NPS of Credit Success
 nps -> afri : NPS notifies AfriMoney of Bank Transfer Success. 
 afri -> afri : AfriMoney Credits Customer's Wallet less applicable fees and taxes
+afri -> afri: Bank Transfer Cash In transaction is set to [Status = Completed]
 afri-> app: App or Portal is notified of Bank Transfer Success and New Wallet Balance
 app --> contact: App or Portal shows Customer Success Notification and New Wallet Balance
 

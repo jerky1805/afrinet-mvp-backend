@@ -1,10 +1,10 @@
-﻿@page "/branch/add"
+﻿@page "/branch/add/{headOfficeId}"
 @page "/branch/edit/{headOfficeId}/{id}"
 @using Afrinet.Models
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
-<h1>@Title Head Office</h1>
+<h1>@Title Branch</h1>
 <hr />
 <EditForm Model="@branch" OnValidSubmit="SaveBranch">
     <DataAnnotationsValidator />
@@ -44,6 +44,13 @@
                 <InputText class="form-control" @bind-Value="branch.State" />
             </div>
             <ValidationMessage For="@(() => branch.State)" />
+        </div>
+         <div class="mb-3">
+            <label for="Address" class="form-label">Country</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="branch.Country" />
+            </div>
+            <ValidationMessage For="@(() => branch.Country)" />
         </div>
     </div>
     
@@ -114,6 +121,7 @@
         }
         else
         {
+            branch.HeadOfficeId = HeadOfficeId;
             await Http.PostAsJsonAsync("http://localhost:5032/api/Branch", branch);
         }
         Cancel();

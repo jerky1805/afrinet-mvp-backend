@@ -1,0 +1,46 @@
+@startuml Card Payment to Wallet 
+title Card Payment to Wallet
+
+autonumber
+
+
+
+actor contact as "Customer:Organisation"
+participant app  as "AfriMoney Mobile App\n or Portal"
+participant pp  as "AfriMoney \nPayment Page"
+participant afri  as "AfriMoney Platform:\nPayment Gateway"
+participant acq  as "AfriMoney Platform:\nAcquirer"
+participant scheme as "Card Scheme \nNetwork"
+participant issuer as "Card \nIssuer"
+
+
+
+contact -> app: Launch the App or Portal and Authenticate. 
+app --> contact: App or Portal Launched and Menu Options Shown to User
+contact -> app: User selects Pay for Collection Using Payment Card
+app --> contact: Card Payment Screen is shown. 
+contact -> pp: User Specifies the Card Details and Submits
+note left: Reference and Amount \nPrepopulated by AfriMoney
+pp -> afri: Card Payment transaction is submitted
+afri -> afri: Card Payment transaction is created and set to [Status = Initiated]
+afri -> afri: Carry out applicable Business Rules, such as \nLimits validation, applicable fees and taxes etc.
+afri -> acq: Submit Payment Request to  to Acquirer
+acq -> afri: Acknowledgement is provided. 
+afri -> scheme: Arca routes the payment request to the Payment Card scheme Network
+scheme -> issuer: Payment Card scheme Network routes the payment request to the Issuer
+issuer -> contact: Issuer requests Strong Authentication from the Customer
+contact --> issuer: Issuer recieve Strong Authentication Outcome
+issuer --> scheme :  Issuer provides Acknowledgement and Authorization Code 
+scheme -> acq : Payment Card scheme Network notifies Acquirer of with approval of the transaction 
+acq -> afri :  Acquirer notifies AfriMoney of with approval of the transaction 
+afri -> afri : AfriMoney Credits Collection Bank's wallet less applicable fees and taxes
+note left: Collection Agency already \nhas a wallet on the AfriMoney Platform
+afri -> afri: Payment transaction is set to [Status = Completed]
+afri-> app: App or Portal is notified of Payment Success
+app --> contact: App or Portal shows Customer Success Notification 
+
+
+ 
+
+
+@enduml

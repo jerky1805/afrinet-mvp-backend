@@ -45,6 +45,20 @@
             </div>
             <ValidationMessage For="@(() => headOffice.State)" />
         </div>
+          <div class="mb-3">
+            <label for="Address" class="form-label">Country</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.Country" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.Country )" />
+        </div>
+         <div class="mb-3">
+            <label for="Address" class="form-label">Phone Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="headOffice.MSISDN" />
+            </div>
+            <ValidationMessage For="@(() => headOffice.MSISDN)" />
+        </div>
     </div>
     <div>
         <h3>Signatory Details</h3>
@@ -77,8 +91,6 @@
             <ValidationMessage For="@(() => headOffice.ContractSignatoryEmail)" />
         </div>
     </div>
-
-
     <div>
         <h3>Main Contact Details</h3>
         <div class="mb-3">

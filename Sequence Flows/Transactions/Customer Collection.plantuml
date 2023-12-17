@@ -1,0 +1,64 @@
+@startuml Card Payment to Wallet 
+skinparam backgroundColor #EEEBDC
+' skinparam handwritten true
+title Card Payment to Wallet
+
+autonumber
+
+
+
+actor contact as "Collection\nCustomer"
+participant ec  as "E-Citizen\nPlatform"
+participant afri  as "AfriMoney\nPlatform"
+participant collect  as "Collection\nOrganisation"
+participant trust  as "AfriMoney\nTrust Bank"
+participant tb as "Treasury\nBank"
+
+
+
+contact -> ec: Customer browses to E-Citizen Portal and Authenticates. 
+note left of contact #LightSkyBlue
+Can we use a shared login 
+for E-Citzen and AfriMoney?? 
+end note
+ec --> contact: Collection Options Shown to Customer
+contact -> ec: Customer selects Collection of Choice
+ec --> contact: Payment Methods are Shown to Customer. 
+contact -> ec: Customer Selects AfriMoney as the Payment Method of Choice.
+ec-> afri: Customer is routed to Afrimoney Payment Platform. 
+afri-> afri: Check for an existing Authenticated Session. 
+note left of contact #LightSkyBlue
+Can we use E-Citzen Personal Data 
+to Create a Subscriber Account for the Customer ?? 
+end note
+alt Customer does not have an active Authenticated Session
+afri --> contact: Customer is shown Login Screen. 
+contact -> afri: Customer Authenticates. 
+end 
+afri -> contact: Customer is shown Pay Now Screen .
+contact -> afri: Customer Confirms Transaction Details - \na)Collection Reference,\nb)Other Collection Details, \nc)and Amount. 
+note left of contact #LimeGreen
+Collection Details and Amount 
+Prepopulated by AfriMoney Platform
+end note
+afri -> afri: Collection transaction is created and set to [Status = Initiated]
+afri -> afri: Carry out applicable Business Rules, such as \nLimits validation, applicable fees and taxes etc.
+afri -> afri: AfriMoney Platform debits Customer's Wallet for Collection Amount
+afri -> afri: AfriMoney Platform credits it Working Wallet\nwith Applicable Fees and Taxes 
+afri -> afri: AfriMoney Platform credits Collection Orgranisation's Wallet\n with Collection Amount less applicable fees and taxes
+afri -> afri: Collection transaction set to [Status = Completed]
+afri --> contact: Customer is Payment Successful Screen.
+afri --> contact: Customer is sent Notification of Transaction\nwith it details,\ntransaction outcome \n and new balance.
+afri -> collect: Collection Organisation is sent \nNotification of Transaction with it details and outcome.
+== End ofDay ==
+afri -> afri: Run Reconciliation Process
+afri -> trust : EFT Instruction of Total Net Collection Amount\n to Treasury Bank Account
+trust -> tb : EFT Transfer of Total Net Collection Amount\nto Treasury Bank Account
+afri -> afri: AfriMoney Platform debits \nCollection's Wallet for Total Net Collection Amount
+afri -> trust : EFT Instruction of of Total Taxes to Treasury Bank Account
+trust -> tb : EFT Transfer of Total Taxes \nto Treasury Bank Account
+afri -> afri: AfriMoney Platform debits \nAfriMoney's Working Wallet for Total Taxes Amount
+afri -> afri: Collection transactions set to [Status = Settled]
+afri --> collect: Collection Organisation is sent \nNotification of Total Net Collection Amount.
+
+@enduml

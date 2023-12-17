@@ -22,8 +22,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddAgents.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQWdlbnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddBranch.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQnJhbmNoLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddCustomerOrganisation.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQ3VzdG9tZXJPcmdhbmlzYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddCustomerSubscriber.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQ3VzdG9tZXJTdWJzY3JpYmVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddHeadOffice.razor]
@@ -34,8 +46,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchAgents.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hBZ2VudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchBranch.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hCcmFuY2gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchCustomerOrganisation.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hDdXN0b21lck9yZ2FuaXNhdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchCustomerSubscriber.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hDdXN0b21lclN1YnNjcmliZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchData.razor]

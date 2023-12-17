@@ -119,7 +119,7 @@ public class BranchController : ControllerBase
             await _serviceAccountService.CreateServiceAccount(serviceAccount);
             await _branchAccountService.CreateBranchAccount(branchAccount);
 
-            return CreatedAtAction(nameof(Get), new { id = branchAccount.Id }, branchAccount);
+            return Ok(await _branchAccountService.GetBranchAccount(branchAccount.Id));
         }
         catch (System.Exception ex)
         {

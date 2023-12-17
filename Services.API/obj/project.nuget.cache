@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+etoN5+Yh0YFhRjbRvzakLQdcT+jHKbMfUh7D0uNRiEm7cho/L03sFbD2WAm0s2s0/yMKADLxrpUcnC9pHN6qg==",
+  "dgSpecHash": "bplnvvz7XUrq50J56lD6Flc9A9XU14IepLWHqiMrOlXqzHhf4TvyHsT/wXp+VF2C8YiDM5R5Sk8z7CyQ2QT+IA==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Services.API/Services.API.csproj",
   "expectedPackageFiles": [
@@ -142,10 +142,7 @@
     "/Users/dapo/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/dapo/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
     "/Users/dapo/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "/Users/dapo/.nuget/packages/zstdsharp.port/0.6.2/zstdsharp.port.0.6.2.nupkg.sha512",
-    "/Users/dapo/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "/Users/dapo/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
-    "/Users/dapo/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.14/microsoft.netcore.app.host.osx-arm64.7.0.14.nupkg.sha512"
+    "/Users/dapo/.nuget/packages/zstdsharp.port/0.6.2/zstdsharp.port.0.6.2.nupkg.sha512"
   ],
   "logs": []
 }
