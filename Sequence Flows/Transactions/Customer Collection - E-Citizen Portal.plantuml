@@ -1,7 +1,7 @@
-@startuml E-Citizen Collections 
+@startuml Customer Collection - E-Citizen Portal 
 skinparam backgroundColor #EEEBDC
 ' skinparam handwritten true
-title E-Citizen Collections 
+title Customer Collection - E-Citizen Portal
 
 autonumber
 
