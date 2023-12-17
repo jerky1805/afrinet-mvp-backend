@@ -1,4 +1,6 @@
 @startuml Bank Transfer to Wallet 
+skinparam backgroundColor #EEEBDC
+
 title Bank Transfer to Wallet
 
 autonumber

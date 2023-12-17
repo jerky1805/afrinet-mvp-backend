@@ -1,4 +1,6 @@
 @startuml Card Payment to Wallet 
+skinparam backgroundColor #EEEBDC
+
 title Card Payment to Wallet
 
 autonumber

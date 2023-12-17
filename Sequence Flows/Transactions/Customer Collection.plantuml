@@ -1,7 +1,7 @@
-@startuml Card Payment to Wallet 
+@startuml E-Citizen Collections 
 skinparam backgroundColor #EEEBDC
 ' skinparam handwritten true
-title Card Payment to Wallet
+title E-Citizen Collections 
 
 autonumber
 
