@@ -1,13 +1,31 @@
 @startuml Bank Transfer to Wallet 
-skinparam backgroundColor #EEEBDC
-
 title Bank Transfer to Wallet
+
+skinparam backgroundColor #EEEBDC
+skinparam RoundCorner 20
+skinparam TitleBackgroundColor yellow
+skinparam TitleBorderColor red
+skinparam TitleBorderThickness 6
+skinparam TitleBorderRoundCorner 5
+skinparam TitleFontName Graphik
+skinparam TitleFontSize 25
+skinparam ParticipantFontSize 18
+skinparam ActorFontSize 18
+skinparam ActorFontName Graphik
+skinparam ParticipantFontName Graphik
+skinparam ArrowFontName Graphik
+skinparam ArrowFontSize 18
+skinparam ArrowFontSize 18
+skinparam NoteFontName Graphik
+skinparam NoteFontSize 18
+skinparam ArrowThickness 3
+
 
 autonumber
 
 
 
-actor contact as "Customer:Organisation"
+actor contact as "Customer"
 participant app  as "AfriMoney Mobile App\n or Portal"
 participant afri  as "AfriMoney Platform"
 participant nps as "Kenyan National \nPayments System(NPS)"
