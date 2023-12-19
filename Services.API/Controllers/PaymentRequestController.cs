@@ -14,17 +14,17 @@ public class PaymentRequestController : ControllerBase
 {
 
     private readonly ILogger<PaymentRequestController> _logger;
-    private readonly IServiceBus _serviceBus;
+    private readonly IQueue _queue;
 
 
     public PaymentRequestController(
         ILogger<PaymentRequestController> logger,
-        IServiceBus serviceBus
+        IQueue queue 
 
     )
     {
         _logger = logger;
-        _serviceBus = serviceBus;
+        _queue = queue;
     }
 
 
@@ -40,7 +40,7 @@ public class PaymentRequestController : ControllerBase
        else
         {
             orderDetails.Id = Guid.NewGuid().ToString();
-            await _serviceBus.SendMessageAsync(orderDetails);
+            await _queue.SendMessageAsync(orderDetails);
              return Ok();
         }
        

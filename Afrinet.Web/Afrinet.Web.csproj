@@ -10,4 +10,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Afrinet.Models\Afrinet.Models.csproj" />
   </ItemGroup>
+
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.16.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.16.0" />
+  </ItemGroup>
 </Project>

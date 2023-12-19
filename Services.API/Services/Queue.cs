@@ -7,10 +7,10 @@ using Services.API.Models;
 
 namespace Services.API.Services;
 
-public class ServiceBus : IServiceBus
+public class Queue : IQueue
 {
     private readonly IConfiguration _configuration;
-    public ServiceBus(IConfiguration configuration)
+    public Queue(IConfiguration configuration)
     {
         _configuration = configuration;
     }

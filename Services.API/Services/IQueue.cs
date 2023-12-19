@@ -3,7 +3,7 @@ using Afrinet.API.Contracts;
 
 namespace Services.API.Services;
 
-public interface IServiceBus
+public interface IQueue
 {
     Task  SendMessageAsync( OrderDetails orderDetails);
 }
