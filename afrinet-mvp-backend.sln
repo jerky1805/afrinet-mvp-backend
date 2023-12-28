@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Processor", "Order.Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Afrinet.Web", "Afrinet.Web\Afrinet.Web.csproj", "{80E9F75C-99B5-4241-983A-249290D88BFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Activation.Processor", "Activation.Processor\Activation.Processor.csproj", "{7069CEEA-67EB-4532-85C3-4596120EF5CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,14 @@ Global
 		{80E9F75C-99B5-4241-983A-249290D88BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80E9F75C-99B5-4241-983A-249290D88BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80E9F75C-99B5-4241-983A-249290D88BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF49240-9416-4294-9996-7DBDCB66F529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF49240-9416-4294-9996-7DBDCB66F529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF49240-9416-4294-9996-7DBDCB66F529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF49240-9416-4294-9996-7DBDCB66F529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7069CEEA-67EB-4532-85C3-4596120EF5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7069CEEA-67EB-4532-85C3-4596120EF5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7069CEEA-67EB-4532-85C3-4596120EF5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7069CEEA-67EB-4532-85C3-4596120EF5CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

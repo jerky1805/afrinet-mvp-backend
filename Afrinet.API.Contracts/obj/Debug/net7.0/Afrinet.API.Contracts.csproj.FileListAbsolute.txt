@@ -1,4 +1,3 @@
-/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/Afrinet.API.Contracts.csproj.AssemblyReference.cache
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/Afrinet.API.Contracts.GeneratedMSBuildEditorConfig.editorconfig
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/Afrinet.API.Contracts.AssemblyInfoInputs.cache
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/Afrinet.API.Contracts.AssemblyInfo.cs
@@ -10,3 +9,4 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/refint/Afrinet.API.Contracts.dll
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/Afrinet.API.Contracts.pdb
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/ref/Afrinet.API.Contracts.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/obj/Debug/net7.0/Afrinet.API.Contracts.sourcelink.json

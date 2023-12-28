@@ -21,7 +21,7 @@ public class Worker : BackgroundService
         {
 
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            QueueClient queue = new QueueClient(_configuration.GetConnectionString("StorageConnectionString"), _configuration.GetConnectionString("OrderQueueName"));
+            QueueClient queue = new QueueClient(_configuration.GetConnectionString("StorageConnectionString"), _configuration.GetConnectionString("QueueName"));
 
             if (await queue.ExistsAsync())
             {

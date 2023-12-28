@@ -1,0 +1,65 @@
+@startuml Subscriber Registration 
+title Subscriber Registration
+
+skinparam backgroundColor #EEEBDC
+skinparam RoundCorner 20
+skinparam TitleBackgroundColor yellow
+skinparam TitleBorderColor red
+skinparam TitleBorderThickness 6
+skinparam TitleBorderRoundCorner 5
+skinparam TitleFontName Graphik
+skinparam TitleFontSize 25
+skinparam ParticipantFontSize 18
+skinparam QueueFontSize 18
+skinparam DatabaseFontSize 18
+skinparam ActorFontSize 18
+skinparam ActorFontName Graphik
+skinparam ParticipantFontName Graphik
+skinparam QueueFontName Graphik
+skinparam DatabaseFontName Graphik
+skinparam ArrowFontName Graphik
+skinparam ArrowFontSize 18
+skinparam ArrowFontSize 18
+skinparam NoteFontName Graphik
+skinparam NoteFontSize 18
+skinparam ArrowThickness 3
+
+autonumber
+
+
+
+actor contact as "Customer"
+participant sub  as "Subscriber \nAPI"
+participant act  as "Activation \nAPI"
+participant actp  as "Activation \nWorker Process"
+queue actq  as "Activation \nRequests Queue"
+database servd as "Service Account \nDatabase"
+database subd as "Subscriber \nDatabase"
+database actd as "Activations \nDatabase"
+
+
+
+contact -> sub: HTTP POST -> Submit Registration Details 
+sub -> servd: Create Service Account Record
+sub -> subd: Create User Account Record
+sub -> act: HTTP POST -> Create Activation Request
+act -> actq: Add Activation Request Message to Queue
+act --> sub : Activation Request Created
+actp -> actq : Retrieve Activation Request Message
+actp -> actd : Save Activation Record
+actp -> contact : Send Customer Activation Request with TOTP
+contact -> act : HTTP PUT -> Submit Activation Request with TOTP
+act -> actd : Retrieve Activation Request
+actd --> act : Activation Request Returned
+act-> act:  Supplied TOTP and  stored TOTP match
+act -> sub : HTTP Get -> Retrieve Subscriber Record
+sub -> subd: Retrieve User Account Record
+subd --> sub: User Account Record Retrieved
+act -> act : Update Subscriber Record with \n[Status = Active], \nPIN \n[UpdatedAt=Current Date and Time]
+act -> sub: HTTP PUT -> Update Subscriber Record
+sub -> subd: User Account Record Updated
+sub --> act: User Account Record Updated Sucessfully
+act --> contact: Customer Account Activated
+
+
+@enduml

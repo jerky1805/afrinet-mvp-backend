@@ -4,6 +4,7 @@ using Afrinet.API.Contracts;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using Services.API.Models;
+using Afrinet.Models;
 
 namespace Services.API.Services;
 
@@ -14,12 +15,12 @@ public class Queue : IQueue
     {
         _configuration = configuration;
     }
-   
 
-    public async Task SendMessageAsync(OrderDetails orderDetails)
+    
+    public async Task SendMessageAsync(ActivationRequest activationRequest)
     {
-        QueueClient queue = new QueueClient(_configuration.GetConnectionString("StorageConnectionString"), _configuration.GetConnectionString("OrderQueueName"));
-        var MessageBody = JsonSerializer.Serialize(orderDetails);
+        QueueClient queue = new QueueClient(_configuration.GetConnectionString("StorageConnectionString"), _configuration.GetConnectionString("ActivationQueueName"));
+        var MessageBody = JsonSerializer.Serialize(activationRequest);
         // var message = new Message(Encoding.UTF8.GetBytes(MessageBody))
         // {
         //     ContentType = "application/json",

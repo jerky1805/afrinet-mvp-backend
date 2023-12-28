@@ -1,16 +1,25 @@
 using Afrinet.Models;
+using Services.API;
 using Services.API.Models;
 using Services.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.Configure<PaymentDatabaseSettings> (
+builder.Services.Configure<PaymentDatabaseSettings>(
     builder.Configuration.GetSection("PaymentDatabase"));
 
-builder.Services.AddSingleton<PaymentService>();
+builder.Services.Configure<ActivationDatabaseSettings>(
+    builder.Configuration.GetSection("ActivationDatabase"));
 
-builder.Services.AddScoped<IServiceBus, ServiceBus>();
+builder.Services.AddSingleton<PaymentService>();
+builder.Services.AddSingleton<ActivationService>();
+
+
+builder.Services.AddScoped<IQueue, Queue>();
+
+builder.Services.AddHttpClient();
+
 
 builder.Services.AddControllers();
 
@@ -19,7 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
- 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Activation.Processor-7c736e81-f9b4-4511-9d88-ff3f13519c6a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Queues" Version="12.17.1" />
+    <PackageReference Include="Microsoft.Azure.Storage.Common" Version="11.2.3" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <ProjectReference Include="..\Afrinet.Models\Afrinet.Models.csproj" />
+    <ProjectReference Include="..\Afrinet.API.Contracts\Afrinet.API.Contracts.csproj" />
+  </ItemGroup>
+</Project>

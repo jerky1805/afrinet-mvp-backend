@@ -68,3 +68,6 @@
 /Users/dapo/dev/afrinet-mvp-backend/Order.Processor/bin/Debug/net7.0/Afrinet.Models.dll
 /Users/dapo/dev/afrinet-mvp-backend/Order.Processor/bin/Debug/net7.0/Afrinet.Models.pdb
 /Users/dapo/dev/afrinet-mvp-backend/Order.Processor/bin/Debug/net7.0/Afrinet.API.Contracts.pdb
+/Users/dapo/dev/afrinet-mvp-backend/Order.Processor/bin/Debug/net7.0/Microsoft.Azure.KeyVault.Core.dll
+/Users/dapo/dev/afrinet-mvp-backend/Order.Processor/bin/Debug/net7.0/Microsoft.Azure.Storage.Common.dll
+/Users/dapo/dev/afrinet-mvp-backend/Order.Processor/obj/Debug/net7.0/Order.Processor.sourcelink.json

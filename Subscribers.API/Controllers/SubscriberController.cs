@@ -66,15 +66,15 @@ public class SubscribersController : ControllerBase
             if (account is not null)
             {
                 _logger.LogInformation("Attempt to Create a Duplicate Subscriber!: {userAccount} with {MSISDN} {Now}", userAccount, DateTime.Now, userAccount.MSISDN);
-                return Created( "Please Contact Support",userAccount);
+                return Created("Please Contact Support", userAccount);
             }
 
             var services = Configuration.GetSection("SupportedServicesSubscribers").Get<List<Service>>();
             Wallet wallet = new Wallet()
-            { 
+            {
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
-                Currency = "KSH",
+                Currency = "KES",
                 LastOperatedAt = DateTime.Now,
             };
             List<Wallet> wallets = new List<Wallet>();
@@ -96,12 +96,26 @@ public class SubscribersController : ControllerBase
             userAccount.BalanceLimit = new ValueLimit() { Id = Guid.NewGuid().ToString(), LimitName = userAccount.UserAccountRole, MaximumValue = 600 };
             userAccount.TransactionLimits = transactionLimits;
             userAccount.CreatedAt = DateTime.Now;
-            
-//TODO: Add Infrastructure for KYC 
+            userAccount.Status = "Created";
+
+            //TODO: Add Infrastructure for KYC 
 
             await _serviceAccountService.CreateServiceAccount(serviceAccount);
             await _userAccountService.CreateUserAccount(userAccount);
-
+            //TODO: Send Activation Request
+            using (var client = new HttpClient())
+            {
+                await client.PostAsJsonAsync("http://localhost:5122/api/Activation/",
+                new ActivationRequest
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    MSISDN = userAccount.MSISDN,
+                    SubscriberId = userAccount.Id,
+                    CreatedAt = DateTime.Now,
+                    Status = "Initiated"
+                }
+                    );
+            }
             return CreatedAtAction(nameof(Get), new { id = userAccount.Id }, userAccount);
         }
         catch (System.Exception ex)
