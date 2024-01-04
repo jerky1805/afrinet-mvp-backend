@@ -1,5 +1,5 @@
-@startuml Subscriber Registration 
-title Subscriber Registration
+@startuml Agent Registration 
+title Agent Registration
 
 skinparam backgroundColor #EEEBDC
 skinparam RoundCorner 20
@@ -28,15 +28,15 @@ autonumber
 
 
 
-actor contact as "Customer"
-participant sub  as "Subscriber \nAPI"
+actor contact as "Managing Agent\nor Operator"
+participant sub  as "Agent \nAPI"
 participant act  as "Activation \nAPI"
 participant actp  as "Activation \nWorker Process"
 participant kycp  as "KYC \nWorker Process"
 queue actq  as "Activation \nRequests Queue"
 queue kycq  as "KYC \nRequests Queue"
 database servd as "Service Account \nDatabase"
-database subd as "Subscriber \nDatabase"
+database subd as "Agent \nDatabase"
 database actd as "Activations \nDatabase"
 participant kyc  as "KYC and AML \nPlatform"
 
@@ -44,26 +44,26 @@ participant kyc  as "KYC and AML \nPlatform"
 
 contact -> sub: HTTP POST -> Submit Registration Details 
 sub -> servd: Create Service Account Record
-sub -> subd: Create User Account Record
+sub -> subd: Create Agent Account Record
 sub -> act: HTTP POST -> Create Activation Request
 act -> actq: Add Activation Request Message to Queue
 act -> kycq: Add KYC and AML Request Message to Queue
 act --> sub : Activation Request Created
 actp --> actq : Retrieve Activation Request Message
 actp -> actd : Save Activation Record
-actp -> contact : Send Customer Activation Request with TOTP
+actp -> contact : Send Agent Activation Request with TOTP
 contact -> act : HTTP PUT -> Submit Activation Request with TOTP
 act -> actd : Retrieve Activation Request
 actd --> act : Activation Request Returned
 act-> act:  Supplied TOTP and  stored TOTP match
-act -> sub : HTTP Get -> Retrieve Subscriber Record
-sub -> subd: Retrieve User Account Record
-subd --> sub: User Account Record Retrieved
-act -> act : Update Subscriber Record with \n[Status = Active-Unverified], \nPIN \n[UpdatedAt=Current Date and Time]
-act -> sub: HTTP PUT -> Update Subscriber Record
-sub -> subd: User Account Record Updated
-sub --> act: User Account Record Updated Sucessfully
-act --> contact: Customer Account Activated
+act -> sub : HTTP Get -> Retrieve Agent Record
+sub -> subd: Retrieve Agent Account Record
+subd --> sub: Agent Account Record Retrieved
+act -> sub : HTTP PUT ->  Update Agent Record with \n[Status = Active-Unverified], \nPIN \n[UpdatedAt=Current Date and Time]
+' act -> sub: Update Agent Record
+sub -> subd: Agent Account Record Updated
+sub --> act: Agent Account Record Updated Sucessfully
+act --> contact: Agent Account Activated
 kycp --> kycq : Retrieve KYC Request Message
 kycp -> actd : Save KYC Record
 kycp -> kyc : Send KYC Request
@@ -72,5 +72,4 @@ kycp -> kycp : Evaluate KYC and AML Checks Outcome
 kycp -> sub : HTTP PUT ->  Update Agent Record with \n[Status = Active-Verified]\n[UpdatedAt=Current Date and Time]
 sub -> subd: Agent Account Record Updated
 sub --> kycp: Agent Account Record Updated Sucessfully
-
 @enduml
