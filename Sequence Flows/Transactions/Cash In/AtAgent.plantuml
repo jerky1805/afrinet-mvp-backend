@@ -1,0 +1,68 @@
+@startuml Cash in to Wallet at Agent
+title Cash in to Wallet at Agent
+
+skinparam backgroundColor #EEEBDC
+skinparam RoundCorner 20
+skinparam TitleBackgroundColor yellow
+skinparam TitleBorderColor red
+skinparam TitleBorderThickness 6
+skinparam TitleBorderRoundCorner 5
+skinparam TitleFontName Graphik
+skinparam TitleFontSize 25
+skinparam ParticipantFontSize 18
+skinparam ActorFontSize 18
+skinparam ActorFontName Graphik
+skinparam ParticipantFontName Graphik
+skinparam ArrowFontName Graphik
+skinparam ArrowFontSize 18
+skinparam ArrowFontSize 18
+skinparam NoteFontName Graphik
+skinparam NoteFontSize 18
+skinparam ArrowThickness 3
+
+
+autonumber
+
+
+
+actor contact as "Customer"
+actor agent as "Agent"
+participant app  as "AfriMoney Mobile App\n or Portal"
+participant aapp  as "AfriMoney Agent App\n or Portal"
+participant afri  as "AfriMoney Platform"
+
+
+
+
+
+
+
+contact -> agent: Inform the Agent you need to\n make Cash In Deposit to Wallet 
+agent --> contact: Request Cash from Customer
+contact -> agent: Pass Cash to Agent
+agent -> agent: Count Cash Provided
+agent -> aapp: Launch the App or Portal and Authenticate. 
+aapp --> agent: App or Portal Launched and Menu Options Shown to User
+agent -> aapp: Agent selects Cash In to Wallet
+aapp --> agent: Cash In Screen is Shown. 
+agent -> aapp: Agent Specifies the following - \na)Customer Wallet Info\nb)Amount\nc)Reference and Submits
+aapp -> afri: Cash In transaction is submitted
+afri -> afri: Bank Transfer Cash In transaction is created and set to [Status = Initiated]
+afri -> afri: Carry out applicable Business Rules, such as \nLimits validation, applicable fees and taxes etc.
+afri -> app: Send Confirmation Request Prompt to Customer
+app --> contact: Confirmation of Cash In Request is displayed showing the following - \na)Customer Wallet Info\nb)Amount\nc)Reference
+contact -> app : Customer Confirms Cash In Request with Supplied PIN. 
+app -> afri: Confirmation Request is submitted
+afri -> afri: PIN is verified
+afri -> afri : AfriMoney Credits Customer's Wallet less applicable fees and taxes
+afri -> afri : AfriMoney Debit Agent's's Wallet
+afri -> afri: Bank Transfer Cash In transaction is set to [Status = Completed]
+afri-> app: App or Portal is notified of Cash In Success and New Wallet Balance
+app --> contact: App or Portal shows Customer Success Notification and New Wallet Balance
+afri-> aapp: App or Portal is notified of Cash In Success and New Wallet Balance
+aapp --> agent: App or Portal shows Agent Success Notification and New Wallet Balance
+
+
+
+
+@enduml

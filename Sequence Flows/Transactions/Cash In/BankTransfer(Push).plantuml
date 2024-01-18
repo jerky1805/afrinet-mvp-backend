@@ -1,0 +1,65 @@
+@startuml Bank Transfer to Wallet (Pull)
+title Bank Transfer to Wallet (Pull)
+
+skinparam backgroundColor #EEEBDC
+skinparam RoundCorner 20
+skinparam TitleBackgroundColor yellow
+skinparam TitleBorderColor red
+skinparam TitleBorderThickness 6
+skinparam TitleBorderRoundCorner 5
+skinparam TitleFontName Graphik
+skinparam TitleFontSize 25
+skinparam ParticipantFontSize 18
+skinparam ActorFontSize 18
+skinparam ActorFontName Graphik
+skinparam ParticipantFontName Graphik
+skinparam ArrowFontName Graphik
+skinparam ArrowFontSize 18
+skinparam ArrowFontSize 18
+skinparam NoteFontName Graphik
+skinparam NoteFontSize 18
+skinparam ArrowThickness 3
+
+
+autonumber
+
+
+
+actor contact as "Customer"
+participant app  as "AfriMoney Mobile App\n or Portal"
+participant afri  as "AfriMoney Platform"
+participant nps as "Kenyan National \nPayments System(NPS)"
+participant bank as "Customer:Organisation\n Bank"
+participant pbank as "AfriMoney's\n Partner Bank"
+
+
+
+
+
+
+' contact -> app: Launch the App or Portal and Authenticate. 
+' app --> contact: App or Portal Launched and Menu Options Shown to User
+' contact -> app: User selects Cash In to Wallet from Bank Account
+' app --> contact: Bank Transfer Screen is shown. 
+' contact -> app: User Specifies the following - \na)Bank Account information\nb)Amount\nc)Reference and Submits
+' app -> afri: Bank Transfer Cash In transaction is submitted
+' afri -> afri: Bank Transfer Cash In transaction is created and set to [Status = Initiated]
+' afri -> afri: Carry out applicable Business Rules, such as \nLimits validation, applicable fees and taxes etc.
+' afri -> nps: Submit Bank Transfer Request to NPS
+' afri -> afri: Bank Transfer Cash In transaction is set to [Status = Pending]
+' nps -> bank: Route Bank Transfer Request to Customer's Bank 
+' bank-> contact : Bank requests confirmation from Customer
+' contact-> bank : Customer Provides Confirmation of Bank Transfer
+' bank-> bank : Bank Debits Customer's Account
+' bank-> nps : Bank Notifies NPS of Debit Success
+' nps-> pbank : NPS routes Credit Request to AfriMoney's Partner Bank 
+' pbank-> nps : Bank Notifies NPS of Credit Success
+' nps -> afri : NPS notifies AfriMoney of Bank Transfer Success. 
+' afri -> afri : AfriMoney Credits Customer's Wallet less applicable fees and taxes
+' afri -> afri: Bank Transfer Cash In transaction is set to [Status = Completed]
+' afri-> app: App or Portal is notified of Bank Transfer Success and New Wallet Balance
+' app --> contact: App or Portal shows Customer Success Notification and New Wallet Balance
+
+
+
+@enduml

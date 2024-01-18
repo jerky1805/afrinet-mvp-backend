@@ -1,5 +1,5 @@
-@startuml Bank Transfer to Wallet 
-title Bank Transfer to Wallet
+@startuml Bank Transfer to Wallet (Pull)
+title Bank Transfer to Wallet (Pull)
 
 skinparam backgroundColor #EEEBDC
 skinparam RoundCorner 20
@@ -27,9 +27,10 @@ autonumber
 
 actor contact as "Customer"
 participant app  as "AfriMoney Mobile App\n or Portal"
+participant capp  as "Customer:Organisation\n Bank or Portal"
+participant bank as "Customer:Organisation\n Bank"
 participant afri  as "AfriMoney Platform"
 participant nps as "Kenyan National \nPayments System(NPS)"
-participant bank as "Customer:Organisation\n Bank"
 participant pbank as "AfriMoney's\n Partner Bank"
 
 
@@ -37,28 +38,24 @@ participant pbank as "AfriMoney's\n Partner Bank"
 
 
 
-contact -> app: Launch the App or Portal and Authenticate. 
-app --> contact: App or Portal Launched and Menu Options Shown to User
-contact -> app: User selects Cash In to Wallet from Bank Account
-app --> contact: Bank Transfer Screen is shown. 
-contact -> app: User Specifies the following - \na)Bank Account information\nb)Amount\nc)Reference and Submits
-app -> afri: Bank Transfer Cash In transaction is submitted
-afri -> afri: Bank Transfer Cash In transaction is created and set to [Status = Initiated]
-afri -> afri: Carry out applicable Business Rules, such as \nLimits validation, applicable fees and taxes etc.
-afri -> nps: Submit Bank Transfer Request to NPS
-afri -> afri: Bank Transfer Cash In transaction is set to [Status = Pending]
-nps -> bank: Route Bank Transfer Request to Customer's Bank 
-bank-> contact : Bank requests confirmation from Customer
-contact-> bank : Customer Provides Confirmation of Bank Transfer
+contact -> capp: Launch the Bank App or Portal and Authenticate. 
+capp --> contact: App or Portal Launched and Menu Options Shown to User
+contact -> capp: User selects Cash In to AfriMoney Wallet from Bank Account
+capp --> contact: Bank Transfer Screen is shown. 
+contact -> capp: User Specifies the following - \na)AfriMoney Wallet information\nb)Amount\nc)Reference and Submits
+capp -> bank: Bank Transfer Cash In transaction is submitted
 bank-> bank : Bank Debits Customer's Account
-bank-> nps : Bank Notifies NPS of Debit Success
+bank -> nps: Submit Wallet Transfer Request to NPS
 nps-> pbank : NPS routes Credit Request to AfriMoney's Partner Bank 
 pbank-> nps : Bank Notifies NPS of Credit Success
 nps -> afri : NPS notifies AfriMoney of Bank Transfer Success. 
+afri -> afri: Bank Transfer Cash In transaction is created and set to [Status = Initiated]
+afri -> afri: Carry out applicable Business Rules, such as \nLimits validation, applicable fees and taxes etc.
 afri -> afri : AfriMoney Credits Customer's Wallet less applicable fees and taxes
 afri -> afri: Bank Transfer Cash In transaction is set to [Status = Completed]
 afri-> app: App or Portal is notified of Bank Transfer Success and New Wallet Balance
 app --> contact: App or Portal shows Customer Success Notification and New Wallet Balance
+
 
 
 

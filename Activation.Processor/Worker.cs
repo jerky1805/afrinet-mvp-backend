@@ -43,9 +43,8 @@ public class Worker : BackgroundService
                     string theMessage = retrievedMessage[0].Body.ToString();
                     ActivationRequest ar = JsonSerializer.Deserialize<ActivationRequest>(theMessage);
                     //TODO: Send TOTP SMS to Supplied MSISDN
-                    //TODO: Add record to the Database for later processing. 
                     ar.TOTP = RandomNumberGenerator.GetInt32(1, 1000000).ToString();
-                    _activationService.CreateActivation(ar);
+                    await _activationService.CreateActivation(ar);
                     await queue.DeleteMessageAsync(retrievedMessage[0].MessageId, retrievedMessage[0].PopReceipt);
                     Console.WriteLine("Message: " + theMessage);
                 }
