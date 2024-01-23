@@ -70,3 +70,5 @@
 /Users/dapo/dev/afrinet-mvp-backend/Services.API/bin/Debug/net7.0/System.IO.Hashing.dll
 /Users/dapo/dev/afrinet-mvp-backend/Services.API/bin/Debug/net7.0/System.Memory.Data.dll
 /Users/dapo/dev/afrinet-mvp-backend/Services.API/obj/Debug/net7.0/Services.API.sourcelink.json
+/Users/dapo/dev/afrinet-mvp-backend/Services.API/bin/Debug/net7.0/test data/PayIn.json
+/Users/dapo/dev/afrinet-mvp-backend/Services.API/bin/Debug/net7.0/appsettings.Production.json

@@ -1,8 +1,5 @@
-using Services.API.Models;
 using Services.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Afrinet.Models;
-using Microsoft.Extensions.Configuration;
 using Afrinet.Models.Payment;
 
 namespace Services.API.Controllers;

@@ -8,5 +8,7 @@ public interface IQueue
 {
    // Task  SendMessageAsync( OrderDetails orderDetails);
     Task  SendMessageAsync( ActivationRequest activationRequest);
+    Task  SendMessageAsync( ConfirmationRequest confirmationRequest);
+
 }
 

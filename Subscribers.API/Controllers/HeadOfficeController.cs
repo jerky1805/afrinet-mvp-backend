@@ -74,11 +74,29 @@ public class HeadOfficeController : ControllerBase
             { 
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
-                Currency = "KSH",
+                Currency = "KES",
                 LastOperatedAt = DateTime.Now,
+            };
+             Wallet wallet1 = new Wallet()
+            {
+                Id = Guid.NewGuid().ToString(),
+                CreatedAt = DateTime.Now,
+                Currency = "KES",
+                LastOperatedAt = DateTime.Now,
+                WalletType =  "Working Wallet"
+            };
+              Wallet wallet2 = new Wallet()
+            {
+                Id = Guid.NewGuid().ToString(),
+                CreatedAt = DateTime.Now,
+                Currency = "KES",
+                LastOperatedAt = DateTime.Now,
+                WalletType =  "Control Wallet"
             };
             List<Wallet> wallets = new List<Wallet>();
             wallets.Add(wallet);
+            wallets.Add(wallet1);
+            wallets.Add(wallet2);
             ServiceAccount serviceAccount = new ServiceAccount()
             {
                 Id = Guid.NewGuid().ToString(),

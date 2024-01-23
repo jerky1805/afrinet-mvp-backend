@@ -12,15 +12,16 @@ builder.Services.Configure<PaymentDatabaseSettings>(
 builder.Services.Configure<ActivationDatabaseSettings>(
     builder.Configuration.GetSection("ActivationDatabase"));
 
+builder.Services.Configure<TransactionDatabaseSettings>(
+    builder.Configuration.GetSection("TransactionDatabase"));
+
 builder.Services.AddSingleton<PaymentService>();
 builder.Services.AddSingleton<ActivationService>();
+builder.Services.AddSingleton<TransactionService>();
 
 
 builder.Services.AddScoped<IQueue, Queue>();
-
 builder.Services.AddHttpClient();
-
-
 builder.Services.AddControllers();
 
 

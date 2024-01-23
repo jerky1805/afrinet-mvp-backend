@@ -55,7 +55,18 @@ public class SubscribersController : ControllerBase
         return userAccount;
     }
 
+    [HttpGet("{channel}/{msisdn}")]
+    public async Task<ActionResult<UserAccount>> Get(string msisdn, string channel="web")
+    {
+        var userAccount = await _userAccountService.GetUserAccountbyMSISDN(msisdn);
 
+        if (userAccount is null)
+        {
+            _logger.LogInformation("ERROR Finding a User Account: {msisdn} from {Now}", msisdn, DateTime.Now);
+            return NotFound();
+        }
+        return userAccount;
+    }
     [HttpPost]
     public async Task<IActionResult> Post(UserAccount userAccount)
     {
@@ -76,6 +87,7 @@ public class SubscribersController : ControllerBase
                 CreatedAt = DateTime.Now,
                 Currency = "KES",
                 LastOperatedAt = DateTime.Now,
+                WalletType = "MoneyWallet"
             };
             List<Wallet> wallets = new List<Wallet>();
             wallets.Add(wallet);

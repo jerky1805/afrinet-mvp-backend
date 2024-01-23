@@ -55,7 +55,18 @@ public class AgentController : ControllerBase
         return agentAccount;
     }
 
+    [HttpGet("{channel}/{branchId}")]
+    public async Task<ActionResult<List<AgentAccount>>> Get(string branchId, string channel = "web")
+    {
+        var agentList = await _agentAccountService.GetAgentAccountsbyBranchId(branchId);
 
+        if (agentList is null)
+        {
+            _logger.LogInformation("No Agents found for {branchId}, {UtcNow}", branchId, DateTime.UtcNow);
+            return NotFound();
+        }
+        return agentList;
+    }
     [HttpPost]
     public async Task<IActionResult> Post(AgentAccount agentAccount)
     {
@@ -66,16 +77,17 @@ public class AgentController : ControllerBase
             if (account is not null)
             {
                 _logger.LogInformation("Attempt to Create a Duplicate Agent!: {agentAccount} with {MSISDN} {Now}", agentAccount, DateTime.Now, agentAccount.MSISDN);
-                return Created( "Please Contact Support",agentAccount);
+                return Created("Please Contact Support", agentAccount);
             }
 
             var services = Configuration.GetSection("SupportedServicesAgents").Get<List<Service>>();
             Wallet wallet = new Wallet()
-            { 
+            {
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
-                Currency = "KSH",
+                Currency = "KES",
                 LastOperatedAt = DateTime.Now,
+                WalletType = "Money Wallet"
             };
             List<Wallet> wallets = new List<Wallet>();
             wallets.Add(wallet);
@@ -98,7 +110,7 @@ public class AgentController : ControllerBase
             agentAccount.CreatedAt = DateTime.Now;
             agentAccount.Status = "Created";
 
-//TODO: Add Infrastructure for KYC 
+            //TODO: Add Infrastructure for KYC 
 
             await _serviceAccountService.CreateServiceAccount(serviceAccount);
             await _agentAccountService.CreateAgentAccount(agentAccount);

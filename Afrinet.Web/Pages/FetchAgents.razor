@@ -1,5 +1,125 @@
-﻿<h3>FetchAgents</h3>
+﻿@page "/agent/{headOfficeId}/{branchId}"
+@using Afrinet.Models
+@inject HttpClient Http
 
+<h1>@b.BranchName Agents</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/agent/add/@BranchId' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Agents
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Agents by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterAgentAccount" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (agentList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (agentList.Count != 0)
+    {
+
+        <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th>Contact Surname</th>
+            <th>Contact Other Names</th>
+            <th>Contact E-mail</th>
+            <th>Contact Phone</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var agent in agentList)
+                {
+                    <tr>
+                        <td>@agent.Surname</td>
+                        <td>@agent.OtherNames</td>
+                        <td>@agent.Email</td>
+                        <td>@agent.MSISDN</td>
+
+                        <td>
+                            <a href='/agent/edit/@agent.BranchId/@agent.Id' class="btn btn-outline-dark" role="button">
+                                Edit
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+
+    }
+}
 @code {
+    [Parameter]
+    public string BranchId { get; set; }
+
+    [Parameter]
+    public string HeadOfficeId { get; set; }
+
+    protected Branch b = new();
+    protected List<AgentAccount> agentList = new();
+
+    @* protected List<AgentAccount> branchList = new(); *@
+
+    protected List<AgentAccount> searchAgentAccountData = new();
+
+    protected AgentAccount agentAccount = new();
+
+    protected string SearchString { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        b = await Http.GetFromJsonAsync<Branch>("http://localhost:5032/api/Branch/" + HeadOfficeId + "/" + BranchId);
+        await GetAgent();
+    }
+    protected async Task GetAgent()
+    {
+        agentList = await Http.GetFromJsonAsync<List<AgentAccount>>("http://localhost:5032/api/Agent/web/" + BranchId);
+        searchAgentAccountData = agentList;
+    }
+    protected void FilterAgentAccount()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            agentList = searchAgentAccountData
+            .Where(x => x.Surname.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            agentList = searchAgentAccountData;
+        }
+    }
+
+    protected void DeleteConfirm(string Id)
+    {
+        agentAccount = agentList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        agentList = searchAgentAccountData;
+    }
 
 }

@@ -114,6 +114,10 @@
             "Microsoft.Identity.Web.UI": {
               "target": "Package",
               "version": "[2.16.0, )"
+            },
+            "Radzen.Blazor": {
+              "target": "Package",
+              "version": "[4.24.1, )"
             }
           },
           "imports": [

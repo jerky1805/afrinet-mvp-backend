@@ -11,7 +11,7 @@ public class Fee
 
     public DateTime CollectedAt { get; set; }
 
-    public DateTime PayerServiceAccountID { get; set; }
+    public string?  PayerServiceAccountID { get; set; }
 
     public List<Commission> Commissions { get; set; } = new List<Commission>();
 

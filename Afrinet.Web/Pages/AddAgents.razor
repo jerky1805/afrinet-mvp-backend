@@ -1,5 +1,157 @@
-﻿<h3>AddAgents</h3>
+﻿@page "/agent/add/{BranchId}"
+@page "/agent/edit/{BranchId}/{id}"
+@using Afrinet.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>@Title Agent</h1>
+<hr />
+<EditForm Model="@agentAccount" OnValidSubmit="SaveAgentAccount">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Agent Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Surname</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.Surname" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.Surname)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Other Names</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.OtherNames" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.OtherNames)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Email</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.Email" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.Email)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 1</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.AddressLine1" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.AddressLine1)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 2</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.AddressLine2" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.AddressLine2)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">City</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.City" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.City)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">State</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.State" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.State)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Country</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.Country" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.Country )" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Phone Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agentAccount.MSISDN" />
+            </div>
+            <ValidationMessage For="@(() => agentAccount.MSISDN)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <RadzenLabel Text="Identification Type" Component="IdentificationDrowpdown" />
+        <div class="col-md-4">
+            <RadzenDropDown TValue="string" Name="IdentificationDrowpdown" @bind-Value="agentAccount.IDType"
+                Data=@identityTypes />
+        </div>
+        <ValidationMessage For="@(() => agentAccount.IDType)" />
+    </div>
+    <div class="mb-3">
+        <label for="Address" class="form-label">Identification Number</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="agentAccount.IDNumber" />
+        </div>
+        <ValidationMessage For="@(() => agentAccount.IDNumber)" />
+    </div>
+    <div class="mb-3">
+        <label for="Address" class="form-label">Language</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="agentAccount.Language" />
+        </div>
+        <ValidationMessage For="@(() => agentAccount.Language)" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" @onclick="SaveAgentAccount">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+        @* <RadzenButton Click="@Cancel" Text="Cancel"></RadzenButton> *@
+    </div>
+</EditForm>
 
 @code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    [Parameter]
+    public string? BranchId { get; set; }
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected AgentAccount agentAccount = new();
+
+    string value = "Select your Identification Type";
+    IEnumerable<string> identityTypes;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        identityTypes = new List<string> { "Maisha Namba", "Passport", "Driving Licence" };
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            agentAccount = await Http.GetFromJsonAsync<AgentAccount>("http://localhost:5032/api/Agent/" + Id);
+        }
+    }
+    protected async Task SaveAgentAccount()
+    {
+        if (agentAccount.Id is not null)
+        {
+            await Http.PutAsJsonAsync("http://localhost:5032/api/Agent/" + agentAccount.Id, agentAccount);
+        }
+        else
+        {
+            agentAccount.Language = "English";
+            agentAccount.Channels = new List<string> { "web", "mobile", "ussd", "qr" };
+            agentAccount.BranchId = BranchId;
+            await Http.PostAsJsonAsync("http://localhost:5032/api/Agent", agentAccount);
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/headoffice");
+    }
 
 }

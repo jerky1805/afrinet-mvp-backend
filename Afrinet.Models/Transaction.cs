@@ -10,6 +10,9 @@ public class Transaction
 
     public string? ReceivingAccountID { get; set; }
 
+    public string? ReceivingMSISDN { get; set; }
+
+
     public DateTime StartedAt { get; set; }
 
     public DateTime LastUpdatedAt { get; set; }
@@ -35,6 +38,8 @@ public class Transaction
 
     public string? Channel {get; set;}
     public long Amount {get; set;}
+
+    public Voucher? Voucher {get; set;}
 
 
 

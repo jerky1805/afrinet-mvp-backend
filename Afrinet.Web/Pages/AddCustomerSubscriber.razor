@@ -1,5 +1,154 @@
-﻿<h3>AddCustomerSubscriber</h3>
+﻿@page "/customer/add"
+@page "/customer/edit/{id}"
+@using Afrinet.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>@Title Customer</h1>
+<hr />
+<EditForm Model="@userAccount" OnValidSubmit="SaveUserAccount">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Customer Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Surname</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.Surname" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.Surname)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Other Names</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.OtherNames" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.OtherNames)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Email</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.Email" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.Email)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 1</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.AddressLine1" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.AddressLine1)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 2</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.AddressLine2" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.AddressLine2)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">City</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.City" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.City)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">State</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.State" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.State)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Country</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.Country" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.Country )" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Phone Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="userAccount.MSISDN" />
+            </div>
+            <ValidationMessage For="@(() => userAccount.MSISDN)" />
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <RadzenLabel Text="Identification Type" Component="IdentificationDrowpdown" />
+        <div class="col-md-4">
+            <RadzenDropDown TValue="string" Name="IdentificationDrowpdown" @bind-Value="userAccount.IDType"
+                Data=@identityTypes />
+        </div>
+        <ValidationMessage For="@(() => userAccount.IDType)" />
+    </div>
+    <div class="mb-3">
+        <label for="Address" class="form-label">Identification Number</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="userAccount.IDNumber" />
+        </div>
+        <ValidationMessage For="@(() => userAccount.IDNumber)" />
+    </div>
+    <div class="mb-3">
+        <label for="Address" class="form-label">Language</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="userAccount.Language" />
+        </div>
+        <ValidationMessage For="@(() => userAccount.Language)" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" @onclick="SaveUserAccount">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+        @* <RadzenButton Click="@Cancel" Text="Cancel"></RadzenButton> *@
+    </div>
+</EditForm>
 
 @code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected UserAccount userAccount = new();
+
+    string value = "Select your Identification Type";
+    IEnumerable<string> identityTypes;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        identityTypes = new List<string> { "Maisha Namba", "Passport", "Driving Licence" };
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            userAccount = await Http.GetFromJsonAsync<UserAccount>("http://localhost:5032/api/Subscribers/" + Id);
+        }
+    }
+    protected async Task SaveUserAccount()
+    {
+        if (userAccount.Id is not null)
+        {
+            await Http.PutAsJsonAsync("http://localhost:5032/api/Subscribers/" + userAccount.Id, userAccount);
+        }
+        else
+        {
+            userAccount.Language = "English";
+            userAccount.UserAccountRole = "Tier 1 KYC Subscriber";
+            userAccount.Channels = new List<string> { "web", "mobile", "ussd", "qr" };
+            await Http.PostAsJsonAsync("http://localhost:5032/api/Subscribers", userAccount);
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/customer");
+    }
 
 }

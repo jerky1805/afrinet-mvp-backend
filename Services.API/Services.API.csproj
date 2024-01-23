@@ -20,6 +20,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Afrinet.Models\Afrinet.Models.csproj" />
     <ProjectReference Include="..\Afrinet.API.Contracts\Afrinet.API.Contracts.csproj" />
+    <!-- <ProjectReference Include="..\Subscribers.API\Subscribers.API.csproj" /> -->
+
   </ItemGroup>
 
 </Project>

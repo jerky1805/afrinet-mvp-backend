@@ -1,0 +1,42 @@
+{
+    "initatingAccountID": "0e36f95d-0cc0-4ebc-a404-645dddb79c76",
+    "sendingAccountID": "0e36f95d-0cc0-4ebc-a404-645dddb79c76",
+    "receivingAccountID": "6845643e-b14c-4580-a749-008b851a8012",
+    "transactionType": "PayIn",
+    "totalFees": 0,
+    "totalTax": 0,
+    "fees": [
+      {
+        "id": "eeefefegeee",
+        "feeName": "Personal Fee",
+        "createdAt": "2024-01-18T15:19:08.767Z",
+        "collected": true,
+        "collectedAt": "2024-01-18T15:19:08.767Z",
+        "payerServiceAccountID": "2024-01-18T15:19:08.767Z",
+        "commissions": [
+          {
+            "id": "ssafsfd",
+            "feeName": "Feename",
+            "feeId": "eeefefegeee",
+            "createdAt": "2024-01-18T15:19:08.767Z",
+            "settled": true,
+            "settledAt": "2024-01-18T15:19:08.767Z",
+            "taxPaid": 0,
+            "receivingServiceAccountId": "safasdaasfsaas"
+          }
+        ]
+      }
+    ],
+    "taxes": [
+      {
+        "id": "string",
+        "taxName": "string",
+        "amount": 0,
+        "settled": true,
+        "settledDate": "2024-01-18T15:19:08.767Z",
+        "currency": "string"
+      }
+    ],
+    "channel": "shop",
+    "amount": 600
+  }

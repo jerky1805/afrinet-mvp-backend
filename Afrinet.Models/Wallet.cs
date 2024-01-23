@@ -13,4 +13,6 @@ public class Wallet
     public bool LowBalanceWarning { get; set; }
     public long DisputedBalance { get; set; }
     public string? ServiceAccountId { get; set; }
+
+    public string? WalletType {get; set;}
 }

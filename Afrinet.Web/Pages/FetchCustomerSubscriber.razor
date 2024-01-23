@@ -1,5 +1,106 @@
-﻿<h3>FetchCustomerSubscriber</h3>
+﻿@page "/customer"
+@using Afrinet.Models
+@inject HttpClient Http
+<h1>Customers</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/customer/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Customer
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Customers by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterUserAccount" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (userAccountList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th>Surname Name</th>
+            <th>Other Names</th>
+            <th>Phone Number</th>
+            <th>Contact E-mail</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var userAccount in userAccountList)
+            {
+                <tr>
+                    <td>@userAccount.Surname</td>
+                    <td>@userAccount.OtherNames</td>
+                    <td>@userAccount.MSISDN</td>
+                    <td>@userAccount.Email</td>
+                    <td>
+                        <a href='/customer/edit/@userAccount.Id' class="btn btn-outline-dark" role="button">
+                            Edit
+                        </a>
+                        @* <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
+                Delete
+                </a>
+                <a href='/customer/@userAccount.Id' class="btn btn-outline-dark" role="button">
+                View Branches
+                </a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
 
 @code {
+    protected List<UserAccount> userAccountList = new();
+    protected List<UserAccount> searchUserAccountData = new();
+    protected UserAccount userAccount = new();
+    protected string SearchString { get; set; } = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        await GetUserAccount();
+    }
+    protected async Task GetUserAccount()
+    {
+        userAccountList = await Http.GetFromJsonAsync<List<UserAccount>>("http://localhost:5032/api/Subscribers");
+        searchUserAccountData = userAccountList;
+    }
+    protected void FilterUserAccount()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            userAccountList = searchUserAccountData
+            .Where(x => x.Surname.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            userAccountList = searchUserAccountData;
+        }
+    }
+    protected void DeleteConfirm(string Id)
+    {
+        userAccount = userAccountList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        userAccountList = searchUserAccountData;
+    }
+
 
 }

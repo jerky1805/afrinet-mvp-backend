@@ -21,12 +21,13 @@ public class Queue : IQueue
     {
         QueueClient queue = new QueueClient(_configuration.GetConnectionString("StorageConnectionString"), _configuration.GetConnectionString("ActivationQueueName"));
         var MessageBody = JsonSerializer.Serialize(activationRequest);
-        // var message = new Message(Encoding.UTF8.GetBytes(MessageBody))
-        // {
-        //     ContentType = "application/json",
-        //     MessageId = Guid.NewGuid().ToString(),
+        await queue.SendMessageAsync(MessageBody);
+    }
 
-        // };
+     public async Task SendMessageAsync(ConfirmationRequest confirmationRequest)
+    {
+        QueueClient queue = new QueueClient(_configuration.GetConnectionString("StorageConnectionString"), _configuration.GetConnectionString("ConfirmationQueueName"));
+        var MessageBody = JsonSerializer.Serialize(confirmationRequest);
         await queue.SendMessageAsync(MessageBody);
     }
 }

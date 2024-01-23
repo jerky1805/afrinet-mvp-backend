@@ -1,11 +1,6 @@
-using Services.API.Models;
 using Services.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Services.API.Service;
-using Afrinet.API.Contracts;
-using System.Text.Json;
 using Afrinet.Models;
-using System.Runtime.Intrinsics.Arm;
 
 namespace Services.API.Controllers;
 

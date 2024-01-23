@@ -20,7 +20,7 @@ public class AgentAccountsService
 
     public async Task<List<AgentAccount>> GetAgentAccounts() => await _agentAccounts.Find(_ => true).ToListAsync();
 
-    public async Task<List<AgentAccount>> GetAgentAccountsbyBRanchId(string BranchId) => await _agentAccounts.Find(agentAccount => agentAccount.BranchId == BranchId).ToListAsync();
+    public async Task<List<AgentAccount>> GetAgentAccountsbyBranchId(string BranchId) => await _agentAccounts.Find(agentAccount => agentAccount.BranchId == BranchId).ToListAsync();
 
     public async Task<AgentAccount> GetAgentAccount(string id) => await _agentAccounts.Find(agentAccount => agentAccount.Id == id).FirstOrDefaultAsync();
     public async Task<AgentAccount> GetAgentAccountbyMSISDN(string MSISDN) => await _agentAccounts.Find(agentAccount => agentAccount.MSISDN == MSISDN).FirstOrDefaultAsync();
