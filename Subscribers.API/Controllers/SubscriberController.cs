@@ -56,7 +56,7 @@ public class SubscribersController : ControllerBase
     }
 
     [HttpGet("{channel}/{msisdn}")]
-    public async Task<ActionResult<UserAccount>> Get(string msisdn, string channel="web")
+    public async Task<ActionResult<UserAccount>> Get(string msisdn, string channel = "web")
     {
         var userAccount = await _userAccountService.GetUserAccountbyMSISDN(msisdn);
 
@@ -127,7 +127,9 @@ public class SubscribersController : ControllerBase
                     Status = "Initiated"
                 }
                     );
+            
             }
+
             return CreatedAtAction(nameof(Get), new { id = userAccount.Id }, userAccount);
         }
         catch (System.Exception ex)

@@ -90,3 +90,4 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Radzen.Blazor.dll
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/System.Linq.Dynamic.Core.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Auth0.AspNetCore.Authentication.dll

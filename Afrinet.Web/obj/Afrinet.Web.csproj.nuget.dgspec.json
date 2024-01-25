@@ -107,6 +107,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Auth0.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
             "Microsoft.Identity.Web": {
               "target": "Package",
               "version": "[2.16.0, )"

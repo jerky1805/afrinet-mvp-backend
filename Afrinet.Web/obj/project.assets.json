@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "Auth0.AspNetCore.Authentication/1.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "7.0.14",
+          "System.Text.Encodings.Web": "4.7.2"
+        },
+        "compile": {
+          "lib/net7.0/Auth0.AspNetCore.Authentication.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Auth0.AspNetCore.Authentication.dll": {}
+        }
+      },
       "AWSSDK.Core/3.7.100.14": {
         "type": "package",
         "compile": {
@@ -154,7 +167,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Authentication.OpenIdConnect/7.0.1": {
+      "Microsoft.AspNetCore.Authentication.OpenIdConnect/7.0.14": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.15.1"
@@ -1448,6 +1461,20 @@
     }
   },
   "libraries": {
+    "Auth0.AspNetCore.Authentication/1.4.0": {
+      "sha512": "RoH36x4bXpDeNp/L1KiLIAGC+5vyLTop54txJXK5ZfDZKOAlQW+Rq4E5QVDJXD+toporRtTjY8c6rPMpLa0faQ==",
+      "type": "package",
+      "path": "auth0.aspnetcore.authentication/1.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Auth0Icon.png",
+        "auth0.aspnetcore.authentication.1.4.0.nupkg.sha512",
+        "auth0.aspnetcore.authentication.nuspec",
+        "lib/net6.0/Auth0.AspNetCore.Authentication.dll",
+        "lib/net7.0/Auth0.AspNetCore.Authentication.dll"
+      ]
+    },
     "AWSSDK.Core/3.7.100.14": {
       "sha512": "gnEgxBlk4PFEfdPE8Lkf4+D16MZFYSaW7/o6Wwe5e035QWUkTJX0Dn4LfTCdV5QSEL/fOFxu+yCAm55eIIBgog==",
       "type": "package",
@@ -1652,10 +1679,10 @@
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.OpenIdConnect/7.0.1": {
-      "sha512": "HTEPkaslzcrlMnqwc08yoU0TU5lNmgWVWgRsPJomvMbKzNozf3acsvA2hAeFVDHoJNBZmJm7Jhy3+pHmbzK0uQ==",
+    "Microsoft.AspNetCore.Authentication.OpenIdConnect/7.0.14": {
+      "sha512": "IMb+uLrrg7SfhHiLTNTHz4sXYdcBCP1ix0xHDCcZ0QeBXwNICTqw6NulkYgZwzJcvYCVQz7Wr1hCZIRa7+sRyQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.openidconnect/7.0.1",
+      "path": "microsoft.aspnetcore.authentication.openidconnect/7.0.14",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1663,7 +1690,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.xml",
-        "microsoft.aspnetcore.authentication.openidconnect.7.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.openidconnect.7.0.14.nupkg.sha512",
         "microsoft.aspnetcore.authentication.openidconnect.nuspec"
       ]
     },
@@ -3637,6 +3664,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Afrinet.Models >= 1.0.0",
+      "Auth0.AspNetCore.Authentication >= 1.4.0",
       "Microsoft.Identity.Web >= 2.16.0",
       "Microsoft.Identity.Web.UI >= 2.16.0",
       "Radzen.Blazor >= 4.24.1"
@@ -3684,6 +3712,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Auth0.AspNetCore.Authentication": {
+            "target": "Package",
+            "version": "[1.4.0, )"
+          },
           "Microsoft.Identity.Web": {
             "target": "Package",
             "version": "[2.16.0, )"

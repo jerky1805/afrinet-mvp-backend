@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PWAIXhnhYIMxPNPMT9MPOQEerS2Xeyq1zHeHwp1lvFCYJSe6DFtVr1CCMriitqBYI56NvlnwZveAifceBkfdqw==",
+  "dgSpecHash": "/MAwTdzaS6wvWQ1RJD372M4q6HMRAAHniA4BkriMSEIePn4PLj09zn5iWd70NcdJQD1zkpb68HvE+ERDRY6zqQ==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Afrinet.Web.csproj",
   "expectedPackageFiles": [
+    "/Users/dapo/.nuget/packages/auth0.aspnetcore.authentication/1.4.0/auth0.aspnetcore.authentication.1.4.0.nupkg.sha512",
     "/Users/dapo/.nuget/packages/awssdk.core/3.7.100.14/awssdk.core.3.7.100.14.nupkg.sha512",
     "/Users/dapo/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "/Users/dapo/.nuget/packages/azure.core/1.36.0/azure.core.1.36.0.nupkg.sha512",
@@ -13,7 +14,7 @@
     "/Users/dapo/.nuget/packages/dartsassbuilder/1.0.0/dartsassbuilder.1.0.0.nupkg.sha512",
     "/Users/dapo/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/Users/dapo/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.1/microsoft.aspnetcore.authentication.jwtbearer.7.0.1.nupkg.sha512",
-    "/Users/dapo/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/7.0.1/microsoft.aspnetcore.authentication.openidconnect.7.0.1.nupkg.sha512",
+    "/Users/dapo/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/7.0.14/microsoft.aspnetcore.authentication.openidconnect.7.0.14.nupkg.sha512",
     "/Users/dapo/.nuget/packages/microsoft.aspnetcore.authorization/7.0.14/microsoft.aspnetcore.authorization.7.0.14.nupkg.sha512",
     "/Users/dapo/.nuget/packages/microsoft.aspnetcore.components/7.0.14/microsoft.aspnetcore.components.7.0.14.nupkg.sha512",
     "/Users/dapo/.nuget/packages/microsoft.aspnetcore.components.analyzers/7.0.14/microsoft.aspnetcore.components.analyzers.7.0.14.nupkg.sha512",

@@ -1,6 +1,9 @@
 ﻿@page "/customer"
 @using Afrinet.Models
 @inject HttpClient Http
+@attribute [Authorize]
+
+
 <h1>Customers</h1>
 <div class="row">
     <div class="col-md-6">

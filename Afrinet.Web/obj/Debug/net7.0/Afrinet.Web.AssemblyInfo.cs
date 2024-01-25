@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Afrinet.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e52b1c33ce30d52bf87b6b6097318bd5f60e0a8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Afrinet.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Afrinet.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
