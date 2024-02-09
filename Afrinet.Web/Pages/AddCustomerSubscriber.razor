@@ -74,12 +74,17 @@
             <ValidationMessage For="@(() => userAccount.MSISDN)" />
         </div>
     </div>
-    
+
     <div class="mb-3">
-        <RadzenLabel Text="Identification Type" Component="IdentificationDrowpdown" />
+        <label for="Address" class="form-label">Identification Type</label>
         <div class="col-md-4">
-            <RadzenDropDown TValue="string" Name="IdentificationDrowpdown" @bind-Value="userAccount.IDType"
-                Data=@identityTypes />
+            <MudSelect T="string" Label="" AnchorOrigin="Origin.CenterCenter" @bind-Value="userAccount.IDType">
+                @foreach (var id in identityTypes)
+                {
+                    <MudSelectItem Value="@id" />
+                }
+            </MudSelect>
+          
         </div>
         <ValidationMessage For="@(() => userAccount.IDType)" />
     </div>

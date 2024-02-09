@@ -1,5 +1,120 @@
-﻿<h3>FetchCustomerOrganisation</h3>
+﻿@page "/organisation"
+@using Afrinet.Models
+@inject HttpClient Http
+@attribute [Authorize]
+
+<h1>Merchants and Customer Organisations</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/organisation/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Merchant or Organisation
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Organisations by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterOrgAccount" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (orgAccountList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th>Company Name</th>
+            <th>Contact Surname</th>
+            <th>Contact Other Names</th>
+            <th>Contact E-mail</th>
+            <th>Contact Phone</th>
+            <th>Type</th>
+            <th>Payment Methods</th>
+            <th>Category</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ho in orgAccountList)
+            {
+                <tr>
+                    <td>@ho.OrganisationName</td>
+                    <td>@ho.MainContactName</td>
+                    <td>@ho.MainContactOtherNames</td>
+                    <td>@ho.MainContactEmail</td>
+                    <td>@ho.MainContactMobileNumber</td>
+                    <td>@ho.OrganisationType</td>
+                    <td>@ConcatPaymentMethods(ho.PaymentMethods)</td>
+                    <td>@ho.OrganisationCategory</td>
+                    <td>
+                        <a href='/organisation/edit/@ho.Id' class="btn btn-outline-dark" role="button">
+                            Edit
+                        </a>
+                      @*   <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
+                            Delete
+                        </a> 
+                        <a href='/branch/@ho.Id' class="btn btn-outline-dark" role="button">
+                            View Branches
+                        </a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
 
 @code {
+    protected List<OrgAccount> orgAccountList = new();
+    protected List<OrgAccount> searchOrgAccountData = new();
+    protected OrgAccount orgAccount = new();
+    protected string SearchString { get; set; } = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        await GetOrgAccount();
+    }
+    protected async Task GetOrgAccount()
+    {
+        orgAccountList = await Http.GetFromJsonAsync<List<OrgAccount>>("http://localhost:5032/api/Organisation");
+        searchOrgAccountData = orgAccountList;
+    }
+    protected void FilterOrgAccount()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            orgAccountList= searchOrgAccountData
+            .Where(x => x.OrganisationName.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            orgAccountList = searchOrgAccountData;
+        }
+    }
+    protected void DeleteConfirm(string Id)
+    {
+        orgAccount = orgAccountList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        orgAccountList = searchOrgAccountData;
+    }
+    protected string ConcatPaymentMethods(List<string> PaymentMethods)
+        {
+            return string.Join(", ", PaymentMethods);
+        }
 
 }

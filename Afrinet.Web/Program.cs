@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Afrinet.Web.Data;
 using Auth0.AspNetCore.Authentication;
+using MudBlazor.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,9 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.Secure = CookieSecurePolicy.Always;
 });
 
+
 // Add services to the container.
+builder.Services.AddMudServices();
 builder.Services
     .AddAuth0WebAppAuthentication(options => {
       options.Domain = builder.Configuration["Auth0:Domain"];

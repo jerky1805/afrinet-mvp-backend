@@ -1,5 +1,215 @@
-﻿<h3>AddCustomerOrganisation</h3>
+﻿@page "/organisation/add"
+@page "/organisation/edit/{id}"
+@using Afrinet.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>@Title Head Office</h1>
+<hr />
+<EditForm Model="@orgAccount" OnValidSubmit="SaveOrganisation">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Merchant or Organisation Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Organisation Name</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.OrganisationName" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.OrganisationName)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 1</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.AddressLine1" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.AddressLine1)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address Line 2</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.AddressLine2" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.AddressLine2)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">City</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.City" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.City)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">State</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.State" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.State)" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Country</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.Country" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.Country )" />
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Phone Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.MSISDN" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.MSISDN)" />
+        </div>
+    </div>
+    <div>
+        <h3>Organisation Details</h3>
+        @* <div class="mb-3">
+        <label for="Signatory" class="form-label">Category</label>
+        <div class="col-md-4">
+        <InputText class="form-control" @bind-Value="orgAccount.OrganisationCategory" />
+        </div>
+        <ValidationMessage For="@(() => orgAccount.OrganisationCategory)" />
+        </div> *@
+        <div class="mb-3">
+            <label for="Address" class="form-label">Category</label>
+            <div class="col-md-4">
+                <MudSelect T="string" Label="" AnchorOrigin="Origin.CenterCenter"
+                    @bind-Value="orgAccount.OrganisationCategory">
+                    @foreach (var id in categories)
+                    {
+                        <MudSelectItem Value="@id" />
+                    }
+                </MudSelect>
+
+            </div>
+            <ValidationMessage For="@(() => orgAccount.OrganisationCategory)" />
+        </div>
+        @* <div class="mb-3">
+        <label for="Signatory" class="form-label">Size</label>
+        <div class="col-md-4">
+        <InputText class="form-control" @bind-Value="orgAccount.OrganisationSize" />
+        </div>
+        <ValidationMessage For="@(() => orgAccount.OrganisationSize)" />
+        </div> *@
+        <div class="mb-3">
+            <label for="Address" class="form-label">Size</label>
+            <div class="col-md-4">
+                <MudSelect T="string" Label="" AnchorOrigin="Origin.CenterCenter"
+                    @bind-Value="orgAccount.OrganisationSize">
+                    @foreach (var id in orgSize)
+                    {
+                        <MudSelectItem Value="@id" />
+                    }
+                </MudSelect>
+
+            </div>
+            <ValidationMessage For="@(() => orgAccount.OrganisationSize)" />
+        </div>
+        @* <div class="mb-3">
+            <label for="Signatory" class="form-label">Type</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.OrganisationType" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.OrganisationType)" />
+        </div> *@
+        <div class="mb-3">
+            <label for="Address" class="form-label">Type</label>
+            <div class="col-md-4">
+                <MudSelect T="string" Label="" AnchorOrigin="Origin.CenterCenter"
+                    @bind-Value="orgAccount.OrganisationType">
+                    @foreach (var id in orgTypes)
+                    {
+                        <MudSelectItem Value="@id" />
+                    }
+                </MudSelect>
+
+            </div>
+            <ValidationMessage For="@(() => orgAccount.OrganisationType)" />
+        </div>
+    </div>
+    <div>
+        <h3>Main Contact Details</h3>
+        <div class="mb-3">
+            <label for="Contact" class="form-label">Surname</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.MainContactName" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.MainContactName)" />
+        </div>
+        <div class="mb-3">
+            <label for="OtherName" class="form-label">Other Names</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.MainContactOtherNames" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.MainContactOtherNames)" />
+        </div>
+        <div class="mb-3">
+            <label for="Emailid" class="form-label">Main Contact E-mail</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.MainContactEmail" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.MainContactEmail)" />
+        </div>
+        <div class="mb-3">
+            <label for="Phone Number" class="form-label">Main Contact Phone Number</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="orgAccount.MainContactMobileNumber" />
+            </div>
+            <ValidationMessage For="@(() => orgAccount.MainContactMobileNumber)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" @onclick="SaveOrganisation">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
+
 
 @code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected OrgAccount orgAccount = new();
+    IEnumerable<string> categories;
+    IEnumerable<string> orgTypes;
+    IEnumerable<string> orgSize;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        categories = new List<string> { "Retail", "Manufacturing" };
+        orgTypes = new List<string> { "Merchant", "Collection", "Disbursement", "Other" };
+        orgSize = new List<string> { "1-10 Employees", "11-50 Employees", "51+ Employees" };
+
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            orgAccount = await Http.GetFromJsonAsync<OrgAccount>("http://localhost:5032/api/Organisation/" + Id);
+        }
+    }
+    protected async Task SaveOrganisation()
+    {
+        if (orgAccount.Id is not null)
+        {
+            await Http.PutAsJsonAsync("http://localhost:5032/api/Organisation/" + orgAccount.Id, orgAccount);
+        }
+        else
+        {
+            List<string> pm = new List<string> { "Visa", "Mastercard", "M-PESA", "Amex" };
+            orgAccount.PaymentMethods = pm;
+            await Http.PostAsJsonAsync("http://localhost:5032/api/Organisation", orgAccount);
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/organisation");
+    }
 
 }

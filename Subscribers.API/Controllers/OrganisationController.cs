@@ -3,6 +3,8 @@ using Subscribers.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Afrinet.Models;
 using Microsoft.Extensions.Configuration;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace Subscribers.API.Controllers;
 
@@ -66,12 +68,12 @@ public class OrganisationController : ControllerBase
             if (account is not null)
             {
                 _logger.LogInformation("Attempt to Create a Duplicate Organisation!: {orgAccount} with {MSISDN} {Now}", orgAccount, DateTime.Now, orgAccount.MSISDN);
-                return Created( "Please Contact Support",orgAccount);
+                return Created("Please Contact Support", orgAccount);
             }
 
             var services = Configuration.GetSection("SupportedServicesOrganisation").Get<List<Service>>();
             Wallet wallet = new Wallet()
-            { 
+            {
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
                 Currency = "KSH",
@@ -93,12 +95,49 @@ public class OrganisationController : ControllerBase
             orgAccount.ServiceAccount = serviceAccount;
             orgAccount.ServiceAccountId = serviceAccount.Id;
             orgAccount.Id = Guid.NewGuid().ToString();
-            orgAccount.BalanceLimit = new ValueLimit() { Id = Guid.NewGuid().ToString(), LimitName = orgAccount.UserAccountRole, MaximumValue = 600 };
+            orgAccount.AccountType = "Merchant";
+            orgAccount.BalanceLimit = new ValueLimit() { Id = Guid.NewGuid().ToString(), LimitName = orgAccount.AccountType, MaximumValue = 600 };
             orgAccount.TransactionLimits = transactionLimits;
             orgAccount.CreatedAt = DateTime.Now;
+            orgAccount.Status = "Created";
 
-            await _serviceAccountService.CreateServiceAccount(serviceAccount);
+            // await _serviceAccountService.CreateServiceAccount(serviceAccount);
             await _orgAccountService.CreateOrgAccount(orgAccount);
+
+
+            using (var client = new HttpClient())
+            {
+                var accessToken = Configuration.GetSection("ManagementAPIToken").Get<string>();
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                List<UserCredential> userCredentials = await client.GetFromJsonAsync<List<UserCredential>>("https://dev-4xt1a0ul.eu.auth0.com/api/v2/users-by-email?email=" + orgAccount.MainContactEmail);
+                if (userCredentials.Count > 0)
+                {
+                    _logger.LogInformation("Attempt to Create a Duplicate UserCredential!: {userCredentials} with {MSISDN} {Now}", userCredentials, DateTime.Now, orgAccount.MSISDN);
+                    await _orgAccountService.DeleteOrgAccount(orgAccount.Id);
+                    return Problem("Error with Creating Organisation Contact");
+                }
+                NewUserCredential uc = new NewUserCredential { email = orgAccount.MainContactEmail, connection = "Employers", email_verified = true, 
+                family_name = orgAccount.MainContactName, given_name = orgAccount.MainContactOtherNames, password = "plasmolysis2310.wild",
+                  name = orgAccount.MainContactName + " " + orgAccount.MainContactOtherNames, 
+                 nickname = orgAccount.MainContactEmail,   verify_email = false };
+                string payload = JsonSerializer.Serialize(uc);
+                var response = await client.PostAsJsonAsync("https://dev-4xt1a0ul.eu.auth0.com/api/v2/users", uc);
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation("User Created Successfully!: {email} with {MainContactMobileNumber} {Now}", uc.email, DateTime.Now, orgAccount.MainContactMobileNumber);
+                    userCredentials = await client.GetFromJsonAsync<List<UserCredential>>("https://dev-4xt1a0ul.eu.auth0.com/api/v2/users-by-email?email=" + orgAccount.MainContactEmail);
+                    orgAccount.WebLoginID  = userCredentials[0].user_id;
+                    await _orgAccountService.UpdateOrgAccount(orgAccount.Id, orgAccount);
+                }
+                else
+                {
+                    string contentDetails = await response.Content.ReadAsStringAsync();
+                    _logger.LogError("Problem with Creating Credential for Organisation!: {uc} with {MSISDN} {Now} {contentDetails}", payload, DateTime.Now, orgAccount.MSISDN, contentDetails);
+                    await _orgAccountService.DeleteOrgAccount(orgAccount.Id);
+                    return Problem("Error with Creating Organisation Contact");
+                }
+            };
+
 
             return CreatedAtAction(nameof(Get), new { id = orgAccount.Id }, orgAccount);
         }

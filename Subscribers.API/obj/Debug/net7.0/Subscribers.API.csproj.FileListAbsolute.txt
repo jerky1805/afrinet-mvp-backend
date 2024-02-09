@@ -104,3 +104,4 @@
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/test-data/subscriber.json
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/obj/Debug/net7.0/Subscribers.API.sourcelink.json
 /Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/appsettings.Production.json
+/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/bin/Debug/net7.0/test-data/organisation.json

@@ -1,15 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>Afrinet.Web</PageTitle>
+<PageTitle>Mobile Money Platform</PageTitle>
 
 <div class="page">
+    <MudThemeProvider />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
-            <AccessControl /> 
+            <AccessControl />
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
         </div>
 

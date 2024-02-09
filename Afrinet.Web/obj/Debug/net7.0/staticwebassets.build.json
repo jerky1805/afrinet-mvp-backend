@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q4aU6pVtRbHd9XTNkGmQcfgHh0PEQgv2v0cRLU4hbyE=",
+  "Hash": "XAhTk1buxJlqesENYsLjdUQWVWG7SomZTYqeCnwQXrI=",
   "Source": "Afrinet.Web",
   "BasePath": "_content/Afrinet.Web",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/Users/dapo/.nuget/packages/mudblazor/6.14.0/staticwebassets/MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/dapo/.nuget/packages/mudblazor/6.14.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/dapo/.nuget/packages/mudblazor/6.14.0/staticwebassets/MudBlazor.min.css"
+    },
+    {
+      "Identity": "/Users/dapo/.nuget/packages/mudblazor/6.14.0/staticwebassets/MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/dapo/.nuget/packages/mudblazor/6.14.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/dapo/.nuget/packages/mudblazor/6.14.0/staticwebassets/MudBlazor.min.js"
+    },
     {
       "Identity": "/Users/dapo/.nuget/packages/radzen.blazor/4.24.1/staticwebassets/css/dark-base.css",
       "SourceId": "Radzen.Blazor",
