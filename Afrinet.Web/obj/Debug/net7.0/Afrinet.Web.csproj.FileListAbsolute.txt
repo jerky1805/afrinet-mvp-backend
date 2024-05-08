@@ -13,7 +13,6 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/obj/Debug/net7.0/Afrinet.Web.MvcApplicationPartsAssemblyInfo.cache
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/obj/Debug/net7.0/Afrinet.Web.RazorAssemblyInfo.cache
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/obj/Debug/net7.0/Afrinet.Web.RazorAssemblyInfo.cs
-/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/obj/Debug/net7.0/Afrinet.Web.sourcelink.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/obj/Debug/net7.0/staticwebassets.build.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/obj/Debug/net7.0/staticwebassets.development.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/obj/Debug/net7.0/staticwebassets/msbuild.Afrinet.Web.Microsoft.AspNetCore.StaticWebAssets.props

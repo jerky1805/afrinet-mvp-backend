@@ -45,14 +45,14 @@
             </div>
             <ValidationMessage For="@(() => headOffice.State)" />
         </div>
-          <div class="mb-3">
+        <div class="mb-3">
             <label for="Address" class="form-label">Country</label>
             <div class="col-md-4">
                 <InputText class="form-control" @bind-Value="headOffice.Country" />
             </div>
             <ValidationMessage For="@(() => headOffice.Country )" />
         </div>
-         <div class="mb-3">
+        <div class="mb-3">
             <label for="Address" class="form-label">Phone Number</label>
             <div class="col-md-4">
                 <InputText class="form-control" @bind-Value="headOffice.MSISDN" />
@@ -124,7 +124,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" @onclick="SaveHeadOffice">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
         <button class="btn btn-light" @onclick="Cancel">Cancel</button>
     </div>
 </EditForm>
@@ -136,9 +136,11 @@
 
     private string Message = string.Empty;
     protected string Title = "Add";
-    protected HeadOffice headOffice = new();
+    private HeadOffice headOffice { get; set; } = new();
 
-    
+    private bool state = false;
+
+
     protected override async Task OnParametersSetAsync()
     {
         if (Id is not null)
@@ -146,12 +148,16 @@
             Title = "Edit";
             headOffice = await Http.GetFromJsonAsync<HeadOffice>("http://localhost:5032/api/HeadOffice/" + Id);
         }
+        if (Title == "Add")
+        {
+            return;
+        }
     }
     protected async Task SaveHeadOffice()
     {
         if (headOffice.Id is not null)
         {
-            await Http.PutAsJsonAsync("http://localhost:5032/api/HeadOffice/"+ headOffice.Id,  headOffice);
+            await Http.PutAsJsonAsync("http://localhost:5032/api/HeadOffice/" + headOffice.Id, headOffice);
         }
         else
         {

@@ -1,0 +1,89 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/obj/Debug/net8.0/scopedcss/projectbundle/AntWebsite.bundle.scp.css",
+      "PackagePath": "staticwebassets/AntWebsite.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/appsettings.json",
+      "PackagePath": "staticwebassets/appsettings.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/assets/403.svg",
+      "PackagePath": "staticwebassets/assets/403.svg"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/assets/logo.svg",
+      "PackagePath": "staticwebassets/assets/logo.svg"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/activities.json",
+      "PackagePath": "staticwebassets/data/activities.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/advanced.json",
+      "PackagePath": "staticwebassets/data/advanced.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/basic.json",
+      "PackagePath": "staticwebassets/data/basic.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/current_user.json",
+      "PackagePath": "staticwebassets/data/current_user.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/fake_chart_data.json",
+      "PackagePath": "staticwebassets/data/fake_chart_data.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/fake_list.json",
+      "PackagePath": "staticwebassets/data/fake_list.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/menu.json",
+      "PackagePath": "staticwebassets/data/menu.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/notice.json",
+      "PackagePath": "staticwebassets/data/notice.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/data/notices.json",
+      "PackagePath": "staticwebassets/data/notices.json"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/AntWebsite/wwwroot/pro_icon.svg",
+      "PackagePath": "staticwebassets/pro_icon.svg"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.AntWebsite.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.AntWebsite.props",
+      "PackagePath": "build\\AntWebsite.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.AntWebsite.props",
+      "PackagePath": "buildMultiTargeting\\AntWebsite.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.AntWebsite.props",
+      "PackagePath": "buildTransitive\\AntWebsite.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

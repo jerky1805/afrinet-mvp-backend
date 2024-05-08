@@ -1,0 +1,72 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.card[b-lbo732b4qj] {
+  margin-bottom: 24px;
+}
+.heading[b-lbo732b4qj] {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+.steps.ant-steps[b-lbo732b4qj] {
+  max-width: 750px;
+  margin: 16px auto;
+}
+.errorIcon[b-lbo732b4qj] {
+  margin-right: 24px;
+  color: #ff4d4f;
+  cursor: pointer;
+}
+.errorIcon span.anticon[b-lbo732b4qj] {
+  margin-right: 4px;
+}
+.errorPopover :global .ant-popover-inner-content[b-lbo732b4qj] {
+  min-width: 256px;
+  max-height: 290px;
+  padding: 0;
+  overflow: auto;
+}
+.errorListItem[b-lbo732b4qj] {
+  padding: 8px 16px;
+  list-style: none;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.errorListItem:hover[b-lbo732b4qj] {
+  background: #e6f7ff;
+}
+.errorListItem:last-child[b-lbo732b4qj] {
+  border: 0;
+}
+.errorListItem .errorIcon[b-lbo732b4qj] {
+  float: left;
+  margin-top: 4px;
+  margin-right: 12px;
+  padding-bottom: 22px;
+  color: #ff4d4f;
+}
+.errorListItem .errorField[b-lbo732b4qj] {
+  margin-top: 2px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+.editable td[b-lbo732b4qj] {
+  padding-top: 13px !important;
+  padding-bottom: 12.5px !important;
+}
+.advancedForm + div[b-lbo732b4qj] {
+  padding-bottom: 64px;
+}
+.advancedForm :global .ant-form .ant-row:last-child .ant-form-item[b-lbo732b4qj] {
+  margin-bottom: 24px;
+}
+.advancedForm :global .ant-table td[b-lbo732b4qj] {
+  transition: none !important;
+}
+.optional[b-lbo732b4qj] {
+  color: rgba(0, 0, 0, 0.45);
+  font-style: normal;
+}

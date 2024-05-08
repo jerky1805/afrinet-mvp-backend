@@ -2,7 +2,6 @@ using Subscribers.API.Models;
 using Subscribers.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Afrinet.Models;
-using Microsoft.Extensions.Configuration;
 
 namespace Subscribers.API.Controllers;
 
@@ -31,7 +30,7 @@ public class HeadOfficeController : ControllerBase
     )
     {
         _serviceAccountService = serviceAccountService;
-         _headOfficeAccountService= headOfficeAccountsService;
+        _headOfficeAccountService = headOfficeAccountsService;
         _walletService = walletService;
         _logger = logger;
         Configuration = configuration;
@@ -66,32 +65,32 @@ public class HeadOfficeController : ControllerBase
             if (account is not null)
             {
                 _logger.LogInformation("Attempt to Create a Duplicate Head Office!: {headOfficeAccount} with {MSISDN} {Now}", headOfficeAccount, DateTime.Now, headOfficeAccount.MSISDN);
-                return Created( "Please Contact Support",headOfficeAccount);
+                return Created("Please Contact Support", headOfficeAccount);
             }
 
             var services = Configuration.GetSection("SupportedServicesAgents").Get<List<Service>>();
             Wallet wallet = new Wallet()
-            { 
-                Id = Guid.NewGuid().ToString(),
-                CreatedAt = DateTime.Now,
-                Currency = "KES",
-                LastOperatedAt = DateTime.Now,
-            };
-             Wallet wallet1 = new Wallet()
             {
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
                 Currency = "KES",
                 LastOperatedAt = DateTime.Now,
-                WalletType =  "Working Wallet"
             };
-              Wallet wallet2 = new Wallet()
+            Wallet wallet1 = new Wallet()
             {
                 Id = Guid.NewGuid().ToString(),
                 CreatedAt = DateTime.Now,
                 Currency = "KES",
                 LastOperatedAt = DateTime.Now,
-                WalletType =  "Control Wallet"
+                WalletType = "Working Wallet"
+            };
+            Wallet wallet2 = new Wallet()
+            {
+                Id = Guid.NewGuid().ToString(),
+                CreatedAt = DateTime.Now,
+                Currency = "KES",
+                LastOperatedAt = DateTime.Now,
+                WalletType = "Control Wallet"
             };
             List<Wallet> wallets = new List<Wallet>();
             wallets.Add(wallet);
@@ -111,7 +110,7 @@ public class HeadOfficeController : ControllerBase
             headOfficeAccount.ServiceAccount = serviceAccount;
             headOfficeAccount.ServiceAccountId = serviceAccount.Id;
             headOfficeAccount.Id = Guid.NewGuid().ToString();
-            headOfficeAccount.BalanceLimit = new ValueLimit() { Id = Guid.NewGuid().ToString(), LimitName ="Head Office Balance Limit", MaximumValue = 600 };
+            headOfficeAccount.BalanceLimit = new ValueLimit() { Id = Guid.NewGuid().ToString(), LimitName = "Head Office Balance Limit", MaximumValue = 600 };
             headOfficeAccount.TransactionLimits = transactionLimits;
             headOfficeAccount.CreatedAt = DateTime.Now;
             headOfficeAccount.Status = "Created";

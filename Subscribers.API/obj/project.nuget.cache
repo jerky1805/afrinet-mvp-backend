@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9apJvB9GUkNgHTQXeoELbeamPFf2PLKNIXJfnoGPbHQc4w0h5onFl53fsto40VgRGGZReS1t3ud3DRLTm6X9Bw==",
+  "dgSpecHash": "bdjUott8VRgDh/d0ESNXukV6D2YhNFaeg7BWysd4f+PigE05R5IsrU8MZw9kQw9KeW5Bwl+q0PhXR1LLSOfBjQ==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Subscribers.API/Subscribers.API.csproj",
   "expectedPackageFiles": [

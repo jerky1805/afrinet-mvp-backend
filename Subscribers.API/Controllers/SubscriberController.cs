@@ -3,6 +3,8 @@ using Subscribers.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Afrinet.Models;
 using Microsoft.Extensions.Configuration;
+using System.Text.Json;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Subscribers.API.Controllers;
 
@@ -76,8 +78,9 @@ public class SubscribersController : ControllerBase
             var account = await _userAccountService.GetUserAccountbyMSISDN(userAccount.MSISDN);
             if (account is not null)
             {
-                _logger.LogInformation("Attempt to Create a Duplicate Subscriber!: {userAccount} with {MSISDN} {Now}", userAccount, DateTime.Now, userAccount.MSISDN);
-                return Created("Please Contact Support", userAccount);
+                string serializeUserAccount = JsonSerializer.Serialize(userAccount);
+                _logger.LogInformation("Attempt to Create a Duplicate Subscriber!: {serializeUserAccount} with {MSISDN} {Now}", serializeUserAccount, DateTime.Now, userAccount.MSISDN);
+                return Problem("Please Contact Support");
             }
 
             var services = Configuration.GetSection("SupportedServicesSubscribers").Get<List<Service>>();
@@ -114,6 +117,42 @@ public class SubscribersController : ControllerBase
 
             await _serviceAccountService.CreateServiceAccount(serviceAccount);
             await _userAccountService.CreateUserAccount(userAccount);
+            
+            
+             using (var client = new HttpClient())
+            {
+                var accessToken = Configuration.GetSection("ManagementAPIToken").Get<string>();
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                List<UserCredential> userCredentials = await client.GetFromJsonAsync<List<UserCredential>>("https://dev-4xt1a0ul.eu.auth0.com/api/v2/users-by-email?email=" + userAccount.Email );
+                if (userCredentials.Count > 0)
+                {
+                    _logger.LogInformation("Attempt to Create a Duplicate User Credential!: {userCredentials} with {MSISDN} {Now}", userCredentials, DateTime.Now, userAccount.MSISDN);
+                    await _userAccountService.DeleteUserAccount(userAccount.Id);
+                    return Problem("Error with Creating Customer");
+                }
+                NewUserCredential uc = new NewUserCredential { email = userAccount.Email, connection = "Customers", email_verified = true, 
+                family_name = userAccount.Surname, given_name = userAccount.OtherNames, password = "plasmolysis2310.wild",
+                  name = userAccount.Surname + " " + userAccount.OtherNames, nickname = userAccount.Email,   verify_email = false };
+                
+                string payload = JsonSerializer.Serialize(uc);
+                var response = await client.PostAsJsonAsync("https://dev-4xt1a0ul.eu.auth0.com/api/v2/users", uc);
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation("User Created Successfully!: {email} with {MSISDN} {Now}", uc.email, DateTime.Now, userAccount.MSISDN);
+                    userCredentials = await client.GetFromJsonAsync<List<UserCredential>>("https://dev-4xt1a0ul.eu.auth0.com/api/v2/users-by-email?email=" + userAccount.Email);
+                    userAccount.WebLoginID  = userCredentials[0].user_id;
+                    await _userAccountService.UpdateUserAccount(userAccount.Id, userAccount);
+                }
+                else
+                {
+                    string contentDetails = await response.Content.ReadAsStringAsync();
+                    _logger.LogError("Problem with Creating Credential for Customer!: {uc} with {MSISDN} {Now} {contentDetails}", payload, DateTime.Now, userAccount.MSISDN, contentDetails);
+                    await _userAccountService.DeleteUserAccount(userAccount.Id);
+                    return Problem("Error with Creating Customer");
+                }
+            };
+
+            
             //TODO: Send Activation Request
             using (var client = new HttpClient())
             {

@@ -1,0 +1,37 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.trendItem[b-aj9gb5dc5j] {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 22px;
+}
+.trendItem .up[b-aj9gb5dc5j],
+.trendItem .down[b-aj9gb5dc5j] {
+  position: relative;
+  top: 1px;
+  margin-left: 4px;
+}
+.trendItem .up span[b-aj9gb5dc5j],
+.trendItem .down span[b-aj9gb5dc5j] {
+  font-size: 12px;
+  transform: scale(0.83);
+}
+.trendItem .up[b-aj9gb5dc5j] {
+  color: #f5222d;
+}
+.trendItem .down[b-aj9gb5dc5j] {
+  top: -1px;
+  color: #52c41a;
+}
+.trendItem.trendItemGrey .up[b-aj9gb5dc5j],
+.trendItem.trendItemGrey .down[b-aj9gb5dc5j] {
+  color: rgba(0, 0, 0, 0.85);
+}
+.trendItem.reverseColor .up[b-aj9gb5dc5j] {
+  color: #52c41a;
+}
+.trendItem.reverseColor .down[b-aj9gb5dc5j] {
+  color: #f5222d;
+}

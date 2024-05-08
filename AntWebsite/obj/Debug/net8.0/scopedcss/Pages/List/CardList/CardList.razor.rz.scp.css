@@ -1,0 +1,110 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.cardList .card .ant-card-meta-title[b-wyvdazn9qu] {
+  margin-bottom: 12px;
+}
+.cardList .card .ant-card-meta-title > a[b-wyvdazn9qu] {
+  display: inline-block;
+  max-width: 100%;
+  color: rgba(0, 0, 0, 0.85);
+}
+.cardList .card .ant-card-body:hover .ant-card-meta-title > a[b-wyvdazn9qu] {
+  color: #1890ff;
+}
+.cardList .item[b-wyvdazn9qu] {
+  height: 64px;
+}
+.cardList .ant-list .ant-list-item-content-single[b-wyvdazn9qu] {
+  max-width: 100%;
+}
+.extraImg[b-wyvdazn9qu] {
+  width: 155px;
+  margin-top: -20px;
+  text-align: center;
+}
+.extraImg img[b-wyvdazn9qu] {
+  width: 100%;
+}
+.newButton[b-wyvdazn9qu] {
+  width: 100%;
+  height: 201px;
+  color: rgba(0, 0, 0, 0.45);
+  background-color: #fff;
+  border-color: #d9d9d9;
+}
+.cardAvatar[b-wyvdazn9qu] {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+}
+.cardDescription[b-wyvdazn9qu] {
+  position: relative;
+  max-height: 4.5em;
+  margin-right: -1em;
+  padding-right: 1em;
+  overflow: hidden;
+  line-height: 1.5em;
+  text-align: justify;
+}
+.cardDescription[b-wyvdazn9qu]::before {
+  position: absolute;
+  right: 14px;
+  bottom: 0;
+  padding: 0 1px;
+  background: #fff;
+  content: '...';
+}
+.cardDescription[b-wyvdazn9qu]::after {
+  position: absolute;
+  right: 14px;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+  content: '';
+}
+.pageHeaderContent__b__1[b-wyvdazn9qu] {
+  position: relative;
+}
+.contentLink[b-wyvdazn9qu] {
+  margin-top: 16px;
+}
+.contentLink a[b-wyvdazn9qu] {
+  margin-right: 32px;
+}
+.contentLink a img[b-wyvdazn9qu] {
+  width: 24px;
+}
+.contentLink img[b-wyvdazn9qu] {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+@media screen and (max-width: 992px) {
+  .contentLink a[b-wyvdazn9qu] {
+    margin-right: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .extraImg[b-wyvdazn9qu] {
+    display: none;
+  }
+}
+@media screen and (max-width: 576px) {
+  .pageHeaderContent__b__1[b-wyvdazn9qu] {
+    padding-bottom: 30px;
+  }
+  .contentLink[b-wyvdazn9qu] {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 1000px;
+  }
+  .contentLink a[b-wyvdazn9qu] {
+    margin-right: 16px;
+  }
+  .contentLink img[b-wyvdazn9qu] {
+    margin-right: 4px;
+  }
+}

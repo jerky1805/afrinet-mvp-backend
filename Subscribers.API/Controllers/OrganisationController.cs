@@ -116,7 +116,7 @@ public class OrganisationController : ControllerBase
                     await _orgAccountService.DeleteOrgAccount(orgAccount.Id);
                     return Problem("Error with Creating Organisation Contact");
                 }
-                NewUserCredential uc = new NewUserCredential { email = orgAccount.MainContactEmail, connection = "Employers", email_verified = true, 
+                NewUserCredential uc = new NewUserCredential { email = orgAccount.MainContactEmail, connection = "Organisations", email_verified = true, 
                 family_name = orgAccount.MainContactName, given_name = orgAccount.MainContactOtherNames, password = "plasmolysis2310.wild",
                   name = orgAccount.MainContactName + " " + orgAccount.MainContactOtherNames, 
                  nickname = orgAccount.MainContactEmail,   verify_email = false };
@@ -132,7 +132,7 @@ public class OrganisationController : ControllerBase
                 else
                 {
                     string contentDetails = await response.Content.ReadAsStringAsync();
-                    _logger.LogError("Problem with Creating Credential for Organisation!: {uc} with {MSISDN} {Now} {contentDetails}", payload, DateTime.Now, orgAccount.MSISDN, contentDetails);
+                    _logger.LogError("Problem with Creating Credential for Organisation!: {uc} with {MainContactMobileNumber} {Now} {contentDetails}", payload, DateTime.Now, orgAccount.MainContactMobileNumber, contentDetails);
                     await _orgAccountService.DeleteOrgAccount(orgAccount.Id);
                     return Problem("Error with Creating Organisation Contact");
                 }

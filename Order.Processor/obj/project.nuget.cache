@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pfn2Rg1kzcnJ9f3vutHzgPrugcwcqvPTU5M9uWHxnl7Yt9jbgxuzzIi5OYV18nQIDKtFgXcRBt3t+XWBvCsATA==",
+  "dgSpecHash": "9Vg2lOzAnM5MD4oyZDGqo+IrM886VozNh/LkyjeCXt9tMvnBXwJAL7TI/mDhPPzNtjzO2k6Yc9zRHmMMao0kXg==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Order.Processor/Order.Processor.csproj",
   "expectedPackageFiles": [

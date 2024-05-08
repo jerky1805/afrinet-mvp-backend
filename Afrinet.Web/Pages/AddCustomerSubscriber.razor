@@ -84,7 +84,7 @@
                     <MudSelectItem Value="@id" />
                 }
             </MudSelect>
-          
+
         </div>
         <ValidationMessage For="@(() => userAccount.IDType)" />
     </div>
@@ -103,7 +103,7 @@
         <ValidationMessage For="@(() => userAccount.Language)" />
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" @onclick="SaveUserAccount">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
         <button class="btn btn-light" @onclick="Cancel">Cancel</button>
         @* <RadzenButton Click="@Cancel" Text="Cancel"></RadzenButton> *@
     </div>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qmfl32IB9AgnIv2pTW4DSXjCcla5YLDEXLqA00304REzoK1gvfJobtX61Ki6a084jG8A6obccFBxwJgtAlU0FQ==",
+  "dgSpecHash": "NrhS/Z7rtZ0O1ufSUm9k9EdMtz+wgBG0Zp+9U9zzz+qnSBjNj8B5lP80n4vCMDLx6qLNZmLd/Z3dQJe0b8W/Kg==",
   "success": true,
   "projectFilePath": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.API.Contracts/Afrinet.API.Contracts.csproj",
   "expectedPackageFiles": [],
