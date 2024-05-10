@@ -1,6 +1,7 @@
 ﻿@page "/headoffice"
 @using Afrinet.Models
 @inject HttpClient Http
+@inject IConfiguration Configuration
 @attribute [Authorize]
 
 <h1>Head Offices</h1>
@@ -64,9 +65,9 @@ else
                         <a href='/headoffice/edit/@ho.Id' class="btn btn-outline-dark" role="button">
                             Edit
                         </a>
-                      @*   <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
-                            Delete
-                        </a> *@
+                        @* <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
+                Delete
+                </a> *@
                         <a href='/branch/@ho.Id' class="btn btn-outline-dark" role="button">
                             View Branches
                         </a>
@@ -83,13 +84,18 @@ else
     protected List<HeadOffice> searchHeadOfficeData = new();
     protected HeadOffice headOffice = new();
     protected string SearchString { get; set; } = string.Empty;
+
+
+
+    protected string baseAddress = string.Empty;
     protected override async Task OnInitializedAsync()
     {
         await GetHeadOffice();
     }
     protected async Task GetHeadOffice()
     {
-        headOfficeList = await Http.GetFromJsonAsync<List<HeadOffice>>("http://localhost:5032/api/HeadOffice");
+        headOfficeList = await Http.GetFromJsonAsync<List<HeadOffice>>(Configuration.GetValue<string>("API_URL") +
+        "HeadOffice");
         searchHeadOfficeData = headOfficeList;
     }
     protected void FilterHeadOffice()

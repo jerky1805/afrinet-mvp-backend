@@ -1,0 +1,131 @@
+﻿@page "/loanapp"
+@using Afrinet.Models
+@using System.Globalization
+@inject HttpClient Http
+@inject IConfiguration Configuration
+@attribute [Authorize]
+
+<h1>Loan Application</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/loanapp/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Make a Loan Application
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Head Offices by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterLoanDetails" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-success" @onclick="ResetSearch">
+                    <i class="fas fa-times">Reset Search</i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (loanDetailsList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered table-hover mt-3">
+    <thead class="table-success h5">
+        <tr>
+            <th>Company Name</th>
+            <th>Contact Address</th>
+            <th>Loan Amount</th>
+            <th>Loan Duration</th>
+            <th>Comnpany Documents</th>
+            <th>Contact E-mail</th>
+            <th>Contact Phone</th>
+            <th>Contact Name</th>
+
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody class="h6">
+        @foreach (var ld in loanDetailsList)
+            {
+                <tr style="vertical-align: text-top;">
+                    <td>@ld.companyDetails.CompanyName</td>
+                    <td>@ld.companyDetails.CompanyAddress</td>
+                    <td>@ld.LoanAmount.ToString("C", CultureInfo.CreateSpecificCulture("en-KE"))</td>
+                    <td>@ld.LoanTenure.ToString() @ld.TenureSchedule</td>
+                    <td>
+                        <MudList Clickable="true">
+                            @foreach (var doc in ld.companyDetails.CompanyDocuments)
+                            {
+                                <MudListItem Text="@doc" Icon="@Icons.Material.Filled.DocumentScanner" />
+
+                            }
+                        </MudList>
+                    </td>
+                    <td>@ld.personalDetails.Email</td>
+                    <td>@ld.personalDetails.MSISDN</td>
+                    <td>@ld.personalDetails.Names</td>
+                    <td>
+                        <a href='/loanapp/view/@ld.Id' class="btn btn-info btn-outline-dark" role="button">
+                            View Loan Application
+                        </a>
+                        @* <a href='/loanapp/delete/@ho.Id' class="btn btn-outline-danger" role="button">
+                Delete
+                </a> *@
+                        @* <a href='/branch/@ho.Id' class="btn btn-outline-dark" role="button">
+                View Branches
+                </a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+
+@code {
+    protected List<LoanDetails> loanDetailsList = new();
+    protected List<LoanDetails> searchLoanDetailsData = new();
+    protected LoanDetails loanDetails = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetLoanDetailsAsync();
+    }
+    protected async Task GetLoanDetailsAsync()
+    {
+        loanDetailsList = await Http.GetFromJsonAsync<List<LoanDetails>>(Configuration.GetValue<string>("API_URL") +
+        "LoanDetails") ?? new List<LoanDetails>();
+        searchLoanDetailsData = loanDetailsList;
+    }
+    protected void FilterLoanDetails()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            loanDetailsList = searchLoanDetailsData
+            .Where(x => x.companyDetails.CompanyName.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            loanDetailsList = searchLoanDetailsData;
+        }
+    }
+    protected void DeleteConfirm(string Id)
+    {
+        loanDetails = loanDetailsList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        loanDetailsList = searchLoanDetailsData;
+    }
+
+}

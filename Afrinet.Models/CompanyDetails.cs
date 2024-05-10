@@ -1,12 +1,16 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Afrinet.Models;
 
 public class CompanyDetails
 {
 
     public string? Id { get; set; }
+    [Required]
     public string? CompanyName { get; set; }
+    [Required]
     public string? CompanyAddress { get; set; }
     public string? City { get; set; }
     public string? State { get; set; }

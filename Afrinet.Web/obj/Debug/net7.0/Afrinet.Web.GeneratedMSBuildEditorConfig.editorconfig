@@ -48,6 +48,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3VzdG9tZXJSZWdpc3RyYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/EditLoanDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdExvYW5EZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/EditPerson.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdFBlcnNvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchAgents.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hBZ2VudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -72,8 +80,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hIZWFkT2ZmaWNlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchLoanApplication.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hMb2FuQXBwbGljYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/ViewLoanDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmlld0xvYW5EZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Shared/AccessControl.razor]

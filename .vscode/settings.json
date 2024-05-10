@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/ab90b000-660f-4660-8eca-130c2cb8d7e2/resourceGroups/berrington-app-demo/providers/Microsoft.Web/sites/berrington-app-demo",
+    "appService.deploySubpath": "Afrinet.Web"
+}

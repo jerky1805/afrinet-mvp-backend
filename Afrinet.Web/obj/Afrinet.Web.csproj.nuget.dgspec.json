@@ -111,6 +111,10 @@
               "target": "Package",
               "version": "[1.4.0, )"
             },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.19.1, )"
+            },
             "Microsoft.Identity.Web": {
               "target": "Package",
               "version": "[2.16.0, )"
@@ -126,6 +130,10 @@
             "Radzen.Blazor": {
               "target": "Package",
               "version": "[4.24.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

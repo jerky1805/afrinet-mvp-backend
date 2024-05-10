@@ -1,0 +1,312 @@
+﻿@page "/loanapp/view/{id}"
+@using Afrinet.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using System.IO
+@using System
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@using System.Globalization
+@inject IWebHostEnvironment Environment
+@inject IConfiguration Configuration
+@inject IBlobStorageService blobStorageService
+
+
+
+
+
+<div class="bg-primary card text-bg-info mb-3" style="max-width: 900px;color: white;font-weight: bold;">
+    <div class="card-header" style="font-size: medium;">
+        <h2>@Title </h2>
+    </div>
+
+</div>
+
+<div style="display:@displayLoanDetails">
+
+    <h3>Loan Details</h3>
+
+    <div class="row mb-3 ">
+
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Requested Loan Amount
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    @loanDetails.LoanAmount.ToString("C", CultureInfo.CreateSpecificCulture("en-KE"))
+                </p>
+            </div>
+        </div>
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Loan Interest Rate
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    @loanDetails.InterestRate
+                </p>
+            </div>
+        </div>
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Loan Interest
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    @loanDetails.Interest
+                </p>
+            </div>
+        </div>
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Loan Tenure
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    @loanDetails.LoanTenure.ToString() @loanDetails.TenureSchedule
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:@displayPersonalDetails">
+    <h4>Personal Details </h4>
+    <div class="row mb-3 ">
+
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header" style="font-size: medium;">
+                Name
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;"> @loanDetails.personalDetails.Names
+                </p>
+            </div>
+        </div>
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Email Address
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">@loanDetails.personalDetails.Email</p>
+            </div>
+        </div>
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Physical Address
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    @loanDetails.personalDetails.AddressLine1</p>
+            </div>
+        </div>
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Phone Number
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">@loanDetails.personalDetails.MSISDN
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display:@displayCompanyDetails">
+    <div class="row mb-3 ">
+
+        <h3>Company Details</h3>
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Company Name
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    @loanDetails.companyDetails.CompanyName
+                </p>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="width: 18rem;">
+            <div class="card-header">
+                Company Address
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    @loanDetails.companyDetails.CompanyAddress
+                </p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                Company Documentation
+            </div>
+            <div class="card-body">
+
+                <p class="card-text" style="font-size: medium;font-weight: bold;">
+                    <MudList Clickable="true">
+                        @foreach (var doc in loanDetails.companyDetails.CompanyDocuments)
+                        {
+                            <MudListItem Text="@doc" Icon="@Icons.Material.Filled.DocumentScanner" />
+
+                        }
+                    </MudList>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<a href='/loanapp/' class="btn btn-info btn-outline-dark" role="button">
+    Back to Loan Application List
+</a>
+
+
+
+@* </EditForm> *@
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private string LoanInterestRate = "15.2%";
+
+    private string save = "none";
+    private string next = "none";
+    private string displayPersonalDetails = "block";
+    private string displayCompanyDetails = "block";
+    private string displayLoanDetails = "block";
+
+
+    private string Message = string.Empty;
+    protected string Title = "Make a Loan Application";
+
+    private LoanDetails loanDetails { get; set; } = new();
+
+    private int currentStep = 1;
+
+    IEnumerable<string> tenureScheduleTypes;
+    IEnumerable<string> loanPurposes;
+
+
+    protected override void OnInitialized()
+    {
+        displayPersonalDetails = "block";
+        next = "block";
+        currentStep++;
+        loanPurposes = new List<string> { "Cash Inflow", "Auto Repair", "Credit Card Consolidation", "Debt Consolidation" };
+
+        tenureScheduleTypes = new List<string> { "Month(s)", "Week(s)" };
+
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            loanDetails = await Http.GetFromJsonAsync<LoanDetails>(Configuration.GetValue<string>("API_URL") + "LoanDetails/" +
+            Id)
+            ?? new LoanDetails();
+            Title = "View Loan Application for : " + loanDetails.companyDetails.CompanyName;
+
+        }
+        if (Title == "Make a Loan Application")
+        {
+            NavigationManager.NavigateTo("/loanapp");
+
+        }
+
+    }
+    protected async Task SaveLoanDetailsAsync()
+    {
+        if (loanDetails.Id is not null)
+        {
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "LoanDetails/" + loanDetails.Id, loanDetails);
+        }
+        else
+        {
+            string fileName = string.Empty;
+            foreach (IBrowserFile file in files)
+            {
+                try
+                {
+                    var trustedFileNameForFileStorage = Guid.NewGuid().ToString() + "_" + file.Name;
+                    var blobUrl = await blobStorageService.UploadFileToBlobAsync(trustedFileNameForFileStorage, file.ContentType,
+                    file.OpenReadStream(20971520));
+                    if (blobUrl is null)
+                    {
+
+                    }
+                    loanDetails.companyDetails.CompanyDocuments.Add(trustedFileNameForFileStorage);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                @* fileName = Guid.NewGuid().ToString() + "_" + file.Name;
+loanDetails.companyDetails.CompanyDocuments.Add(fileName);
+var path = Path.Combine(Environment.ContentRootPath,
+Environment.EnvironmentName, "unsafe_uploads",
+fileName);
+//var path = @"path" + fileName;
+await using var fs = new FileStream(path, FileMode.Create);
+await file.OpenReadStream().CopyToAsync(fs); *@
+
+            }
+
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "LoanDetails", loanDetails);
+        }
+        NavigationManager.NavigateTo("/loanapp");
+        // Cancel();
+    }
+    public void Steps()
+    {
+
+        switch (currentStep)
+        {
+            case 1:
+                displayPersonalDetails = "block";
+                displayCompanyDetails = "none";
+                displayLoanDetails = "none";
+                save = "none";
+                next = "block";
+
+                break;
+            case 2:
+                displayPersonalDetails = "none";
+                displayCompanyDetails = "block";
+                displayLoanDetails = "none";
+                save = "none";
+                next = "block";
+                break;
+            case 3:
+                displayPersonalDetails = "none";
+                displayCompanyDetails = "none";
+                displayLoanDetails = "block";
+                save = "block";
+                next = "none";
+                break;
+            default:
+                break;
+
+        }
+        currentStep++;
+        @* NavigationManager.NavigateTo("/headoffice"); *@
+    }
+
+    IList<IBrowserFile> files = new List<IBrowserFile>();
+    private void UploadFiles(IBrowserFile file)
+    {
+        files.Add(file);
+        //TODO upload the files to the server
+    }
+
+}

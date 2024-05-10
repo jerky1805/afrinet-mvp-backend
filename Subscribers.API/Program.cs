@@ -24,6 +24,10 @@ builder.Services.Configure<BranchAccountDatabaseSettings>(
 builder.Services.Configure<AgentAccountDatabaseSettings>(
     builder.Configuration.GetSection("AgentAccountDatabase"));
 
+
+builder.Services.Configure<LoanDetailsDatabaseSettings>(
+    builder.Configuration.GetSection("LoanDetailsDatabase"));
+
 builder.Services.AddSingleton<ServiceAccountsService>();
 builder.Services.AddSingleton<UserAccountsService>();
 builder.Services.AddSingleton<WalletsService>();
@@ -31,7 +35,7 @@ builder.Services.AddSingleton<OrgAccountsService>();
 builder.Services.AddSingleton<HeadOfficeAccountsService>();
 builder.Services.AddSingleton<BranchAccountsService>();
 builder.Services.AddSingleton<AgentAccountsService>();
-
+builder.Services.AddSingleton<LoanDetailsService>();
 // Add services to the container.
 
 builder.Services.AddControllers();

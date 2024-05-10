@@ -1,12 +1,17 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Afrinet.Models;
 
 public class PersonalDetails
 {
 
     public string? Id { get; set; }
+    [Required]
     public string? Names { get; set; }
+    [Required]
+
     public string? AddressLine1 { get; set; }
     public string? AddressLine2 { get; set; }
     public string? City { get; set; }
@@ -19,6 +24,8 @@ public class PersonalDetails
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public DateTime LastLogin { get; set; }
+    [Required]
+
     public string? MSISDN { get; set; }
     public string? Status { get; set; }
 

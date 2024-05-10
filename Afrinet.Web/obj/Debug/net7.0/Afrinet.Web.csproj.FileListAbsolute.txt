@@ -96,3 +96,10 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Microsoft.Extensions.Localization.Abstractions.dll
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Microsoft.JSInterop.dll
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/MudBlazor.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Microsoft.OpenApi.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Azure.Storage.Blobs.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/Azure.Storage.Common.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net7.0/System.IO.Hashing.dll
