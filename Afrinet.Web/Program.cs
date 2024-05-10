@@ -1,5 +1,4 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+
 using Afrinet.Web.Data;
 using Auth0.AspNetCore.Authentication;
 using MudBlazor.Services;
@@ -72,7 +71,8 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
-
+app.UseSwagger();
+app.UseSwaggerUI();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -80,8 +80,7 @@ if (app.Environment.IsDevelopment())
     // {
     //     option.RouteTemplate = "codeMaze/{documentName}/swagger.json";
     // });
-    app.UseSwagger();
-    app.UseSwaggerUI();
+
     // app.UseSwaggerUI(option =>
     //     {
     //         option.SwaggerEndpoint("/codeMaze/v1/swagger.json", "CodeMaze API");

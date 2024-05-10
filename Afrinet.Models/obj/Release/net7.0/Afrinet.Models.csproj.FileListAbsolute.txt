@@ -1,0 +1,12 @@
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/bin/Release/net7.0/Afrinet.Models.deps.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/bin/Release/net7.0/Afrinet.Models.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/bin/Release/net7.0/Afrinet.Models.pdb
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/Afrinet.Models.csproj.AssemblyReference.cache
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/Afrinet.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/Afrinet.Models.AssemblyInfoInputs.cache
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/Afrinet.Models.AssemblyInfo.cs
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/Afrinet.Models.csproj.CoreCompileInputs.cache
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/Afrinet.Models.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/refint/Afrinet.Models.dll
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/Afrinet.Models.pdb
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Models/obj/Release/net7.0/ref/Afrinet.Models.dll
