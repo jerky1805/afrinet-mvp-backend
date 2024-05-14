@@ -2,7 +2,13 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/appsettings.Development.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/appsettings.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/appsettings.Production.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.AgentAccounts.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.BranchAccounts.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.HeadOfficeAccounts.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.LoanDetails.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.OrgAccounts.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.ServiceAccounts.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.UserAccounts.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/Afrinet.Web.dll
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/Afrinet.Web.deps.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/Afrinet.Web.runtimeconfig.json

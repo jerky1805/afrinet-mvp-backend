@@ -79,7 +79,8 @@ else
     }
     protected async Task GetUserAccount()
     {
-        userAccountList = await Http.GetFromJsonAsync<List<UserAccount>>("http://localhost:5032/api/Subscribers");
+        userAccountList = await
+        Http.GetFromJsonAsync<List<UserAccount>>(Configuration.GetValue<string>("API_URL") + "Subscribers");
         searchUserAccountData = userAccountList;
     }
     protected void FilterUserAccount()

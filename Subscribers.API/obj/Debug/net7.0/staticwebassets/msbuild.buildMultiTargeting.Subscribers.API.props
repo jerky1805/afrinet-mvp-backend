@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/Subscribers.API.props" />
-</Project>

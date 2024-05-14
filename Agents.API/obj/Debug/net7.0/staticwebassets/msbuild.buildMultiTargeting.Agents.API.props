@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/Agents.API.props" />
-</Project>

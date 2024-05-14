@@ -133,21 +133,21 @@
         if (Id is not null)
         {
             Title = "Edit";
-            userAccount = await Http.GetFromJsonAsync<UserAccount>("http://localhost:5032/api/Subscribers/" + Id);
+            userAccount = await Http.GetFromJsonAsync<UserAccount>(Configuration.GetValue<string>("API_URL") + "Subscribers/" + Id);
         }
     }
     protected async Task SaveUserAccount()
     {
         if (userAccount.Id is not null)
         {
-            await Http.PutAsJsonAsync("http://localhost:5032/api/Subscribers/" + userAccount.Id, userAccount);
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Subscribers/" + userAccount.Id, userAccount);
         }
         else
         {
             userAccount.Language = "English";
             userAccount.UserAccountRole = "Tier 1 KYC Subscriber";
             userAccount.Channels = new List<string> { "web", "mobile", "ussd", "qr" };
-            await Http.PostAsJsonAsync("http://localhost:5032/api/Subscribers", userAccount);
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Subscribers", userAccount);
         }
         Cancel();
     }

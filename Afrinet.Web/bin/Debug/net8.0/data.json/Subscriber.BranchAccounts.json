@@ -1,0 +1,572 @@
+[{
+  "_id": "813932cb-0d0f-461c-8670-9282ade91b91",
+  "BranchName": "Southampton",
+  "MainContactName": "Plum",
+  "MainContactOtherNames": "Peterson",
+  "MainContactMobileNumber": "2997761308848",
+  "MainContactEmail": "kloeie@gmail.com",
+  "AddressLine1": "9 Hornbeam close",
+  "AddressLine2": "Houlton",
+  "City": "Brentwood",
+  "State": "Essex",
+  "Country": "United Kingdom",
+  "MSISDN": null,
+  "PIN": null,
+  "HeadOfficeId": "c24d8b5d-ff35-4861-89d2-1f3e35a4e7dc",
+  "ServiceAccount": {
+    "_id": "2ef6596c-ec1d-4361-8f31-a9089887b0f9",
+    "CreatedAt": {
+      "$date": "2023-12-14T11:06:32.600Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      },
+      {
+        "_id": "5",
+        "Name": "Pull-Money"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "ea68080a-5c02-46fe-9060-f928a5d3bf93",
+        "Balance": 0,
+        "Currency": "KSH",
+        "CreatedAt": {
+          "$date": "2023-12-14T11:06:32.600Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2023-12-14T11:06:32.600Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "2ef6596c-ec1d-4361-8f31-a9089887b0f9",
+        "WalletType": null
+      }
+    ]
+  },
+  "CreatedAt": {
+    "$date": "2023-12-14T11:06:32.600Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "TransactionLimits": [
+    {
+      "_id": "13a1006f-cb30-4755-98db-39cd823f128a",
+      "LimitName": "Branch Transaction Limit",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "83d0ac97-4124-4cf5-b628-e7a494029112",
+    "LimitName": "Branch Balance Limit",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Branches": [],
+  "Status": "Created",
+  "ServiceAccountId": "2ef6596c-ec1d-4361-8f31-a9089887b0f9"
+},
+{
+  "_id": "9926e3ee-7137-4f51-a71b-06c6c7424f43",
+  "BranchName": "Chelmsford",
+  "MainContactName": "Karounwi",
+  "MainContactOtherNames": "Split",
+  "MainContactMobileNumber": "2557761308848",
+  "MainContactEmail": "akindapo.adisa@gmail.com",
+  "AddressLine1": "9 Hornbeam close",
+  "AddressLine2": "Houlton",
+  "City": "Chelmsford",
+  "State": "Essex",
+  "Country": "United Kingdom",
+  "MSISDN": null,
+  "PIN": null,
+  "HeadOfficeId": "c24d8b5d-ff35-4861-89d2-1f3e35a4e7dc",
+  "ServiceAccount": {
+    "_id": "ffae132e-5837-40d4-a119-49481d86ba62",
+    "CreatedAt": {
+      "$date": "2023-12-14T11:06:32.643Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      },
+      {
+        "_id": "5",
+        "Name": "Pull-Money"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "0936c1ac-9b80-4bd9-8dc1-235e7b2968aa",
+        "Balance": 0,
+        "Currency": "KSH",
+        "CreatedAt": {
+          "$date": "2023-12-14T11:06:32.643Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2023-12-14T11:06:32.643Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "ffae132e-5837-40d4-a119-49481d86ba62",
+        "WalletType": null
+      }
+    ]
+  },
+  "CreatedAt": {
+    "$date": "2023-12-14T11:06:32.643Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "TransactionLimits": [
+    {
+      "_id": "c86499bc-844c-4a85-8594-4869bf1b204f",
+      "LimitName": "Branch Transaction Limit",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "5d1ab5cd-aab2-49e4-bfea-a198669cb87c",
+    "LimitName": "Branch Balance Limit",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Branches": [],
+  "Status": "Created",
+  "ServiceAccountId": "ffae132e-5837-40d4-a119-49481d86ba62"
+},
+{
+  "_id": "32b06012-d8bf-48fb-8aeb-1301e9b5294f",
+  "BranchName": "Ajegunle",
+  "MainContactName": "sqafefefwee",
+  "MainContactOtherNames": "fsefewfewrrfer",
+  "MainContactMobileNumber": "+447761368848",
+  "MainContactEmail": "akindapo.adisa@gmail.com",
+  "AddressLine1": "37 Muirhead Rise, Houlton",
+  "AddressLine2": "Houlton",
+  "City": "RUGBY",
+  "State": "Warwickshire",
+  "Country": "United Kingdom",
+  "MSISDN": null,
+  "PIN": null,
+  "HeadOfficeId": "da5fa984-5f9c-4065-adec-c7b98cfec6e2",
+  "ServiceAccount": {
+    "_id": "ff224f9f-33c2-4a7c-8cea-a8b2aec754a3",
+    "CreatedAt": {
+      "$date": "2023-12-14T12:07:29.289Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      },
+      {
+        "_id": "5",
+        "Name": "Pull-Money"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "44b20ed4-a09b-4781-a850-40ee0aa506e2",
+        "Balance": 0,
+        "Currency": "KSH",
+        "CreatedAt": {
+          "$date": "2023-12-14T12:07:29.289Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2023-12-14T12:07:29.289Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "ff224f9f-33c2-4a7c-8cea-a8b2aec754a3"
+      }
+    ]
+  },
+  "CreatedAt": {
+    "$date": "2023-12-14T12:07:29.289Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "TransactionLimits": [
+    {
+      "_id": "1ccb4e26-d1c7-477f-8071-e2b811a0669c",
+      "LimitName": "Branch Transaction Limit",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "8c9ee2f2-628a-4f2a-bd44-3ad75a2b7f65",
+    "LimitName": "Branch Balance Limit",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Branches": [],
+  "Status": "Created",
+  "ServiceAccountId": "ff224f9f-33c2-4a7c-8cea-a8b2aec754a3"
+},
+{
+  "_id": "a4f85742-0460-477e-ab25-9cb286e2d876",
+  "BranchName": "Kenilworth",
+  "MainContactName": "Peter",
+  "MainContactOtherNames": "Tosh",
+  "MainContactMobileNumber": "+447761308848",
+  "MainContactEmail": "akindapo.adisa@gmail.com",
+  "AddressLine1": "37 Muirhead Rise, Houlton",
+  "AddressLine2": "Houlton",
+  "City": "RUGBY",
+  "State": "Warwickshire",
+  "Country": "United Kingdom",
+  "MSISDN": null,
+  "PIN": null,
+  "HeadOfficeId": "cd44bd81-8cd9-47a8-9161-4a41c7a4ecb0",
+  "ServiceAccount": {
+    "_id": "8ea22633-3a65-461a-b4b6-c64ca6525576",
+    "CreatedAt": {
+      "$date": "2024-01-31T13:28:52.552Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      },
+      {
+        "_id": "5",
+        "Name": "Pull-Money"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "22fcc7e5-ef06-4c01-993b-f13744db2ed1",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-31T13:28:52.551Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "8ea22633-3a65-461a-b4b6-c64ca6525576",
+        "WalletType": "Float Wallet"
+      },
+      {
+        "_id": "ea239c6c-d463-4d84-b432-30cde1ab4247",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": null,
+        "WalletType": "Working Wallet"
+      },
+      {
+        "_id": "a5c16865-0f46-4f1a-a3c6-45168f701a01",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": null,
+        "WalletType": "Control Wallet"
+      }
+    ]
+  },
+  "CreatedAt": {
+    "$date": "2024-01-31T13:28:52.552Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "TransactionLimits": [
+    {
+      "_id": "e91b08af-9af6-4671-93c1-b9f3f2cd6720",
+      "LimitName": "Branch Transaction Limit",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "67ac3e46-8ae5-4ff1-b039-5f7fe0d0ecbb",
+    "LimitName": "Branch Balance Limit",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Branches": [],
+  "Status": "Created",
+  "ServiceAccountId": "8ea22633-3a65-461a-b4b6-c64ca6525576"
+},
+{
+  "_id": "ad9647b6-a4fd-40fe-93aa-d7448efcdfb8",
+  "BranchName": "Peterborough",
+  "MainContactName": "Mcnamee",
+  "MainContactOtherNames": "James",
+  "MainContactMobileNumber": "+447761308343434",
+  "MainContactEmail": "akindapo.adisa@gmail.com",
+  "AddressLine1": "37 Muirhead Rise, Houlton",
+  "AddressLine2": "Houlton",
+  "City": "RUGBY",
+  "State": "Warwickshire",
+  "Country": "United Kingdom",
+  "MSISDN": null,
+  "PIN": null,
+  "HeadOfficeId": "cd44bd81-8cd9-47a8-9161-4a41c7a4ecb0",
+  "ServiceAccount": {
+    "_id": "997c4ea4-68d5-44f1-ae83-c7958eb4bc01",
+    "CreatedAt": {
+      "$date": "2024-01-31T13:28:52.552Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      },
+      {
+        "_id": "5",
+        "Name": "Pull-Money"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "19494ee3-b2c9-445e-85c0-3b6d00aadb3c",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-31T13:28:52.551Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "997c4ea4-68d5-44f1-ae83-c7958eb4bc01",
+        "WalletType": "Float Wallet"
+      },
+      {
+        "_id": "dd44e827-5ad4-4ba0-87cf-d333ade0d830",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": null,
+        "WalletType": "Working Wallet"
+      },
+      {
+        "_id": "063ea1c8-86c0-463d-b4ad-9fd76691dfd4",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-31T13:28:52.552Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": null,
+        "WalletType": "Control Wallet"
+      }
+    ]
+  },
+  "CreatedAt": {
+    "$date": "2024-01-31T13:28:52.552Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "TransactionLimits": [
+    {
+      "_id": "70409f4e-8870-43c9-9d85-a87cba7494f9",
+      "LimitName": "Branch Transaction Limit",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "7b8eabc9-5933-4a55-810d-262e9d7aa578",
+    "LimitName": "Branch Balance Limit",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Branches": [],
+  "Status": "Created",
+  "ServiceAccountId": "997c4ea4-68d5-44f1-ae83-c7958eb4bc01"
+}]

@@ -146,7 +146,7 @@
         if (Id is not null)
         {
             Title = "Edit";
-            headOffice = await Http.GetFromJsonAsync<HeadOffice>("http://localhost:5032/api/HeadOffice/" + Id);
+            headOffice = await Http.GetFromJsonAsync<HeadOffice>(Configuration.GetValue<string>("API_URL") + "HeadOffice/" + Id);
         }
         if (Title == "Add")
         {
@@ -157,11 +157,11 @@
     {
         if (headOffice.Id is not null)
         {
-            await Http.PutAsJsonAsync("http://localhost:5032/api/HeadOffice/" + headOffice.Id, headOffice);
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "HeadOffice/" + headOffice.Id, headOffice);
         }
         else
         {
-            await Http.PostAsJsonAsync("http://localhost:5032/api/HeadOffice", headOffice);
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "HeadOffice", headOffice);
         }
         Cancel();
     }

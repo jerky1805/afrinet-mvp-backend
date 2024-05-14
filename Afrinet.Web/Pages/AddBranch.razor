@@ -110,19 +110,20 @@
         if (Id is not null)
         {
             Title = "Edit";
-            branch = await Http.GetFromJsonAsync<Branch>("http://localhost:5032/api/Branch/" + HeadOfficeId + "/" + Id);
+            branch = await Http.GetFromJsonAsync<Branch>(Configuration.GetValue<string>("API_URL") + "Branch/" + HeadOfficeId + "/" +
+            Id);
         }
     }
     protected async Task SaveBranch()
     {
         if (branch.Id is not null)
         {
-            await Http.PutAsJsonAsync("http://localhost:5032/api/Branch/" + branch.Id, branch);
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Branch/" + branch.Id, branch);
         }
         else
         {
             branch.HeadOfficeId = HeadOfficeId;
-            await Http.PostAsJsonAsync("http://localhost:5032/api/Branch", branch);
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Branch", branch);
         }
         Cancel();
     }

@@ -62,12 +62,12 @@ else
                         <a href='/organisation/edit/@ho.Id' class="btn btn-outline-dark" role="button">
                             Edit
                         </a>
-                      @*   <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
-                            Delete
-                        </a> 
-                        <a href='/branch/@ho.Id' class="btn btn-outline-dark" role="button">
-                            View Branches
-                        </a> *@
+                        @* <a href='/headoffice/delete/@ho.Id' class="btn btn-outline-danger" role="button">
+                Delete
+                </a>
+                <a href='/branch/@ho.Id' class="btn btn-outline-dark" role="button">
+                View Branches
+                </a> *@
                     </td>
                 </tr>
             }
@@ -87,14 +87,15 @@ else
     }
     protected async Task GetOrgAccount()
     {
-        orgAccountList = await Http.GetFromJsonAsync<List<OrgAccount>>("http://localhost:5032/api/Organisation");
+        orgAccountList = await Http.GetFromJsonAsync<List<OrgAccount>>(Configuration.GetValue<string>("API_URL") +
+        "Organisation");
         searchOrgAccountData = orgAccountList;
     }
     protected void FilterOrgAccount()
     {
         if (!string.IsNullOrEmpty(SearchString))
         {
-            orgAccountList= searchOrgAccountData
+            orgAccountList = searchOrgAccountData
             .Where(x => x.OrganisationName.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
             .ToList();
         }
@@ -113,8 +114,8 @@ else
         orgAccountList = searchOrgAccountData;
     }
     protected string ConcatPaymentMethods(List<string> PaymentMethods)
-        {
-            return string.Join(", ", PaymentMethods);
-        }
+    {
+        return string.Join(", ", PaymentMethods);
+    }
 
 }

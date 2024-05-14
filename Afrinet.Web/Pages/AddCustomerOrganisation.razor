@@ -190,20 +190,20 @@
         if (Id is not null)
         {
             Title = "Edit";
-            orgAccount = await Http.GetFromJsonAsync<OrgAccount>("http://localhost:5032/api/Organisation/" + Id);
+            orgAccount = await Http.GetFromJsonAsync<OrgAccount>(Configuration.GetValue<string>("API_URL") + "Organisation/" + Id);
         }
     }
     protected async Task SaveOrganisation()
     {
         if (orgAccount.Id is not null)
         {
-            await Http.PutAsJsonAsync("http://localhost:5032/api/Organisation/" + orgAccount.Id, orgAccount);
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Organisation/" + orgAccount.Id, orgAccount);
         }
         else
         {
             List<string> pm = new List<string> { "Visa", "Mastercard", "M-PESA", "Amex" };
             orgAccount.PaymentMethods = pm;
-            await Http.PostAsJsonAsync("http://localhost:5032/api/Organisation", orgAccount);
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Organisation", orgAccount);
         }
         Cancel();
     }

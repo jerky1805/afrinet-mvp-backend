@@ -33,19 +33,19 @@ else
     if (branchList.Count != 0)
     {
         <table class="table table-striped align-middle table-bordered">
-        <thead class="table-success">
-            <tr>
-                <th>Branch Name</th>
-                <th>Contact Surname</th>
-                <th>Contact Other Names</th>
-                <th>Contact E-mail</th>
-                <th>Contact Phone</th>
-                <th>Actions</th>
+    <thead class="table-success">
+        <tr>
+            <th>Branch Name</th>
+            <th>Contact Surname</th>
+            <th>Contact Other Names</th>
+            <th>Contact E-mail</th>
+            <th>Contact Phone</th>
+            <th>Actions</th>
 
-            </tr>
-        </thead>
-             <tbody>
-                @foreach (var br in branchList)
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var br in branchList)
                 {
                     <tr>
                         <td>@br.BranchName</td>
@@ -58,7 +58,7 @@ else
                             <a href='/branch/edit/@br.HeadOfficeId/@br.Id' class="btn btn-outline-dark" role="button">
                                 Edit
                             </a>
-                            
+
                             <a href='/agent/@br.HeadOfficeId/@br.Id' class="btn btn-outline-dark" role="button">
                                 View Agents
                             </a>
@@ -84,12 +84,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        ho = await Http.GetFromJsonAsync<HeadOffice>("http://localhost:5032/api/HeadOffice/" + HeadOfficeId);
+        ho = await Http.GetFromJsonAsync<HeadOffice>(Configuration.GetValue<string>("API_URL") + "HeadOffice/" + HeadOfficeId);
         await GetBranch();
     }
     protected async Task GetBranch()
     {
-        branchList = await Http.GetFromJsonAsync<List<Branch>>("http://localhost:5032/api/Branch/" + HeadOfficeId);
+        branchList = await Http.GetFromJsonAsync<List<Branch>>(Configuration.GetValue<string>("API_URL") + "Branch/" +
+        HeadOfficeId);
         searchBranchData = branchList;
     }
     protected void FilterBranch()

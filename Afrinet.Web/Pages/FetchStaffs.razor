@@ -1,0 +1,135 @@
+﻿@page "/staff"
+@using RAI.Models
+@using RAI.Services
+@attribute [Authorize]
+
+
+<h1>Staff</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/staff/add/' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Staff
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Staff by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterStaff" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (staffList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (staffList.Count != 0)
+    {
+
+
+
+
+
+
+        <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th> Surname</th>
+            <th> Other Names</th>
+            <th> E-mail</th>
+            <th>Contact Phone</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var staff in staffList)
+                {
+                    <tr>
+                        <td>@staff.Surname</td>
+                        <td>@staff.OtherNames</td>
+                        <td>@staff.Email</td>
+                        <td>@staff.PhoneNumber</td>
+                        <td>@staff.Status</td>
+                        <td>
+                            <a href='/staff/edit/@staff.Id' class="btn btn-outline-dark" role="button">
+                                Edit
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+
+    }
+}
+@code {
+
+    protected List<Staff> staffList = new();
+    protected List<Staff> searchStaffData = new();
+    protected Staff staff = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetStaff();
+    }
+    protected async Task GetStaff()
+    {
+        staffList = await Http.GetFromJsonAsync<List<Staff>>(Configuration.GetValue<string>("API_URL") +
+        "Staff"); ;
+        searchStaffData = staffList;
+    }
+    protected void FilterStaff()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            staffList = searchStaffData
+            .Where(x => x.Surname.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            staffList = searchStaffData;
+        }
+    }
+
+    protected void DeleteConfirm(string Id)
+    {
+        staff = staffList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        staffList = searchStaffData;
+    }
+    @* private bool FilterFunc1(Staff staff) => FilterFunc(staff, searchString1);
+
+private bool FilterFunc(Staff staff, string searchString)
+{
+if (string.IsNullOrWhiteSpace(searchString))
+return true;
+if (staff.Surname.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+return true;
+if (staff.OtherNames.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+return true;
+return false;
+} *@
+
+
+}

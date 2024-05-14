@@ -1,0 +1,573 @@
+[{
+  "_id": "6845643e-b14c-4580-a749-008b851a8012",
+  "OtherNames": "Akindapo",
+  "Surname": "Adisa",
+  "AddressLine1": "37 Muirhead Rise",
+  "AddressLine2": "",
+  "City": "Rugby",
+  "State": "Warwickshire",
+  "Country": "United Kingdom",
+  "Email": "akindapo.adisa@gmail.com",
+  "IDType": "Passport",
+  "IDNumber": "452173233as",
+  "Language": "English",
+  "CreatedAt": {
+    "$date": "2023-12-27T17:24:09.616Z"
+  },
+  "UpdatedAt": {
+    "$date": "2023-12-27T17:26:08.049Z"
+  },
+  "LastLogin": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "ServiceAccount": {
+    "_id": "7b8ab900-e30e-4345-8fca-a3eb0387fbd1",
+    "CreatedAt": {
+      "$date": "2023-12-27T17:24:09.616Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "3d11e529-9d6d-42e1-af5c-da4f9066116e",
+        "Balance": 600,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2023-12-27T17:24:09.616Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2023-12-27T17:24:09.616Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "7b8ab900-e30e-4345-8fca-a3eb0387fbd1",
+        "WalletType": null
+      }
+    ]
+  },
+  "ServiceAccountId": "7b8ab900-e30e-4345-8fca-a3eb0387fbd1",
+  "AccountType": "Subscriber",
+  "MSISDN": "2547773232345",
+  "PIN": "111111",
+  "FailedPINAttempts": 0,
+  "PINChangedAt": {
+    "$date": "2023-12-27T17:26:03.196Z"
+  },
+  "UserAccountRole": "Tier 1 KYC Subscriber",
+  "TransactionLimits": [
+    {
+      "_id": "4aec801b-71a0-4947-94b4-e0bef84cecc6",
+      "LimitName": "Tier 1 KYC Subscriber",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "d042abf8-51e1-477b-af4a-2249a00d1753",
+    "LimitName": "Tier 1 KYC Subscriber",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Channels": [
+    "web"
+  ],
+  "WebLoginID": null,
+  "Status": "Active"
+},
+{
+  "_id": "711bfe7b-e08e-416c-af84-9b79b901e5ec",
+  "OtherNames": "Monisola",
+  "Surname": "Ayeni",
+  "AddressLine1": "92",
+  "AddressLine2": "Harcourt Way",
+  "City": "Houlton",
+  "State": "Northamptonshire",
+  "Country": "United Kingdom",
+  "Email": "theresa.ayeni@gmail.com",
+  "IDType": "Passport",
+  "IDNumber": "3434234232323",
+  "Language": "English",
+  "CreatedAt": {
+    "$date": "2024-01-22T18:01:13.206Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "LastLogin": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "ServiceAccount": {
+    "_id": "c00b05b5-4d3a-49ef-abbb-9e6b646dcce8",
+    "CreatedAt": {
+      "$date": "2024-01-22T18:01:13.206Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "9f8118f2-c582-4b95-b072-f592cbac964a",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-22T18:01:13.206Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-22T18:01:13.206Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "c00b05b5-4d3a-49ef-abbb-9e6b646dcce8",
+        "WalletType": "MoneyWallet"
+      }
+    ]
+  },
+  "ServiceAccountId": "c00b05b5-4d3a-49ef-abbb-9e6b646dcce8",
+  "AccountType": null,
+  "MSISDN": "07761308848",
+  "PIN": null,
+  "FailedPINAttempts": 0,
+  "PINChangedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "UserAccountRole": "Tier 1 KYC Subscriber",
+  "TransactionLimits": [
+    {
+      "_id": "16aad827-37ef-4092-9d08-dfdab84b2e13",
+      "LimitName": "Tier 1 KYC Subscriber",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "c0e9db1c-6b6e-4db5-b5ac-bb00ce6f3a29",
+    "LimitName": "Tier 1 KYC Subscriber",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Channels": [
+    "web",
+    "mobile",
+    "ussd",
+    "qr"
+  ],
+  "WebLoginID": null,
+  "Status": "Created"
+},
+{
+  "_id": "20155632-6be0-4c06-9a2f-f01e7310ff4f",
+  "OtherNames": "Monisola",
+  "Surname": "Ayeni",
+  "AddressLine1": "37 Muirhead Rise, Houlton",
+  "AddressLine2": "Houlton",
+  "City": "RUGBY",
+  "State": "Warwickshire",
+  "Country": "United Kingdom",
+  "Email": "www@yopmail.com",
+  "IDType": "Passport",
+  "IDNumber": "3434234232323",
+  "Language": "English",
+  "CreatedAt": {
+    "$date": "2024-01-22T18:01:13.206Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "LastLogin": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "ServiceAccount": {
+    "_id": "9b7e9270-6749-43c4-b095-1ccd3eb306c0",
+    "CreatedAt": {
+      "$date": "2024-01-22T18:01:13.206Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "40011960-368f-43ec-886f-bae0d274f47d",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-22T18:01:13.206Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-22T18:01:13.206Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "9b7e9270-6749-43c4-b095-1ccd3eb306c0",
+        "WalletType": "MoneyWallet"
+      }
+    ]
+  },
+  "ServiceAccountId": "9b7e9270-6749-43c4-b095-1ccd3eb306c0",
+  "AccountType": null,
+  "MSISDN": "+44776130884823313",
+  "PIN": null,
+  "FailedPINAttempts": 0,
+  "PINChangedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "UserAccountRole": "Tier 1 KYC Subscriber",
+  "TransactionLimits": [
+    {
+      "_id": "0b047262-fe3a-4bff-9370-c1a7cda5bc41",
+      "LimitName": "Tier 1 KYC Subscriber",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "7607d3ee-dc14-4be0-9f19-484f16300ae9",
+    "LimitName": "Tier 1 KYC Subscriber",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Channels": [
+    "web",
+    "mobile",
+    "ussd",
+    "qr"
+  ],
+  "WebLoginID": null,
+  "Status": "Created"
+},
+{
+  "_id": "e4781d61-4601-4005-9bd1-9f35ba63469d",
+  "OtherNames": "Kayote",
+  "Surname": "While",
+  "AddressLine1": "37 MUIRHEAD RISE",
+  "AddressLine2": "HOULTON",
+  "City": "RUGBY",
+  "State": "WARWICKSHIRE",
+  "Country": "United Kingdom",
+  "Email": "dapo.adisa@spaceystechnology.com",
+  "IDType": "Maisha Namba",
+  "IDNumber": "0776130884845343",
+  "Language": "English",
+  "CreatedAt": {
+    "$date": "2024-01-22T18:13:55.295Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "LastLogin": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "ServiceAccount": {
+    "_id": "2b15ddd7-f4d3-4e23-a1bd-12e44f60de2a",
+    "CreatedAt": {
+      "$date": "2024-01-22T18:13:55.295Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "f969f566-1a67-4332-ac33-e0c1b7a5be6d",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-22T18:13:55.294Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-22T18:13:55.295Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "2b15ddd7-f4d3-4e23-a1bd-12e44f60de2a",
+        "WalletType": "MoneyWallet"
+      }
+    ]
+  },
+  "ServiceAccountId": "2b15ddd7-f4d3-4e23-a1bd-12e44f60de2a",
+  "AccountType": null,
+  "MSISDN": "0776130884845343",
+  "PIN": null,
+  "FailedPINAttempts": 0,
+  "PINChangedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "UserAccountRole": "Tier 1 KYC Subscriber",
+  "TransactionLimits": [
+    {
+      "_id": "89bd08e3-7474-485c-922b-6974f5f5e3b4",
+      "LimitName": "Tier 1 KYC Subscriber",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "d7263871-82ad-44cf-9d03-ff6154813340",
+    "LimitName": "Tier 1 KYC Subscriber",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Channels": [
+    "web",
+    "mobile",
+    "ussd",
+    "qr"
+  ],
+  "WebLoginID": null,
+  "Status": "Created"
+},
+{
+  "_id": "e2b6f8f8-a911-4b68-a6a2-f2076540ce6c",
+  "OtherNames": "Whillow",
+  "Surname": "Pelmbo",
+  "AddressLine1": "9 Hornbeam close",
+  "AddressLine2": "Houlton",
+  "City": "Brentwood",
+  "State": "Essex",
+  "Country": "United Kingdom",
+  "Email": "mclox2001@gmail.com",
+  "IDType": "Passport",
+  "IDNumber": "23214214323232",
+  "Language": "English",
+  "CreatedAt": {
+    "$date": "2024-01-22T18:15:07.227Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "LastLogin": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "ServiceAccount": {
+    "_id": "5fb90f75-36bd-4ab9-8597-4d0732286ac1",
+    "CreatedAt": {
+      "$date": "2024-01-22T18:15:07.227Z"
+    },
+    "UpdatedAt": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "LastLogin": {
+      "$date": {
+        "$numberLong": "-62135596800000"
+      }
+    },
+    "SupportedServices": [
+      {
+        "_id": "1",
+        "Name": "Cash-In"
+      },
+      {
+        "_id": "2",
+        "Name": "Cash-Out"
+      },
+      {
+        "_id": "3",
+        "Name": "Send-Money-Registered"
+      },
+      {
+        "_id": "4",
+        "Name": "Send-Money-Unregistered"
+      }
+    ],
+    "Wallets": [
+      {
+        "_id": "7c87c596-9c69-481f-a239-1809507f58f9",
+        "Balance": 0,
+        "Currency": "KES",
+        "CreatedAt": {
+          "$date": "2024-01-22T18:15:07.227Z"
+        },
+        "LastOperatedAt": {
+          "$date": "2024-01-22T18:15:07.227Z"
+        },
+        "MaximumBalance": 0,
+        "MinimumBalance": 0,
+        "LowBalanceWarning": false,
+        "DisputedBalance": 0,
+        "ServiceAccountId": "5fb90f75-36bd-4ab9-8597-4d0732286ac1",
+        "WalletType": "MoneyWallet"
+      }
+    ]
+  },
+  "ServiceAccountId": "5fb90f75-36bd-4ab9-8597-4d0732286ac1",
+  "AccountType": null,
+  "MSISDN": "+44776130884811",
+  "PIN": null,
+  "FailedPINAttempts": 0,
+  "PINChangedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "UserAccountRole": "Tier 1 KYC Subscriber",
+  "TransactionLimits": [
+    {
+      "_id": "2ac9df39-d2ef-457b-90d0-e0332ccd28fc",
+      "LimitName": "Tier 1 KYC Subscriber",
+      "LimitType": "Velocity",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "Count": 5,
+      "Duration": 3600
+    }
+  ],
+  "BalanceLimit": {
+    "_id": "af0cc08f-ed3a-46c4-8245-00c5796e748d",
+    "LimitName": "Tier 1 KYC Subscriber",
+    "MaximumValue": 600,
+    "MinimumValue": 0
+  },
+  "Channels": [
+    "web",
+    "mobile",
+    "ussd",
+    "qr"
+  ],
+  "WebLoginID": null,
+  "Status": "Created"
+}]

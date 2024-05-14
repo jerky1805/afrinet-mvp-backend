@@ -5,7 +5,8 @@ using MudBlazor.Services;
 using Subscribers.API.Models;
 using Subscribers.API.Services;
 using Afrinet.Web;
-
+using RAI.API.Models;
+using RAI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,8 @@ builder.Services.Configure<BranchAccountDatabaseSettings>(
 builder.Services.Configure<AgentAccountDatabaseSettings>(
     builder.Configuration.GetSection("AgentAccountDatabase"));
 
+builder.Services.Configure<RAIDatabaseSettings>(
+    builder.Configuration.GetSection("RAIDatabaseSettings"));
 
 builder.Services.Configure<LoanDetailsDatabaseSettings>(
     builder.Configuration.GetSection("LoanDetailsDatabase"));
@@ -62,6 +65,7 @@ builder.Services.AddSingleton<HeadOfficeAccountsService>();
 builder.Services.AddSingleton<BranchAccountsService>();
 builder.Services.AddSingleton<AgentAccountsService>();
 builder.Services.AddSingleton<LoanDetailsService>();
+builder.Services.AddSingleton<StaffService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

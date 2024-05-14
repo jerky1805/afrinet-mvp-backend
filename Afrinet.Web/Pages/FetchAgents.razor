@@ -90,12 +90,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        b = await Http.GetFromJsonAsync<Branch>("http://localhost:5032/api/Branch/" + HeadOfficeId + "/" + BranchId);
+        b = await Http.GetFromJsonAsync<Branch>(Configuration.GetValue<string>("API_URL") + "Branch/" + HeadOfficeId + "/" +
+        BranchId);
         await GetAgent();
     }
     protected async Task GetAgent()
     {
-        agentList = await Http.GetFromJsonAsync<List<AgentAccount>>("http://localhost:5032/api/Agent/web/" + BranchId);
+        agentList = await Http.GetFromJsonAsync<List<AgentAccount>>(Configuration.GetValue<string>("API_URL") + "Agent/web/" +
+        BranchId);
         searchAgentAccountData = agentList;
     }
     protected void FilterAgentAccount()

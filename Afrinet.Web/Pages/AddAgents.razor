@@ -135,21 +135,21 @@
         if (Id is not null)
         {
             Title = "Edit";
-            agentAccount = await Http.GetFromJsonAsync<AgentAccount>("http://localhost:5032/api/Agent/" + Id);
+            agentAccount = await Http.GetFromJsonAsync<AgentAccount>(Configuration.GetValue<string>("API_URL") + "Agent/" + Id);
         }
     }
     protected async Task SaveAgentAccount()
     {
         if (agentAccount.Id is not null)
         {
-            await Http.PutAsJsonAsync("http://localhost:5032/api/Agent/" + agentAccount.Id, agentAccount);
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Agent/" + agentAccount.Id, agentAccount);
         }
         else
         {
             agentAccount.Language = "English";
             agentAccount.Channels = new List<string> { "web", "mobile", "ussd", "qr" };
             agentAccount.BranchId = BranchId;
-            await Http.PostAsJsonAsync("http://localhost:5032/api/Agent", agentAccount);
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Agent", agentAccount);
         }
         Cancel();
     }
