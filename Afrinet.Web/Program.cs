@@ -1,5 +1,5 @@
 
-using Afrinet.Web.Data;
+// using Afrinet.Web.Data;
 using Auth0.AspNetCore.Authentication;
 using MudBlazor.Services;
 using Subscribers.API.Models;
@@ -25,7 +25,6 @@ builder.Services
     });
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IBlobStorageService, BlobStorageService>();
 
@@ -113,6 +112,7 @@ app.UseAuthorization();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 app.MapControllers();
+app.MapRazorPages();
 
 
 app.Run();

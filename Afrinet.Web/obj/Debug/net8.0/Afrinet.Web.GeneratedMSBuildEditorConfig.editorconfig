@@ -1,0 +1,127 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Afrinet.Web
+build_property.RootNamespace = Afrinet.Web
+build_property.ProjectDir = /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddAgents.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQWdlbnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddBranch.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQnJhbmNoLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddCustomerOrganisation.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQ3VzdG9tZXJPcmdhbmlzYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddCustomerSubscriber.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkQ3VzdG9tZXJTdWJzY3JpYmVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/AddHeadOffice.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkSGVhZE9mZmljZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/CustomerRegistration.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3VzdG9tZXJSZWdpc3RyYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/EditLoanDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdExvYW5EZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/EditPerson.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdFBlcnNvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchAgents.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hBZ2VudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchBranch.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hCcmFuY2gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchCustomerOrganisation.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hDdXN0b21lck9yZ2FuaXNhdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchCustomerSubscriber.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hDdXN0b21lclN1YnNjcmliZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchHeadOffice.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hIZWFkT2ZmaWNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/FetchLoanApplication.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hMb2FuQXBwbGljYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/ViewLoanDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmlld0xvYW5EZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Shared/AccessControl.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0FjY2Vzc0NvbnRyb2wucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-97x4axowe7
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-dwclaahuyo
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
