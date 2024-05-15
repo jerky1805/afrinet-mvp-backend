@@ -1,0 +1,153 @@
+﻿@page "/agencyadmins/add/"
+@page "/agencyadmins/edit/{Id}"
+@using RAI.Models
+@inject NavigationManager NavigationManager
+@using RAI.Services
+@inject HttpClient Http
+@using System.Text.Json
+
+
+<h1>@Title Agency Admin</h1>
+<hr />
+<EditForm Model="@agencyAdmin" OnValidSubmit="SaveAgencyAdmin">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Agency Admin Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Surname</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agencyAdmin.Surname" />
+            </div>
+            <ValidationMessage For="@(() => agencyAdmin.Surname)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Other Names</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agencyAdmin.OtherNames" />
+            </div>
+            <ValidationMessage For="@(() => agencyAdmin.OtherNames)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Email</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="agencyAdmin.Email" />
+            </div>
+            <ValidationMessage For="@(() => agencyAdmin.Email)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Password</label>
+            <div class="col-md-4">
+                <InputText class="form-control" type="password" @bind-Value="agencyAdmin.Password"> </InputText>
+            </div>
+            <ValidationMessage For="@(() => agencyAdmin.Password)" />
+        </div>
+        <div class="mb-3">
+            @* <label for="Status" class="form-label">Status</label> *@
+            <div class="col-md-4">
+                @* <InputText class="form-control" @bind-Value="staff.Status" /> *@
+                <MudSelect T="string" Label="Agencies" AnchorOrigin="Origin.BottomCenter"
+                    @bind-Value="agencyAdmin.AgencyId" Variant="Variant.Filled">
+                    @foreach (var agency in agencyList)
+                    {
+                        <MudSelectItem Value="@agency.Id"> @agency.Name</MudSelectItem>
+
+                    }
+                </MudSelect>
+            </div>
+            <ValidationMessage For="@(() => agencyAdmin.AgencyId)" />
+        </div>
+
+        <div class="mb-3">
+            @* <label for="Status" class="form-label">Status</label> *@
+            <div class="col-md-4">
+                @* <InputText class="form-control" @bind-Value="staff.Status" /> *@
+                <MudSelect T="string" Label="Status" AnchorOrigin="Origin.BottomCenter" @bind-Value="agencyAdmin.Status"
+                    Variant="Variant.Filled">
+                    <MudSelectItem Value="@("Active")" />
+                    <MudSelectItem Value="@("Inactive")" />
+                </MudSelect>
+            </div>
+            <ValidationMessage For="@(() => agencyAdmin.Status)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+        @* <RadzenButton Click="@Cancel" Text="Cancel"></RadzenButton> *@
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected AgencyAdmin agencyAdmin = new();
+    protected List<Agency> agencyList = new();
+    private bool state = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAgencies();
+    }
+    protected async Task GetAgencies()
+    {
+        agencyList = await Http.GetFromJsonAsync<List<Agency>>(Configuration.GetValue<string>("API_URL") +
+        "Agency"); ;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            agencyAdmin = await Http.GetFromJsonAsync<AgencyAdmin>(Configuration.GetValue<string>("API_URL") + "AgencyAdmin/" + Id);
+        }
+    }
+    protected async Task SaveAgencyAdmin()
+    {
+        if (agencyAdmin.Id is not null)
+        {
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "AgencyAdmin/" + agencyAdmin.Id, agencyAdmin);
+        }
+        else
+        {
+            agencyAdmin.Id = Guid.NewGuid().ToString();
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "AgencyAdmin", agencyAdmin);
+            @* UserLogin login = new UserLogin
+{
+username = staff.Email,
+password = "Jethro2345",
+email = staff.Email,
+email_verified =
+true,
+connection = "Employers",
+name = staff.OtherNames + " " + staff.Surname
+};
+
+var response = await Http.PostAsJsonAsync("https://dev-4xt1a0ul.auth0.com/api/v2/users", login);
+Console.WriteLine(response); *@
+
+
+            @* var client = new HttpClient();
+var request = new HttpRequestMessage(HttpMethod.Post, "https://dev-4xt1a0ul.auth0.com/api/v2/users");
+request.Headers.Add("Accept", "application/json");
+var content = new StringContent(JsonSerializer.Serialize(login), null, "application/json");
+request.Content = content;
+var response = await client.SendAsync(request);
+response.EnsureSuccessStatusCode();
+Console.WriteLine(await response.Content.ReadAsStringAsync()); *@
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/agencyadmins");
+    }
+
+}

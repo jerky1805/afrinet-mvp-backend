@@ -1,0 +1,128 @@
+﻿@page "/commissionsettings"
+@using RAI.Models
+@using RAI.Services
+@using System.Globalization
+@attribute [Authorize]
+
+
+<h1>Commission Settings</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/commissionsettings/add/' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Commission Settings
+        </a>
+    </div>
+    @if (commissionSettingsList.Count != 0 || searchCommissionSettingsData.Count != 0)
+    {
+        <div class="input-group col">
+            <input type="text" class="form-control mb-3" placeholder="Search Service by Name" @bind="SearchString"
+                @bind:event="oninput" @onkeyup="FilterCommissionSetting" />
+            @if (SearchString.Length > 0)
+            {
+                <div class="input-group-append ">
+                    <button class="btn btn-info" @onclick="ResetSearch"> Start Over
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+        </div>
+    }
+</div>
+<br />
+@if (commissionSettingsList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (commissionSettingsList.Count != 0)
+    {
+
+
+
+
+
+
+        <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th> Registration Fee</th>
+            <th> Agent Commission</th>
+            <th> Agency Commission</th>
+            <th>Status</th>
+            <th>Date Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var commissionSetting in commissionSettingsList)
+                {
+                    <tr>
+                        <td>@commissionSetting.RegistrationFee.ToString("C", CultureInfo.CreateSpecificCulture("en-KE"))</td>
+                        <td>@commissionSetting.AgentCommission</td>
+                        <td>@commissionSetting.AgencyCommission</td>
+                        <td>@commissionSetting.Status</td>
+                        <td>@commissionSetting.CreatedAt</td>
+                        <td>
+                            <a href='/commissionsettings/edit/@commissionSetting.Id' class="btn btn-outline-dark" role="button">
+                                Edit
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+
+    }
+}
+@code {
+
+    protected List<CommissionSetting> commissionSettingsList = new();
+    protected List<CommissionSetting> searchCommissionSettingsData = new();
+    protected CommissionSetting commissionSetting = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetCommissionSettings();
+    }
+    protected async Task GetCommissionSettings()
+    {
+        commissionSettingsList = await Http.GetFromJsonAsync<List<CommissionSetting>>(Configuration.GetValue<string>("API_URL")
+        +
+        "CommissionSetting"); ;
+        searchCommissionSettingsData = commissionSettingsList;
+    }
+    protected void FilterCommissionSetting()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            commissionSettingsList = searchCommissionSettingsData
+            .Where(x => x.RegistrationFee.ToString().IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            commissionSettingsList = searchCommissionSettingsData;
+        }
+    }
+
+    protected void DeleteConfirm(string Id)
+    {
+        commissionSetting = commissionSettingsList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        commissionSettingsList = searchCommissionSettingsData;
+    }
+
+
+}

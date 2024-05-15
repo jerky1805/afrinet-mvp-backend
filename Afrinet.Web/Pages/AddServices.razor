@@ -1,0 +1,93 @@
+﻿@page "/services/add/"
+@page "/services/edit/{Id}"
+@using RAI.Models
+@inject NavigationManager NavigationManager
+@using RAI.Services
+@inject HttpClient Http
+@using System.Text.Json
+
+
+<h1>@Title Service</h1>
+<hr />
+<EditForm Model="@service" OnValidSubmit="SaveService">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Service Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Service</label>
+            <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="service.Name" />
+            </div>
+            <ValidationMessage For="@(() => service.Name)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Description</label>
+            <div class="col-md-4">
+                <InputTextArea class="form-control" @bind-Value="service.Description" />
+            </div>
+            <ValidationMessage For="@(() => service.Description)" />
+        </div>
+
+        <div class="mb-3">
+            @* <label for="Status" class="form-label">Status</label> *@
+            <div class="col-md-4">
+                <MudSelect T="string" Label="Status" AnchorOrigin="Origin.BottomCenter" @bind-Value="service.Status"
+                    Variant="Variant.Filled">
+                    <MudSelectItem Value="@("Active")" />
+                    <MudSelectItem Value="@("Inactive")" />
+                </MudSelect>
+            </div>
+            <ValidationMessage For="@(() => service.Status)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+        @* <RadzenButton Click="@Cancel" Text="Cancel"></RadzenButton> *@
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected Service service = new();
+
+    private bool state = false;
+
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            service = await Http.GetFromJsonAsync<Service>(Configuration.GetValue<string>("API_URL") + "Service/" + Id);
+        }
+    }
+    protected async Task SaveService()
+    {
+        if (service.Id is not null)
+        {
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Service/" + service.Id, service);
+        }
+        else
+        {
+            service.Id = Guid.NewGuid().ToString();
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "Service", service);
+
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/services");
+    }
+
+}

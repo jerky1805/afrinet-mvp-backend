@@ -1,0 +1,134 @@
+﻿@page "/serviceproviders"
+@using RAI.Models
+@using RAI.Services
+@attribute [Authorize]
+
+
+<h1>Service Providers</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/serviceproviders/add/' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Service Providers
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Service Provider by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterServiceProvider" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (serviceProvidersList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (serviceProvidersList.Count != 0)
+    {
+
+        <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th> Service Provider's Name</th>
+            <th> Profile Photo</th>
+            <th> Front ID </th>
+            <th> Back ID </th>
+            <th> ID Type</th>
+            <th> ID Number</th>
+            <th>Payment Status </th>
+            <th> Registering Agent </th>
+            <th> Registering Agency </th>
+            <th>Contact Phone</th>
+            <th>Service Offered</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var serviceProvider in serviceProvidersList)
+                {
+                    <tr>
+                        <td>@serviceProvider.Name (Contact Person : @serviceProvider.ContactPerson.Surname
+                            @serviceProvider.ContactPerson.OtherNames)</td>
+                        <td>@serviceProvider.PhotoID.FrontURL</td>
+                        <td>@serviceProvider.PhotoID.BackURL</td>
+                        <td>@serviceProvider.IDType</td>
+                        <td>@serviceProvider.IDNumber</td>
+                        <td>@serviceProvider.PaymentStatus</td>
+                        <td>@serviceProvider.AgentId</td>
+                        <td>@serviceProvider.AgencyId</td>
+                        <td>@serviceProvider.PhoneNumber</td>
+                        <td>@serviceProvider.ServiceId</td>
+                        <td>@serviceProvider.LocationId</td>
+
+                        <td>
+                            <a href='/serviceproviders/edit/@serviceProvider.Id' class="btn btn-outline-dark" role="button">
+                                Edit
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+
+    }
+}
+@code {
+
+    protected List<RAIServiceProvider> serviceProvidersList = new();
+    protected List<RAIServiceProvider> searchServiceProviderData = new();
+    protected RAIServiceProvider serviceProvider = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetServiceProvider();
+    }
+    protected async Task GetServiceProvider()
+    {
+        serviceProvidersList = await Http.GetFromJsonAsync<List<RAIServiceProvider>>(Configuration.GetValue<string>("API_URL") +
+        "ServiceProvider"); ;
+        searchServiceProviderData = serviceProvidersList;
+    }
+    protected void FilterServiceProvider()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            serviceProvidersList = searchServiceProviderData
+            .Where(x => x.Name.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            serviceProvidersList = searchServiceProviderData;
+        }
+    }
+
+    protected void DeleteConfirm(string Id)
+    {
+        serviceProvider = serviceProvidersList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        serviceProvidersList = searchServiceProviderData;
+    }
+    // TODO Login for Service Providers ????
+
+
+}

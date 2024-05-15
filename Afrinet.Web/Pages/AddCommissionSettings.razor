@@ -1,0 +1,126 @@
+﻿@page "/commissionsettings/add/"
+@page "/commissionsettings/edit/{Id}"
+@using RAI.Models
+@inject NavigationManager NavigationManager
+@using RAI.Services
+@inject HttpClient Http
+@using System.Text.Json
+
+<h1>@Title Agent</h1>
+<hr />
+<EditForm OnValidSubmit="SaveCommissionSetting" Model="@commissionSetting">
+    <DataAnnotationsValidator />
+    <div>
+        <h3>Commission Setting Info</h3>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Registration Fee</label>
+            <div class="col-md-4">
+                @* <InputNumber class="form-control" @bind-Value="commissionSetting.RegistrationFee" /> *@
+                <MudTextField @bind-Value="commissionSetting.RegistrationFee" Variant="Variant.Outlined"
+                    Adornment="Adornment.Start" AdornmentText="KSH" AdornmentColor="Color.Info" class="form-control" />
+            </div>
+            <ValidationMessage For="@(() => commissionSetting.RegistrationFee)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Agent Commission</label>
+            <div class="col-md-4">
+                @* <InputNumber class="form-control" @bind-Value="commissionSetting.AgentCommission" /> *@
+                <MudTextField @bind-Value="commissionSetting.AgentCommission" Variant="Variant.Outlined"
+                    Adornment="Adornment.End" AdornmentText="%" AdornmentColor="Color.Info" />
+            </div>
+            <ValidationMessage For="@(() => commissionSetting.AgentCommission)" />
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Agency Commission</label>
+            <div class="col-md-4">
+                @* <InputNumber class="form-control" @bind-Value="commissionSetting.AgencyCommission" /> *@
+                <MudTextField @bind-Value="commissionSetting.AgencyCommission" Variant="Variant.Outlined"
+                    Adornment="Adornment.End" AdornmentText="%" AdornmentColor="Color.Info" />
+            </div>
+            <ValidationMessage For="@(() => commissionSetting.AgencyCommission)" />
+        </div>
+        <div class="mb-3">
+            @* <label for="Status" class="form-label">Status</label> *@
+            <div class="col-md-4">
+                <MudSelect T="string" Label="Status" AnchorOrigin="Origin.BottomCenter"
+                    @bind-Value="commissionSetting.Status" Variant="Variant.Filled">
+                    <MudSelectItem Value="@("Active")" />
+                    <MudSelectItem Value="@("Inactive")" />
+                </MudSelect>
+            </div>
+            <ValidationMessage For="@(() => commissionSetting.Status)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+        @* <RadzenButton Click="@Cancel" Text="Cancel"></RadzenButton> *@
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+
+    private string Message = string.Empty;
+    protected string Title = "Add";
+    protected CommissionSetting commissionSetting = new();
+
+    private string state = string.Empty;
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit";
+            commissionSetting = await Http.GetFromJsonAsync<CommissionSetting>(Configuration.GetValue<string>("API_URL") +
+            "CommissionSetting/"
+            + Id);
+        }
+    }
+    protected async Task SaveCommissionSetting()
+    {
+        if (commissionSetting.Id is not null)
+        {
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "CommissionSetting/" + commissionSetting.Id,
+            commissionSetting);
+        }
+        else
+        {
+            commissionSetting.Id = Guid.NewGuid().ToString();
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "CommissionSetting", commissionSetting);
+
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/commissionsettings");
+    }
+
+    @* private async void OnPercentageChanged()
+{
+if (commissionSetting.AgencyCommission + commissionSetting.AgentCommission > 100)
+{
+bool? result = await DialogService.ShowMessageBox("Warning", "Commission Split cannot be over 100%!", yesText: "Ok",
+cancelText: "Cancel");
+state = result == null ? "Canceled" : "Deleted!";
+ValidSave = false;
+StateHasChanged();
+}
+else
+{
+ValidSave = true;
+StateHasChanged();
+
+
+}
+
+
+} *@
+
+}

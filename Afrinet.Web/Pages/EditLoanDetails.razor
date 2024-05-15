@@ -131,7 +131,10 @@
             <div class="mb-3">
                 <label for="Address" class="form-label">Requested Amount </label>
                 <div class="col-md-4">
-                    <InputNumber @bind-Value="loanDetails.LoanAmount" class="form-control"></InputNumber>
+                    @* <InputNumber @bind-Value="loanDetails.LoanAmount" class="form-control"></InputNumber> *@
+                    <MudTextField @bind-Value="loanDetails.LoanAmount" Variant="Variant.Outlined"
+                        Adornment="Adornment.Start" AdornmentText="KSH" AdornmentColor="Color.Info"
+                        class="form-control" />
                 </div>
                 <ValidationMessage For="@(() => loanDetails.LoanAmount)" />
             </div>
@@ -139,6 +142,7 @@
                 <label for="Tenure" class="form-label">Loan Tenure</label>
                 <div class="col-md-4">
                     <InputNumber @bind-Value="loanDetails.LoanTenure" class="form-control"></InputNumber>
+
                     @* <MudSelect T="string" Label="Loan Tenure" AnchorOrigin="Origin.CenterCenter"
                     @bind-Value="loanDetails.LoanTenure">
 

@@ -9,10 +9,13 @@ public class AgencyAdmin
     public string? OtherNames { get; set; }
     public string? Surname { get; set; }
     public string? Email { get; set; }
+
+    public string? Password { get; set; }
+
     public string? AgencyId { get; set; }
     public string? Status { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public DateTime LastLogin { get; set; }
-    public string? UserLoginId { get; set; } 
+    public string? UserLoginId { get; set; }
 }

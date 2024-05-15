@@ -1,0 +1,126 @@
+﻿@page "/agencies"
+@using RAI.Models
+@using RAI.Services
+@attribute [Authorize]
+
+
+<h1>Agencies</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/agencies/add/' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Agency
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Agencies by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterAgency" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (agencyList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (agencyList.Count != 0)
+    {
+
+
+
+
+
+
+        <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th> Name</th>
+            <th> Location</th>
+            <th> Address</th>
+            <th>Description</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var agency in agencyList)
+                {
+                    <tr>
+                        <td>@agency.Name</td>
+                        <td>@agency.Location</td>
+                        <td>@agency.Address</td>
+                        <td>@agency.Description</td>
+                        <td>@agency.PhoneNumber</td>
+                        <td>@agency.Status</td>
+                        <td>
+                            <a href='/agencies/edit/@agency.Id' class="btn btn-outline-dark" role="button">
+                                Edit
+                            </a>
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+
+    }
+}
+@code {
+
+    protected List<Agency> agencyList = new();
+    protected List<Agency> searchAgencyData = new();
+    protected Agency agency = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAgencies();
+    }
+    protected async Task GetAgencies()
+    {
+        agencyList = await Http.GetFromJsonAsync<List<Agency>>(Configuration.GetValue<string>("API_URL") +
+        "Agency"); ;
+        searchAgencyData = agencyList;
+    }
+    protected void FilterAgency()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            agencyList = searchAgencyData
+            .Where(x => x.Name.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            agencyList = searchAgencyData;
+        }
+    }
+
+    protected void DeleteConfirm(string Id)
+    {
+        agency = agencyList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        agencyList = searchAgencyData;
+    }
+
+
+}

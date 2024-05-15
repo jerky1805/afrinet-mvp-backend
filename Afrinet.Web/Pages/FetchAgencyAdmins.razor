@@ -1,0 +1,132 @@
+﻿@page "/agencyadmins"
+@using RAI.Models
+@using RAI.Services
+@attribute [Authorize]
+
+
+<h1>Agency Admins</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/agencyadmins/add/' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Agency Admin
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search Agency Admin by Name" @bind="SearchString"
+            @bind:event="oninput" @onkeyup="FilterAgencyAdmin" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (agencyAdminsList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (agencyAdminsList.Count != 0)
+    {
+
+
+
+
+
+
+        <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th> Name </th>
+            <th> E-mail</th>
+            <th>Role</th>
+            <th>Agency</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var agencyAdmin in agencyAdminsList)
+                {
+                    <tr>
+                        <td>@agencyAdmin.Surname @agencyAdmin.OtherNames</td>
+                        <td>@agencyAdmin.Email</td>
+                        <td>Agency Admin</td>
+                        <td>@agencyList.FirstOrDefault(x => x.Id == agencyAdmin.AgencyId).Name</td>
+                        <td>@agencyAdmin.Status</td>
+                        <td>
+                            <a href='/agencyadmins/edit/@agencyAdmin.Id' class="btn btn-outline-dark" role="button">
+                                Edit
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+
+    }
+}
+@code {
+
+    protected List<AgencyAdmin> agencyAdminsList = new();
+    protected List<AgencyAdmin> searchAgencyAdminData = new();
+    protected AgencyAdmin agencyAdmin = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+    protected List<Agency> agencyList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAgencyAdmin();
+        await GetAgencies();
+    }
+
+    protected async Task GetAgencies()
+    {
+        agencyList = await Http.GetFromJsonAsync<List<Agency>>(Configuration.GetValue<string>("API_URL") +
+        "Agency"); ;
+    }
+    protected async Task GetAgencyAdmin()
+    {
+        agencyAdminsList = await Http.GetFromJsonAsync<List<AgencyAdmin>>(Configuration.GetValue<string>("API_URL") +
+        "AgencyAdmin"); ;
+        searchAgencyAdminData = agencyAdminsList;
+    }
+    protected void FilterAgencyAdmin()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            agencyAdminsList = searchAgencyAdminData
+            .Where(x => x.Surname.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            agencyAdminsList = searchAgencyAdminData;
+        }
+    }
+
+    protected void DeleteConfirm(string Id)
+    {
+        agencyAdmin = agencyAdminsList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        agencyAdminsList = searchAgencyAdminData;
+    }
+
+
+
+}

@@ -1,0 +1,119 @@
+﻿@page "/services"
+@using RAI.Models
+@using RAI.Services
+@attribute [Authorize]
+
+
+<h1>Services</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/services/add/' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Service
+        </a>
+    </div>
+    @if (serviceList.Count != 0 || searchServiceData.Count != 0)
+    {
+        <div class="input-group col">
+            <input type="text" class="form-control mb-3" placeholder="Search Service by Name" @bind="SearchString"
+                @bind:event="oninput" @onkeyup="FilterService" />
+            @if (SearchString.Length > 0)
+            {
+                <div class="input-group-append ">
+                    <button class="btn btn-info" @onclick="ResetSearch"> Start Over
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            }
+        </div>
+    }
+</div>
+<br />
+@if (serviceList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (serviceList.Count != 0)
+    {
+
+
+
+
+
+
+        <table class="table table-striped align-middle table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in serviceList)
+                {
+                    <tr>
+                        <td>@service.Name</td>
+                        <td>@service.Description</td>
+                        <td>
+                            <a href='/services/edit/@service.Id' class="btn btn-outline-dark" role="button">
+                                Edit
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+
+    }
+}
+@code {
+
+    protected List<Service> serviceList = new();
+    protected List<Service> searchServiceData = new();
+    protected Service service = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetService();
+    }
+    protected async Task GetService()
+    {
+        serviceList = await Http.GetFromJsonAsync<List<Service>>(Configuration.GetValue<string>("API_URL") +
+        "Service"); ;
+        searchServiceData = serviceList;
+    }
+    protected void FilterService()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            serviceList = searchServiceData
+            .Where(x => x.Name.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            serviceList = searchServiceData;
+        }
+    }
+
+    protected void DeleteConfirm(string Id)
+    {
+        service = serviceList.FirstOrDefault(x => x.Id == Id);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        serviceList = searchServiceData;
+    }
+
+}

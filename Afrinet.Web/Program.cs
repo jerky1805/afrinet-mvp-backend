@@ -7,6 +7,9 @@ using Subscribers.API.Services;
 using Afrinet.Web;
 using RAI.API.Models;
 using RAI.Services;
+using Microsoft.OpenApi.Models;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +31,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IBlobStorageService, BlobStorageService>();
-
 
 builder.Services.Configure<ServiceAccountDatabaseSettings>(
     builder.Configuration.GetSection("ServiceAccountDatabase"));
@@ -66,11 +68,25 @@ builder.Services.AddSingleton<BranchAccountsService>();
 builder.Services.AddSingleton<AgentAccountsService>();
 builder.Services.AddSingleton<LoanDetailsService>();
 builder.Services.AddSingleton<StaffService>();
+builder.Services.AddSingleton<AgencyService>();
+builder.Services.AddSingleton<AgencyAdminService>();
+builder.Services.AddSingleton<ServiceService>();
+builder.Services.AddSingleton<CommissionSettingService>();
+builder.Services.AddSingleton<ServiceProviderService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(type => type.ToString());
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Berrington Demo Apps API"
+    });
+});
 
 
 var app = builder.Build();
