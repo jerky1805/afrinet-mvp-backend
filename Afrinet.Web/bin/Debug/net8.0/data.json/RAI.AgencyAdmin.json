@@ -1,0 +1,44 @@
+[{
+  "_id": "4dc63a5d-c9b6-4d08-84c2-4f8020f7b109",
+  "OtherNames": "Adisa",
+  "Surname": "Dapo",
+  "Email": "theresa.ayeni@gmail.com",
+  "Password": "Masoleum",
+  "AgencyId": "05ac37c3-79f2-404a-820d-ca54060a3acf",
+  "Status": "Active",
+  "CreatedAt": {
+    "$date": "2024-05-15T10:03:51.469Z"
+  },
+  "UpdatedAt": {
+    "$date": "2024-05-15T10:12:09.193Z"
+  },
+  "LastLogin": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "UserLoginId": null
+},
+{
+  "_id": "b6018022-761c-4948-8e48-6e7b650689fc",
+  "OtherNames": "Nugetti",
+  "Surname": "Paolo",
+  "Email": "paolo@gmail.com",
+  "Password": "Mazipeperempe",
+  "AgencyId": "4af22d27-a398-4555-83a5-6ce3021625c0",
+  "Status": "Active",
+  "CreatedAt": {
+    "$date": "2024-05-15T10:11:16.783Z"
+  },
+  "UpdatedAt": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "LastLogin": {
+    "$date": {
+      "$numberLong": "-62135596800000"
+    }
+  },
+  "UserLoginId": null
+}]

@@ -2,6 +2,11 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/appsettings.Development.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/appsettings.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/appsettings.Production.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/RAI.Agency.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/RAI.AgencyAdmin.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/RAI.CommissionSetting.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/RAI.Services.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/RAI.Staff.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.AgentAccounts.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.BranchAccounts.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Release/net8.0/publish/data.json/Subscriber.HeadOfficeAccounts.json

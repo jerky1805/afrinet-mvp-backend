@@ -108,3 +108,7 @@
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net8.0/data.json/Subscriber.ServiceAccounts.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net8.0/data.json/Subscriber.UserAccounts.json
 /Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net8.0/data.json/RAI.Staff.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net8.0/data.json/RAI.Agency.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net8.0/data.json/RAI.AgencyAdmin.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net8.0/data.json/RAI.CommissionSetting.json
+/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/bin/Debug/net8.0/data.json/RAI.Services.json

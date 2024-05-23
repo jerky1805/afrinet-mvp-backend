@@ -6,8 +6,65 @@
                     <p>Determining session state, please wait...</p>
                 </Authorizing>
                 <NotAuthorized>
-                    <h1>Sorry</h1>
-                    <p>You're not authorized to reach this page. You need to log in.</p>
+
+                    <head>
+                        <meta charset="utf-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+                        <meta name="description" content="">
+                        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+                        <meta name="generator" content="Hugo 0.84.0">
+                        <title>Heroes · Bootstrap v5.0</title>
+
+                        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/heroes/">
+
+
+
+                        <!-- Bootstrap core CSS -->
+                        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+                        <style>
+                            .bd-placeholder-img {
+                                font-size: 1.125rem;
+                                text-anchor: middle;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                user-select: none;
+                            }
+
+                            @*@media(min-width:768px){.bd-placeholder-img-lg{font-size:3.5rem;}}*@
+                        </style>
+
+
+                        <!-- Custom styles for this template -->
+                        <link href="heroes.css" rel="stylesheet">
+                    </head>
+
+                    <body>
+
+                        <main>
+                            <h1 class="visually-hidden">Heroes examples</h1>
+
+                            <div class="px-4 py-5 my-5 text-center">
+                                @* <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt=""
+                                width="72" height="57"> *@
+                                <h1 class="display-5 fw-bold">Demo B2B Lending!</h1>
+                                <div class="col-lg-6 mx-auto">
+                                    <p class="lead mb-4">Apply for a loan today to address cash flow challenges or
+                                        secure funds for your small business investment. B2B Lending offers the most
+                                        competitive rates in the market!</p>
+                                    @* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary
+                                    button</button>
+                                    <button type="button"
+                                    class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+                                    <h1>Sorry</h1>
+                                    <p>You're not authorized to reach this page. You need to log in.</p>
+                                    </div>*@
+                                </div>
+                            </div>
+
+                        </main>
+                    </body>
                 </NotAuthorized>
             </AuthorizeRouteView>
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
