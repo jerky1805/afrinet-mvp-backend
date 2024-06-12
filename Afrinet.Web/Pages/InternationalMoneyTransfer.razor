@@ -1,0 +1,116 @@
+@page "/imt"
+@using Subscribers.Models
+@inject HttpClient Http
+
+
+
+<MudPaper Height="400px" Width="80%" Elevation="3">
+
+    <MudGrid Spacing="@spacing" Justify="Justify.Center" >
+        <MudItem xs="3">
+             <MudSelect Variant="Variant.Outlined"  @bind-Value="fromCurrency"  TextChanged="FetchCurrencyExchange"  >
+
+     @foreach (var curr in currencyList)
+     {
+         <MudSelectItem Value="@(curr.ISOCode)">
+        <img src="@(flagcdn + curr.CountryISOCode).svg" height="14" class="mr-1"  /> @curr.Name
+    </MudSelectItem>
+     }
+
+</MudSelect>
+
+        </MudItem >
+        <MudItem xs="3">
+            <MudSelect Variant="Variant.Outlined"  @bind-Value="toCurrency"  TextChanged="FetchCurrencyExchange"  >
+
+     @foreach (var curr in currencyList)
+     {
+         <MudSelectItem Value="@(curr.ISOCode)">
+        <img src="@(flagcdn + curr.CountryISOCode).svg" height="14" class="mr-1"  /> @curr.Name
+    </MudSelectItem>
+     }
+
+</MudSelect>
+        </MudItem>
+            </MudGrid>
+       
+        
+<MudGrid Spacing="@spacing" Justify="Justify.Center">
+    <MudItem xs="3">
+        <MudNumericField @bind-Value="fromValue" Label="@(fromCurrency)" Variant="Variant.Filled" Min="0.0"  />
+    </MudItem>
+    <MudItem xs="3">
+            <MudNumericField @bind-Value="toValue" Label="@(toCurrency)" Variant="Variant.Filled" Min="0.0" />
+    </MudItem>
+</MudGrid>
+<MudGrid Spacing="@spacing" Justify="Justify.Center">
+    <MudItem xs="6">
+        <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary" Style="width: 100%; height: 40px;">Send</MudButton>
+    </MudItem>
+
+</MudGrid>
+ 
+</MudPaper>
+
+
+
+@code {
+    string flagcdn = "https://flagcdn.com/";
+    string currencyBaseAddress = "https://api.frankfurter.app/";
+
+    List<Currency> currencyList;
+        private string fromCurrency {get; set;}
+        private string toCurrency {get; set;}
+
+                private double fromValue {get; set;}
+
+        private double toValue {get; set;}
+
+        private ExchangeValue exchangeValue; 
+
+public int spacing { get; set; } = 2;
+    protected override void OnInitialized()
+    {
+        currencyList = new List<Currency>();
+        currencyList.Add(new Currency { ISOCode = "GBP",    CountryISOCode = "gb", Name = "British Pound", Country = "United Kingdom" });
+        currencyList.Add(new Currency {  ISOCode = "USD", CountryISOCode = "us", Name = "US Dollar", Country = "United States" });
+        currencyList.Add(new Currency { ISOCode = "THB",CountryISOCode = "ke",Name = "Kenyan Shillings",Country = "Kenya" });
+
+        fromCurrency  = "GBP";
+        toCurrency = "USD";
+
+        fromValue = 1;
+        toValue = 0;
+
+    }
+
+    public void FetchCurrencyExchangeTo(object e)
+    {
+
+Console.WriteLine(e);
+//Console.WriteLine(fromCountry);
+
+
+    }
+
+public async Task FetchCurrencyExchange( )
+    {
+        Console.WriteLine(fromCurrency);
+        Console.WriteLine(toCurrency);
+        if (fromCurrency != toCurrency) 
+        {
+            exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
+            toValue =  exchangeValue.Rates[toCurrency] * fromValue; 
+        }
+        else
+        {
+            fromCurrency  = "GBP";
+            toCurrency = "USD";
+        }
+   
+
+}
+public void FetchCurrencyExchangeTo()
+    {Console.WriteLine("Dapo");
+}
+}

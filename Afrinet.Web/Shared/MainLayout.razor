@@ -8,9 +8,10 @@
     <MudSnackbarProvider />
     <AuthorizeView>
         <Authorized>
-            <div class="sidebar">
-                <NavMenu />
-            </div>
+            @* <div class="sidebar">
+            <NavMenu />
+            </div> *@
+
         </Authorized>
         <NotAuthorized>
 
@@ -30,6 +31,33 @@
         </div>
 
         <article class="content px-4">
+            <AuthorizeView>
+                <Authorized>
+                    @* <div class="sidebar">
+                    <NavMenu />
+                    </div> *@
+                    <MudAppBar Color="Color.Dark" Fixed="false" Dense="true">
+                        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+                            Href="/" />
+                        <MudButton Href="/" Variant="Variant.Text" Color="Color.Inherit">Home</MudButton>
+                        <MudSpacer />
+                        <MudIconButton Icon="@Icons.Material.Filled.AttachMoney" Color="Color.Inherit"
+                            Href="/loanapp" />
+                        <MudButton Href="/loanapp" Variant="Variant.Text" Color="Color.Inherit">Loan Application
+                        </MudButton>
+                        <MudSpacer />
+                        <MudIconButton Icon="@Icons.Material.Filled.CurrencyExchange" Color="Color.Inherit"
+                            Href="/imt" />
+                        <MudButton Href="/imt" Variant="Variant.Text" Color="Color.Inherit">Money Transfer</MudButton>
+                        <MudSpacer />
+                        <MudIconButton Icon="@Icons.Material.Filled.Wallet" Color="Color.Inherit" />
+                        <MudButton Href="/headoffice" Variant="Variant.Text" Color="Color.Inherit">Mobile Money
+                        </MudButton>
+                    </MudAppBar>
+                </Authorized>
+            </AuthorizeView>
+
+
             @Body
         </article>
     </main>

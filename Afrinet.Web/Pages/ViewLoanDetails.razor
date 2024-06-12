@@ -251,14 +251,6 @@
                 {
 
                 }
-                @* fileName = Guid.NewGuid().ToString() + "_" + file.Name;
-loanDetails.companyDetails.CompanyDocuments.Add(fileName);
-var path = Path.Combine(Environment.ContentRootPath,
-Environment.EnvironmentName, "unsafe_uploads",
-fileName);
-//var path = @"path" + fileName;
-await using var fs = new FileStream(path, FileMode.Create);
-await file.OpenReadStream().CopyToAsync(fs); *@
 
             }
 
