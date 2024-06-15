@@ -37,10 +37,10 @@
         
 <MudGrid Spacing="@spacing" Justify="Justify.Center">
     <MudItem xs="3">
-        <MudNumericField @bind-Value="fromValue" Label="@(fromCurrency)" Variant="Variant.Filled" Min="0.0"  />
+        <MudNumericField @bind-Value="fromValue" Label="@(fromCurrency)" Variant="Variant.Filled" Min="0.0"  TextChanged="Calculate" />
     </MudItem>
     <MudItem xs="3">
-            <MudNumericField @bind-Value="toValue" Label="@(toCurrency)" Variant="Variant.Filled" Min="0.0" />
+            <MudNumericField @bind-Value="toValue" Label="@(toCurrency)" Variant="Variant.Filled" Min="0.0"   />
     </MudItem>
 </MudGrid>
 <MudGrid Spacing="@spacing" Justify="Justify.Center">
@@ -56,20 +56,19 @@
 
 @code {
     string flagcdn = "https://flagcdn.com/";
-    string currencyBaseAddress = "https://api.frankfurter.app/";
 
     List<Currency> currencyList;
         private string fromCurrency {get; set;}
         private string toCurrency {get; set;}
 
-                private double fromValue {get; set;}
+        private double fromValue {get; set;}
 
         private double toValue {get; set;}
 
-        private ExchangeValue exchangeValue; 
+        private ExchangeValue exchangeValue {get; set;} 
 
 public int spacing { get; set; } = 2;
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
         currencyList = new List<Currency>();
         currencyList.Add(new Currency { ISOCode = "GBP",    CountryISOCode = "gb", Name = "British Pound", Country = "United Kingdom" });
@@ -81,6 +80,9 @@ public int spacing { get; set; } = 2;
 
         fromValue = 1;
         toValue = 0;
+
+         exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
+
 
     }
 
@@ -110,7 +112,22 @@ public async Task FetchCurrencyExchange( )
    
 
 }
+
+public void Calculate()
+{
+    var task = Task.Run(async () => { await Exchange(toValue); });
+    task.Wait();
+ 
+            Console.WriteLine("To");
+}
 public void FetchCurrencyExchangeTo()
-    {Console.WriteLine("Dapo");
+    {
+        Console.WriteLine("Dapo");
+}
+
+public async Task Exchange(double To)
+{
+            exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
+            toValue =  exchangeValue.Rates[toCurrency] * fromValue;  
 }
 }
