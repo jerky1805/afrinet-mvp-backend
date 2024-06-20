@@ -134,6 +134,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/InternationalMoneyTransfer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW50ZXJuYXRpb25hbE1vbmV5VHJhbnNmZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/Test.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVGVzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/Pages/ViewLoanDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmlld0xvYW5EZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
