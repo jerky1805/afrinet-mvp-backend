@@ -1,0 +1,307 @@
+﻿@page "/loancompanyapp/add"
+@page "/loancompanyapp/edit/{id}"
+@using Afrinet.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using System.IO
+@using System
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@inject IWebHostEnvironment Environment
+@inject IConfiguration Configuration
+@inject IBlobStorageService blobStorageService
+
+
+
+@* <h2>@Title </h2> *@
+<div class="col-md-5 bs-primary">
+    <EditForm Model="@loanDetails">
+        @* <DataAnnotationsValidator />
+        <ValidationSummary></ValidationSummary> *@
+        @* <span class="bg-primary badge">
+        Loan Interest Rate : @LoanInterestRate
+        </span> *@
+        <div class="bg-primary card text-bg-info mb-3" style="max-width: 19rem;color: white;font-weight: bold;">
+            <div class="card-header" style="font-size: medium;">The Loan Interest Today!</div>
+            <div class="card-body">
+                <p class="card-text">Our bespoke interest rate is
+                    <span style="font-size: large;font-weight: bold;"> @LoanInterestRate </span>
+                </p>
+            </div>
+        </div>
+        <div style="display:@displayPersonalDetails">
+            <h4>Personal Details</h4>
+            <div class="mb-3">
+                <label for="Name" class="form-label">Full Name </label>
+                <div class="col-md-4">
+                    <InputText class="form-control" @bind-Value="loanDetails.personalDetails.Names" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.personalDetails.Names)" />
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Email Address </label>
+                <div class="col-md-4">
+                    <InputText class="form-control" @bind-Value="loanDetails.personalDetails.Email" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.personalDetails.Email)" />
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Password </label>
+                <div class="col-md-4">
+                    <InputText class="form-control" @bind-Value="loanDetails.personalDetails.AddressLine2" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.personalDetails.AddressLine2)" />
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Address </label>
+                <div class="col-md-4">
+                    <InputText class="form-control" @bind-Value="loanDetails.personalDetails.AddressLine1" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.personalDetails.AddressLine1)" />
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Mobile Number</label>
+                <div class="col-md-4">
+                    <InputText class="form-control" @bind-Value="loanDetails.personalDetails.MSISDN" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.personalDetails.MSISDN)" />
+            </div>
+        </div>
+
+        <div style="display:@displayCompanyDetails">
+            <h3>Company Details</h3>
+            <div class="mb-3">
+                <label for="Name" class="form-label">Company Name </label>
+                <div class="col-md-4">
+                    <InputText class="form-control" @bind-Value="loanDetails.companyDetails.CompanyName" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.companyDetails.CompanyName)" />
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Company Address </label>
+                <div class="col-md-4">
+                    <InputText class="form-control" @bind-Value="loanDetails.companyDetails.CompanyAddress" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.companyDetails.CompanyAddress)" />
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Company Documentation </label>
+                @* <div class="col-md-4">
+                <InputText class="form-control" @bind-Value="loanDetails.personalDetails.AddressLine2" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.personalDetails.AddressLine2)" /> *@
+                <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+                    <ButtonTemplate Context="buttonContext">
+                        <MudFab HtmlTag="label" Color="Color.Success" Icon="@Icons.Material.Filled.AttachFile"
+                            for="@buttonContext" />
+                    </ButtonTemplate>
+                </MudFileUpload>
+                @if (files != null)
+                {
+                    <MudText Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 ? "" : "s"):</MudText>
+                    <MudList>
+                        @foreach (var file in files)
+                        {
+                            <MudListItem Icon="@Icons.Material.Filled.AttachFile" @key="@file">
+                                @file.Name <code>@file.Size bytes</code>
+                            </MudListItem>
+                        }
+                    </MudList>
+                }
+            </div>
+        </div>
+
+        <div style="display:@displayLoanDetails">
+            <h3>Company Details</h3>
+            <div class="mb-3">
+                @* <label for="Name" class="form-label">Loan Purpose </label> *@
+                <div class="col-md-4">
+                    @* <InputText class="form-control" @bind-Value="loanDetails.LoanPurpose" /> *@
+                    <MudSelect T="string" Label="Loan Purpose" AnchorOrigin="Origin.CenterCenter"
+                        @bind-Value="loanDetails.LoanPurpose">
+
+                        @foreach (var id in loanPurposes)
+                        {
+                            <MudSelectItem Value="@id" />
+                        }
+                    </MudSelect>
+                </div>
+                @* <ValidationMessage For="@(() => loanDetails.LoanPurpose)" /> *@
+            </div>
+            <div class="mb-3">
+                <label for="Address" class="form-label">Requested Amount </label>
+                <div class="col-md-4">
+                    @* <InputNumber @bind-Value="loanDetails.LoanAmount" class="form-control"></InputNumber> *@
+                    <MudTextField @bind-Value="loanDetails.LoanAmount" Variant="Variant.Outlined"
+                        Adornment="Adornment.Start" AdornmentText="KSH" AdornmentColor="Color.Info"
+                        class="form-control" />
+                </div>
+                <ValidationMessage For="@(() => loanDetails.LoanAmount)" />
+            </div>
+            <div class="mb-3">
+                <label for="Tenure" class="form-label">Loan Tenure</label>
+                <div class="col-md-4">
+                    <InputNumber @bind-Value="loanDetails.LoanTenure" class="form-control"></InputNumber>
+
+                    @* <MudSelect T="string" Label="Loan Tenure" AnchorOrigin="Origin.CenterCenter"
+                    @bind-Value="loanDetails.LoanTenure">
+
+                    @foreach (var id in tenureTypes)
+                    {
+                    <MudSelectItem Value="@id" T="int" />
+                    }
+                    </MudSelect>*@
+                    <MudSelect T="string" Label="Schedule" AnchorOrigin="Origin.CenterCenter"
+                        @bind-Value="loanDetails.TenureSchedule">
+
+                        @foreach (var id in tenureScheduleTypes)
+                        {
+                            <MudSelectItem Value="@id" />
+                        }
+                    </MudSelect>
+
+                </div>
+                @* <ValidationMessage For="@(() => loanDetails.LoanTenure)" />
+                <ValidationMessage For="@(() => loanDetails.TenureSchedule)" /> *@
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div style="display: @save">
+                <button type="submit" class="btn btn-primary" @onclick="SaveLoanDetailsAsync">Save</button>
+            </div>
+            <div style="display: @next">
+                <button class="btn btn-light" @onclick="Steps">Next</button>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private string LoanInterestRate = string.Empty;
+
+    private string save = "none";
+    private string next = "none";
+    private string displayPersonalDetails = "none";
+    private string displayCompanyDetails = "none";
+    private string displayLoanDetails = "none";
+
+
+    private string Message = string.Empty;
+    protected string Title = "Make a Loan Application";
+
+    private LoanDetails loanDetails { get; set; } = new();
+
+    private int currentStep = 1;
+
+    IEnumerable<string> tenureScheduleTypes;
+    IEnumerable<string> loanPurposes;
+
+
+    protected override void OnInitialized()
+    {
+        displayPersonalDetails = "block";
+        next = "block";
+        currentStep++;
+        loanPurposes = new List<string> { "Cash Inflow", "Auto Repair", "Credit Card Consolidation", "Debt Consolidation" };
+
+        tenureScheduleTypes = new List<string> { "Month(s)", "Week(s)" };
+        LoanInterestRate = Configuration.GetValue<string>("Interest_Rate") + "%";
+
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id is not null)
+        {
+            Title = "Edit a Loan Application";
+            //loanDetails = await Http.GetFromJsonAsync<LoanDetails>(Configuration.GetValue<string>("API_URL")+"LoanDetails/" + Id);
+        }
+        if (Title == "Make a Loan Application")
+        {
+            return;
+        }
+
+    }
+    protected async Task SaveLoanDetailsAsync()
+    {
+        if (loanDetails.Id is not null)
+        {
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "LoanDetails/" + loanDetails.Id, loanDetails);
+        }
+        else
+        {
+            string fileName = string.Empty;
+            foreach (IBrowserFile file in files)
+            {
+                try
+                {
+                    var trustedFileNameForFileStorage = Guid.NewGuid().ToString() + "_" + file.Name;
+                    var blobUrl = await blobStorageService.UploadFileToBlobAsync(trustedFileNameForFileStorage, file.ContentType,
+                    file.OpenReadStream(20971520));
+                    if (blobUrl is null)
+                    {
+
+                    }
+                    loanDetails.companyDetails.CompanyDocuments.Add(trustedFileNameForFileStorage);
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+
+            }
+            loanDetails.InterestRate = Decimal.Parse(Configuration.GetValue<string>("Interest_Rate"));
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "LoanDetails", loanDetails);
+        }
+        NavigationManager.NavigateTo("/loanapp");
+        // Cancel();
+    }
+    public void Steps()
+    {
+
+        switch (currentStep)
+        {
+            case 1:
+                displayPersonalDetails = "block";
+                displayCompanyDetails = "none";
+                displayLoanDetails = "none";
+                save = "none";
+                next = "block";
+
+                break;
+            case 2:
+                displayPersonalDetails = "none";
+                displayCompanyDetails = "block";
+                displayLoanDetails = "none";
+                save = "none";
+                next = "block";
+                break;
+            case 3:
+                displayPersonalDetails = "none";
+                displayCompanyDetails = "none";
+                displayLoanDetails = "block";
+                save = "block";
+                next = "none";
+                break;
+            default:
+                break;
+
+        }
+        currentStep++;
+        @* NavigationManager.NavigateTo("/headoffice"); *@
+    }
+
+    IList<IBrowserFile> files = new List<IBrowserFile>();
+    private void UploadFiles(IBrowserFile file)
+    {
+        files.Add(file);
+        //TODO upload the files to the server
+    }
+
+}

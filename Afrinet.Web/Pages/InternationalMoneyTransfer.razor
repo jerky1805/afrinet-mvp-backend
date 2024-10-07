@@ -1,56 +1,187 @@
 @page "/imt"
+@using Afrinet.Models
 @using Subscribers.Models
+@using IMT.Models
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 
-
-<MudPaper Height="400px" Width="80%" Elevation="3">
-
-    <MudGrid Spacing="@spacing" Justify="Justify.Center" >
-        <MudItem xs="3">
-             <MudSelect Variant="Variant.Outlined"  @bind-Value="fromCurrency"  TextChanged="FetchCurrencyExchange"  >
-
-     @foreach (var curr in currencyList)
-     {
-         <MudSelectItem Value="@(curr.ISOCode)">
-        <img src="@(flagcdn + curr.CountryISOCode).svg" height="14" class="mr-1"  /> @curr.Name
-    </MudSelectItem>
-     }
-
-</MudSelect>
-
-        </MudItem >
-        <MudItem xs="3">
-            <MudSelect Variant="Variant.Outlined"  @bind-Value="toCurrency"  TextChanged="FetchCurrencyExchange"  >
-
-     @foreach (var curr in currencyList)
-     {
-         <MudSelectItem Value="@(curr.ISOCode)">
-        <img src="@(flagcdn + curr.CountryISOCode).svg" height="14" class="mr-1"  /> @curr.Name
-    </MudSelectItem>
-     }
-
-</MudSelect>
-        </MudItem>
-            </MudGrid>
-       
-        
-<MudGrid Spacing="@spacing" Justify="Justify.Center">
-    <MudItem xs="3">
-        <MudNumericField @bind-Value="fromValue" Label="@(fromCurrency)" Variant="Variant.Filled" Min="0.0"  TextChanged="Calculate" />
-    </MudItem>
-    <MudItem xs="3">
-            <MudNumericField @bind-Value="toValue" Label="@(toCurrency)" Variant="Variant.Filled" Min="0.0"   />
-    </MudItem>
-</MudGrid>
-<MudGrid Spacing="@spacing" Justify="Justify.Center">
-    <MudItem xs="6">
-        <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary" Style="width: 100%; height: 40px;">Send</MudButton>
-    </MudItem>
-
-</MudGrid>
  
-</MudPaper>
+    <div style="display:@displayAmountDetails">  
+    <MudPaper Height="400px" Width="80%" Elevation="3"  >
+        
+
+        <MudGrid Spacing="@spacing" Justify="Justify.Center"  >
+            <MudItem xs="3">
+                <MudSelect Variant="Variant.Outlined"  @bind-Value="fromCurrency"  TextChanged="FetchCurrencyExchange"  >
+
+        @foreach (var curr in currencyList)
+        {
+            <MudSelectItem Value="@(curr.ISOCode)">
+            <img src="@(flagcdn + curr.CountryISOCode).svg" height="14" class="mr-1"  /> @curr.Name
+        </MudSelectItem>
+        }
+
+    </MudSelect>
+
+            </MudItem >
+            <MudItem xs="3">
+                <MudSelect Variant="Variant.Outlined"  @bind-Value="toCurrency"  TextChanged="FetchCurrencyExchange"  >
+
+        @foreach (var curr in currencyList)
+        {
+            <MudSelectItem Value="@(curr.ISOCode)">
+            <img src="@(flagcdn + curr.CountryISOCode).svg" height="14" class="mr-1"  /> @curr.Name
+        </MudSelectItem>
+        }
+
+    </MudSelect>
+            </MudItem>
+                </MudGrid>
+        
+            
+    <MudGrid Spacing="@spacing" Justify="Justify.Center">
+        <MudItem xs="3">
+            <MudNumericField @bind-Value="fromValue" Label="@(fromCurrency)" Variant="Variant.Filled" Min="0.0"  TextChanged="Calculate" />
+        </MudItem>
+        <MudItem xs="3">
+                <MudNumericField @bind-Value="toValue" Label="@(toCurrency)" Variant="Variant.Filled" Min="0.0"   />
+        </MudItem>
+    </MudGrid>
+    <MudGrid Spacing="@spacing" Justify="Justify.Center">
+        <MudItem xs="6">
+            <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary" Style="width: 100%; height: 40px;" OnClick="Steps" >Send</MudButton>
+        </MudItem>
+
+    </MudGrid>
+    
+    </MudPaper>
+    </div>
+    <div style="display:@displayRecipientDetails">  
+        @* <MudPaper Height="400px" Width="80%" Elevation="3" > *@
+            @* <MudGrid Spacing="@spacing" Justify="Justify.Center"   > *@
+                <MudDataGrid T="UserAccount" Items="@userAccountList" Filterable="true" FilterMode="@DataGridFilterMode.ColumnFilterMenu"  RowClick="@RowClicked" Hover="true">
+                <Columns>
+                    <PropertyColumn Property="x => x.Surname" Title="Surname"  />
+                    <PropertyColumn Property="x => x.OtherNames" />
+                    <PropertyColumn Property="x => x.MSISDN" >
+                        @* <FilterTemplate>
+                            <MudIconButton OnClick="@OpenFilter" Icon="@_icon" Size="@Size.Small" />
+                            <MudOverlay Visible="@_filterOpen" OnClick="@(() => _filterOpen = false)" />
+                            <MudPopover Open="@_filterOpen" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter"
+                                Style="width:150px">
+                            <MudStack Spacing="0">
+                                <MudCheckBox T="bool" Label="Select All" Size="@Size.Small" Value="@_selectAll" ValueChanged="@SelectAll" />
+                                <MudStack Spacing="0" Style="overflow-y:auto;max-height:250px">
+                                    @foreach (var item in context.items)
+                                    {
+                                            <MudCheckBox T="bool" Label="@($"{item.MSISDN}")" Size="@Size.Small" Value="@(_selectedItems.Contains(item))"
+                                                        ValueChanged="@((value) => SelectedChanged(value, item))" />
+                                    }
+                                </MudStack>
+                                <MudStack Row="true">
+                                        <MudButton OnClick="@(() => ClearFilterAsync(context))">Clear</MudButton>
+                                        <MudButton Color="@Color.Primary" OnClick="@(() => ApplyFilterAsync(context))">Filter</MudButton>
+                                </MudStack>
+                            </MudStack>
+                            </MudPopover>
+                        </FilterTemplate> *@
+                    </PropertyColumn>
+                    <PropertyColumn Property="x => x.ServiceAccount.Wallets[0].WalletType" />
+
+                </Columns>
+                <PagerContent>
+                    <MudDataGridPager T="UserAccount" />
+                </PagerContent>
+            </MudDataGrid>
+            @* </MudGrid> *@
+        @* </MudPaper> *@
+    </div>
+    <div style="display:@displayConfirmationDetails"> 
+        @* <MudPaper  Height="400px" Width="80%" Elevation="3" >  *@
+            <MudGrid Spacing="@spacing" Justify="Justify.Center">
+                <MudItem xs="5" >
+                    <MudPaper Class=" d-flex align-center justify-center mud-width-full  py-2 ">
+                        @* <MudIcon Icon="@Icons.Material.Filled.CreditCard"></MudIcon> *@
+                        <MudText >Amount</MudText>
+                    </MudPaper>                    
+                </MudItem>
+                <MudItem xs="5" > 
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2">
+                        <MudText Align="Align.Right" >@fromCurrency @fromValue.ToString("F2") </MudText>
+                    </MudPaper>
+                </MudItem>
+                 <MudItem xs="5">
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText > Transfer Fee </MudText></MudPaper>                    
+                </MudItem>
+                <MudItem xs="5"> 
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText >@fromCurrency @fee.ToString("F2") </MudText></MudPaper>
+                </MudItem>
+                 <MudItem xs="5">
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText >Total Amount </MudText></MudPaper>                    
+                </MudItem>
+                <MudItem xs="5"> 
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText >@fromCurrency @((fee+fromValue).ToString("F2")) </MudText></MudPaper>
+                </MudItem>
+                 <MudItem xs="5">
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText >Total to recipient </MudText></MudPaper>                    
+                </MudItem>
+                <MudItem xs="5"> 
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText >@toCurrency @toValue.ToString("F2") </MudText></MudPaper>
+                </MudItem>
+                <MudItem xs="10" >
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText >Exchange Rate @fromCurrency 1.00 = @toCurrency  @((toValue/fromValue).ToString("F2")) </MudText> </MudPaper>                    
+                </MudItem>
+                <MudItem xs="10" >
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2"><MudText >Recipient </MudText></MudPaper>                    
+                </MudItem>
+                <MudItem xs="10" >
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2">
+                        <MudImage Src="images/m-pesa-768x561.png" Height="60"></MudImage>                      
+                       <MudText  > @userAccount.Surname @userAccount.OtherNames   @userAccount.MSISDN </MudText>
+                    </MudPaper>                    
+                </MudItem>
+                 <MudItem xs="10" >
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2">
+                        <MudIcon Icon="@Icons.Material.Filled.CreditCard"></MudIcon>
+                        <MudText > Your payment might require strong customer authentication  </MudText>
+                    </MudPaper>                    
+                </MudItem>
+                <MudItem xs="10">
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2">                                              
+                         <MudAlert Severity="Severity.Warning" Variant="Variant.Text" NoIcon="true"  >                
+                            <MudIcon Icon="@Icons.Material.Filled.Info"></MudIcon>   Your card payment might require strong customer authentication 
+                         </MudAlert>
+                       
+                    </MudPaper>                    
+                </MudItem>
+                <MudItem xs="10">
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-2">                                              
+                       
+                         <MudAlert Severity="Severity.Info" Variant="Variant.Text" NoIcon="true">                
+                            <MudIcon Icon="@Icons.Material.Filled.AccessTime"></MudIcon>   We expect your transfer to be completed within the hour
+                         </MudAlert>
+                    </MudPaper>                    
+                </MudItem>
+                <MudItem xs="10" Class="d-flex align-center justify-center mud-width-full py-2">
+                    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary" Style="width: 80%; height: 40px;" OnClick="SaveMoneyTransferAsync" >Pay with Debit Card</MudButton>
+                </MudItem>
+            </MudGrid>
+
+        @* </MudPaper> *@
+    </div>
+   
+
+    
+      <div class="form-group">
+            @* <div style="display: @save">
+                <button type="submit" class="btn btn-primary" @onclick="SaveMoneyTransferAsync">Pay</button>
+            </div>
+            <div style="display: @next">
+                <button class="btn btn-light" @onclick="Steps">Next</button>
+            </div> *@
+        </div>
+
 
 
 
@@ -65,69 +196,227 @@
 
         private double toValue {get; set;}
 
+        private double fee {get; set;}
+
+        private string wallet {get; set;}
+
+        private string name {get; set;}
+
+
         private ExchangeValue exchangeValue {get; set;} 
 
-public int spacing { get; set; } = 2;
+        MoneyTransferViewModel moneyTransferViewModel { get; set; } = new();
+
+        private string displayAmountDetails = "none";
+    
+        private string displayRecipientDetails = "none";
+
+        private string displayConfirmationDetails = "none";
+
+        private string save = "none";
+        private string next = "none";
+
+        private int currentStep = 1;
+
+        IEnumerable<UserAccount> userAccountList = new List<UserAccount>();
+        IEnumerable<UserAccount> searchUserAccountData = new List<UserAccount>();
+        UserAccount userAccount = new();
+        protected string SearchString { get; set; } = string.Empty;
+
+        HashSet<UserAccount> _selectedItems = new();
+        HashSet<UserAccount> _filterItems = new();
+        FilterDefinition<UserAccount> _filterDefinition;
+        bool _selectAll = true;
+
+        string _icon = Icons.Material.Outlined.FilterAlt;
+
+        bool _filterOpen = false;
+        public int spacing { get; set; } = 2;
+
+       // private readonly DialogOptions dialogOptions = new() { MaxWidth= MaxWidth.Medium, FullWidth=true };
     protected async override Task OnInitializedAsync()
     {
+        displayAmountDetails = "block";
+        next = "block";
+        currentStep++;
+
         currencyList = new List<Currency>();
-        currencyList.Add(new Currency { ISOCode = "GBP",    CountryISOCode = "gb", Name = "British Pound", Country = "United Kingdom" });
-        currencyList.Add(new Currency {  ISOCode = "USD", CountryISOCode = "us", Name = "US Dollar", Country = "United States" });
-        currencyList.Add(new Currency { ISOCode = "THB",CountryISOCode = "ke",Name = "Kenyan Shillings",Country = "Kenya" });
+        currencyList.Add(new Currency { ISOCode = "GBP",    CountryISOCode = "gb", Name = "British Pound", Country = "United Kingdom" , CountryISOCodeNickname="GBP"});
+        currencyList.Add(new Currency {  ISOCode = "USD", CountryISOCode = "us", Name = "US Dollar", Country = "United States" , CountryISOCodeNickname="USD"});
+        currencyList.Add(new Currency { ISOCode = "THB",CountryISOCode = "ke",Name = "Kenyan Shillings",Country = "Kenya" , CountryISOCodeNickname ="KES"});
 
         fromCurrency  = "GBP";
         toCurrency = "USD";
-
+        fee = 0;
         fromValue = 1;
         toValue = 0;
 
          exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
 
-
+        await GetUserAccount();
     }
-
-    public void FetchCurrencyExchangeTo(object e)
+    protected async Task SaveMoneyTransferAsync()
     {
-
-Console.WriteLine(e);
-//Console.WriteLine(fromCountry);
-
-
-    }
-
-public async Task FetchCurrencyExchange( )
-    {
-        Console.WriteLine(fromCurrency);
-        Console.WriteLine(toCurrency);
-        if (fromCurrency != toCurrency) 
+        if (moneyTransferViewModel.Id is not null)
         {
-            exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
-            toValue =  exchangeValue.Rates[toCurrency] * fromValue; 
+            await Http.PutAsJsonAsync(Configuration.GetValue<string>("API_URL") + "MoneyTransfer/" + moneyTransferViewModel.Id, moneyTransferViewModel);
         }
         else
         {
-            fromCurrency  = "GBP";
-            toCurrency = "USD";
+            moneyTransferViewModel = new MoneyTransferViewModel{
+                transaction= new Transaction{ Amount = toValue , Id = Guid.NewGuid().ToString(), CompletedAt= DateTime.UtcNow, TotalFees = fee, TransactionType="Money Transfer" }, 
+                Id=Guid.NewGuid().ToString(), 
+                userAccount = userAccount
+                };
+            await Http.PostAsJsonAsync(Configuration.GetValue<string>("API_URL") + "MoneyTransfer", moneyTransferViewModel);
         }
-   
-
-}
-
-public void Calculate()
-{
-    var task = Task.Run(async () => { await Exchange(toValue); });
-    task.Wait();
- 
-            Console.WriteLine("To");
-}
-public void FetchCurrencyExchangeTo()
+        NavigationManager.NavigateTo("/imttransactions");
+        // Cancel();
+    }
+// events
+    void RowClicked(DataGridRowClickEventArgs<UserAccount> args)
     {
-        Console.WriteLine("Dapo");
-}
+        @* if (toCurrency == "THB"){
+            toCurrency = "KES";
+         }        *@
+        Console.WriteLine(args.Item.Id);
+       //name =  args.Item.OtherNames +" "+ args.Item.Surname;
+       userAccount = args.Item;
+       Steps();
+    }    
+    private async Task ClearFilterAsync(FilterContext<UserAccount> context)
+    {
+        _selectedItems = userAccountList.ToHashSet();
+        _filterItems = userAccountList.ToHashSet();
+        _icon = Icons.Material.Outlined.FilterAlt;
+        await context.Actions.ClearFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+    void OpenFilter()
+    {
+        _filterOpen = true;
+    }
 
-public async Task Exchange(double To)
-{
-            exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
-            toValue =  exchangeValue.Rates[toCurrency] * fromValue;  
-}
+    private void SelectedChanged(bool value, UserAccount item)
+    {
+        if (value)
+            _selectedItems.Add(item);
+        else
+            _selectedItems.Remove(item);
+
+        if (_selectedItems.Count == userAccountList.Count())
+            _selectAll = true;
+        else
+            _selectAll = false;
+    }
+
+    private async Task ApplyFilterAsync(FilterContext<UserAccount> context)
+    {
+        _filterItems = _selectedItems.ToHashSet();
+        _icon = _filterItems.Count == userAccountList.Count() ? Icons.Material.Outlined.FilterAlt : Icons.Material.Filled.FilterAlt;
+        await context.Actions.ApplyFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+
+    private void SelectAll(bool value)
+    {
+        _selectAll = value;
+
+        if (value)
+        {
+            _selectedItems = userAccountList.ToHashSet();
+        }
+        else
+        {
+            _selectedItems.Clear();
+        }
+    }
+    protected async Task GetUserAccount()
+    {
+        userAccountList = await Http.GetFromJsonAsync<List<UserAccount>>(Configuration.GetValue<string>("API_URL") + "Subscribers");
+        searchUserAccountData = userAccountList;
+    }
+    protected void FilterUserAccount()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            userAccountList = searchUserAccountData
+            .Where(x => x.Surname.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            userAccountList = searchUserAccountData;
+        }
+    }
+    
+    public async Task FetchCurrencyExchange( )
+        {
+            Console.WriteLine(fromCurrency);
+            Console.WriteLine(toCurrency);
+            if (fromCurrency != toCurrency) 
+            {
+                exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
+                toValue =  exchangeValue.Rates[toCurrency] * fromValue; 
+            }
+            else
+            {
+                fromCurrency  = "GBP";
+                toCurrency = "USD";
+            }
+            
+
+    }
+
+    public void Calculate()
+    {
+        var task = Task.Run(async () => { await Exchange(toValue); });
+        task.Wait();
+    
+            // Console.WriteLine("To");
+    }
+    public void FetchCurrencyExchangeTo()
+        {
+            Console.WriteLine("Dapo");
+    }
+
+    public async Task Exchange(double To)
+    {
+                exchangeValue =  await Http.GetFromJsonAsync<ExchangeValue>(Configuration.GetValue<string>("CURRENCY_EXCHANGE_API_URL") + "from=" +fromCurrency + "&to="+ toCurrency );
+                toValue =  exchangeValue.Rates[toCurrency] * fromValue;  
+    }
+    public void Steps()
+        {
+
+            switch (currentStep)
+            {
+                case 1:
+                    displayAmountDetails = "block";
+                    displayRecipientDetails = "none";
+                    displayConfirmationDetails = "none";
+                    save = "none";
+                    next = "block";
+
+                    break;
+                case 2:
+                    displayAmountDetails = "none";
+                    displayRecipientDetails = "block";
+                    displayConfirmationDetails = "none";
+                    save = "none";
+                    next = "block";
+                    break;
+                case 3:
+                    displayAmountDetails = "none";
+                    displayRecipientDetails = "none";
+                    displayConfirmationDetails = "block";
+                    save = "block";
+                    next = "none";
+                    break;
+                default:
+                    break;
+
+            }
+            currentStep++;
+            @* NavigationManager.NavigateTo("/headoffice"); *@
+        }
 }

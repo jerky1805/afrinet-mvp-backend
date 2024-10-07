@@ -10,4 +10,6 @@ public class Currency
 
     public string CountryISOCode { get; set; } = null!;
 
+    public string CountryISOCodeNickname { get; set; } = null!;
+
 }

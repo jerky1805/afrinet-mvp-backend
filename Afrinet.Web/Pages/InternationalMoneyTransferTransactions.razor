@@ -1,0 +1,155 @@
+@page "/imttransactions"
+@using Afrinet.Models
+@using Subscribers.Models
+@using IMT.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+
+
+
+<MudDataGrid T="MoneyTransferViewModel" Items="@moneyTransferList" Filterable="true"
+    FilterMode="@DataGridFilterMode.ColumnFilterMenu" Hover="true" RowsPerPage="100">
+    <Columns>
+        <PropertyColumn Property="x => x.userAccount.Surname" Title="Surname" />
+        <PropertyColumn Property="x => x.userAccount.OtherNames" Title="Other Names" />
+        <PropertyColumn Property="x => x.userAccount.MSISDN" Title="Phone Number" />
+        <PropertyColumn Property="x => x.transaction.Amount" Format="N2" Title="Amount Recieved" />
+        <PropertyColumn Property="x => x.transaction.TotalFees" Format="N2" Title="Fees Charged">
+            @* <FilterTemplate>
+            <MudIconButton OnClick="@OpenFilter" Icon="@_icon" Size="@Size.Small" />
+            <MudOverlay Visible="@_filterOpen" OnClick="@(() => _filterOpen = false)" />
+            <MudPopover Open="@_filterOpen" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter"
+            Style="width:150px">
+            <MudStack Spacing="0">
+            <MudCheckBox T="bool" Label="Select All" Size="@Size.Small" Value="@_selectAll" ValueChanged="@SelectAll" />
+            <MudStack Spacing="0" Style="overflow-y:auto;max-height:250px">
+            @foreach (var item in context.items)
+            {
+            <MudCheckBox T="bool" Label="@($"{item.MSISDN}")" Size="@Size.Small"
+            Value="@(_selectedItems.Contains(item))"
+            ValueChanged="@((value) => SelectedChanged(value, item))" />
+            }
+            </MudStack>
+            <MudStack Row="true">
+            <MudButton OnClick="@(() => ClearFilterAsync(context))">Clear</MudButton>
+            <MudButton Color="@Color.Primary" OnClick="@(() => ApplyFilterAsync(context))">Filter</MudButton>
+            </MudStack>
+            </MudStack>
+            </MudPopover>
+            </FilterTemplate> *@
+        </PropertyColumn>
+        <PropertyColumn Property="x => x.userAccount.ServiceAccount.Wallets[0].WalletType" Title="Wallet Type" />
+
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="UserAccount" />
+    </PagerContent>
+</MudDataGrid>
+
+
+
+
+@code {
+
+
+
+    IEnumerable<MoneyTransferViewModel> moneyTransferList = new List<MoneyTransferViewModel>();
+    IEnumerable<MoneyTransferViewModel> searchMoneyTransferData = new List<MoneyTransferViewModel>();
+    MoneyTransferViewModel moneyTransfer = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+    HashSet<MoneyTransferViewModel> _selectedItems = new();
+    HashSet<MoneyTransferViewModel> _filterItems = new();
+    FilterDefinition<MoneyTransferViewModel> _filterDefinition;
+    bool _selectAll = true;
+
+    string _icon = Icons.Material.Outlined.FilterAlt;
+
+    bool _filterOpen = false;
+    public int spacing { get; set; } = 2;
+
+    // private readonly DialogOptions dialogOptions = new() { MaxWidth= MaxWidth.Medium, FullWidth=true };
+    protected async override Task OnInitializedAsync()
+    {
+
+
+        await GetMoneyTransfers();
+    }
+
+    void RowClicked(DataGridRowClickEventArgs<MoneyTransferViewModel> args)
+    {
+
+        moneyTransfer = args.Item;
+
+    }
+    private async Task ClearFilterAsync(FilterContext<MoneyTransferViewModel> context)
+    {
+        _selectedItems = moneyTransferList.ToHashSet();
+        _filterItems = moneyTransferList.ToHashSet();
+        _icon = Icons.Material.Outlined.FilterAlt;
+        await context.Actions.ClearFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+    void OpenFilter()
+    {
+        _filterOpen = true;
+    }
+
+    private void SelectedChanged(bool value, MoneyTransferViewModel item)
+    {
+        if (value)
+            _selectedItems.Add(item);
+        else
+            _selectedItems.Remove(item);
+
+        if (_selectedItems.Count == moneyTransferList.Count())
+            _selectAll = true;
+        else
+            _selectAll = false;
+    }
+
+    private async Task ApplyFilterAsync(FilterContext<MoneyTransferViewModel> context)
+    {
+        _filterItems = _selectedItems.ToHashSet();
+        _icon = _filterItems.Count == moneyTransferList.Count() ? Icons.Material.Outlined.FilterAlt :
+        Icons.Material.Filled.FilterAlt;
+        await context.Actions.ApplyFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+
+    private void SelectAll(bool value)
+    {
+        _selectAll = value;
+
+        if (value)
+        {
+            _selectedItems = moneyTransferList.ToHashSet();
+        }
+        else
+        {
+            _selectedItems.Clear();
+        }
+    }
+    protected async Task GetMoneyTransfers()
+    {
+        moneyTransferList = await Http.GetFromJsonAsync<List<MoneyTransferViewModel>>(Configuration.GetValue<string>("API_URL")
+        + "MoneyTransfer");
+        searchMoneyTransferData = moneyTransferList;
+    }
+    protected void FilterMoneyTransfer()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            moneyTransferList = searchMoneyTransferData
+            .Where(x => x.userAccount.Surname.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+            .ToList();
+        }
+        else
+        {
+            moneyTransferList = searchMoneyTransferData;
+        }
+    }
+
+
+}

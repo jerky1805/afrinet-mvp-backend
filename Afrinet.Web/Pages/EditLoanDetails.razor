@@ -16,8 +16,8 @@
 @* <h2>@Title </h2> *@
 <div class="col-md-5 bs-primary">
     <EditForm Model="@loanDetails">
-        <DataAnnotationsValidator />
-        <ValidationSummary></ValidationSummary>
+        @* <DataAnnotationsValidator />
+        <ValidationSummary></ValidationSummary> *@
         @* <span class="bg-primary badge">
         Loan Interest Rate : @LoanInterestRate
         </span> *@
@@ -36,14 +36,14 @@
                 <div class="col-md-4">
                     <InputText class="form-control" @bind-Value="loanDetails.personalDetails.Names" />
                 </div>
-                <ValidationMessage For="@(() => loanDetails.personalDetails.Names)" />
+                @* <ValidationMessage For="@(() => loanDetails.personalDetails.Names)" /> *@
             </div>
             <div class="mb-3">
                 <label for="Address" class="form-label">Email Address </label>
                 <div class="col-md-4">
                     <InputText class="form-control" @bind-Value="loanDetails.personalDetails.Email" />
                 </div>
-                <ValidationMessage For="@(() => loanDetails.personalDetails.Email)" />
+                @* <ValidationMessage For="@(() => loanDetails.personalDetails.Email)" /> *@
             </div>
             <div class="mb-3">
                 <label for="Address" class="form-label">Password </label>
@@ -64,7 +64,7 @@
                 <div class="col-md-4">
                     <InputText class="form-control" @bind-Value="loanDetails.personalDetails.MSISDN" />
                 </div>
-                <ValidationMessage For="@(() => loanDetails.personalDetails.MSISDN)" />
+                @* <ValidationMessage For="@(() => loanDetails.personalDetails.MSISDN)" /> *@
             </div>
         </div>
 
@@ -75,14 +75,14 @@
                 <div class="col-md-4">
                     <InputText class="form-control" @bind-Value="loanDetails.companyDetails.CompanyName" />
                 </div>
-                <ValidationMessage For="@(() => loanDetails.companyDetails.CompanyName)" />
+                @* <ValidationMessage For="@(() => loanDetails.companyDetails.CompanyName)" /> *@
             </div>
             <div class="mb-3">
                 <label for="Address" class="form-label">Company Address </label>
                 <div class="col-md-4">
                     <InputText class="form-control" @bind-Value="loanDetails.companyDetails.CompanyAddress" />
                 </div>
-                <ValidationMessage For="@(() => loanDetails.companyDetails.CompanyAddress)" />
+                @* <ValidationMessage For="@(() => loanDetails.companyDetails.CompanyAddress)" /> *@
             </div>
             <div class="mb-3">
                 <label for="Address" class="form-label">Company Documentation </label>
@@ -126,7 +126,7 @@
                         }
                     </MudSelect>
                 </div>
-                <ValidationMessage For="@(() => loanDetails.LoanPurpose)" />
+                @* <ValidationMessage For="@(() => loanDetails.LoanPurpose)" /> *@
             </div>
             <div class="mb-3">
                 <label for="Address" class="form-label">Requested Amount </label>
@@ -161,8 +161,8 @@
                     </MudSelect>
 
                 </div>
-                <ValidationMessage For="@(() => loanDetails.LoanTenure)" />
-                <ValidationMessage For="@(() => loanDetails.TenureSchedule)" />
+                @* <ValidationMessage For="@(() => loanDetails.LoanTenure)" />
+                <ValidationMessage For="@(() => loanDetails.TenureSchedule)" /> *@
 
             </div>
 
@@ -253,14 +253,7 @@
                 {
 
                 }
-                @* fileName = Guid.NewGuid().ToString() + "_" + file.Name;
-loanDetails.companyDetails.CompanyDocuments.Add(fileName);
-var path = Path.Combine(Environment.ContentRootPath,
-Environment.EnvironmentName, "unsafe_uploads",
-fileName);
-//var path = @"path" + fileName;
-await using var fs = new FileStream(path, FileMode.Create);
-await file.OpenReadStream().CopyToAsync(fs); *@
+
 
             }
             loanDetails.InterestRate = Decimal.Parse(Configuration.GetValue<string>("Interest_Rate"));

@@ -32,6 +32,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IBlobStorageService, BlobStorageService>();
 
+builder.Services.Configure<MoneyTransferDatabaseSettings>(
+    builder.Configuration.GetSection("MoneyTransferDatabase"));
+
 builder.Services.Configure<ServiceAccountDatabaseSettings>(
     builder.Configuration.GetSection("ServiceAccountDatabase"));
 
@@ -59,6 +62,7 @@ builder.Services.Configure<RAIDatabaseSettings>(
 builder.Services.Configure<LoanDetailsDatabaseSettings>(
     builder.Configuration.GetSection("LoanDetailsDatabase"));
 
+builder.Services.AddSingleton<MoneyTransferService>();
 builder.Services.AddSingleton<ServiceAccountsService>();
 builder.Services.AddSingleton<UserAccountsService>();
 builder.Services.AddSingleton<WalletsService>();

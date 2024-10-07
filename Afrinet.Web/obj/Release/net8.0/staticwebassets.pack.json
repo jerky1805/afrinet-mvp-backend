@@ -57,6 +57,18 @@
       "PackagePath": "staticwebassets/favicon.png"
     },
     {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/wwwroot/images/m-pesa-768x561.png",
+      "PackagePath": "staticwebassets/images/m-pesa-768x561.png"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/wwwroot/images/mpesa.jpg",
+      "PackagePath": "staticwebassets/images/mpesa.jpg"
+    },
+    {
+      "Id": "/Users/dapo/dev/afrinet-mvp-backend/Afrinet.Web/wwwroot/images/mpesa.png",
+      "PackagePath": "staticwebassets/images/mpesa.png"
+    },
+    {
       "Id": "obj/Release/net8.0/staticwebassets/msbuild.Afrinet.Web.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
