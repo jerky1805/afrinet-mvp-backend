@@ -9,7 +9,7 @@
 
 
 <MudDataGrid T="MoneyTransferViewModel" Items="@moneyTransferList" Filterable="true"
-    FilterMode="@DataGridFilterMode.ColumnFilterMenu" Hover="true" RowsPerPage="100">
+    FilterMode="@DataGridFilterMode.ColumnFilterMenu" Hover="true" RowsPerPage="100" HeaderClass="">
     <Columns>
         <PropertyColumn Property="x => x.userAccount.Surname" Title="Surname" />
         <PropertyColumn Property="x => x.userAccount.OtherNames" Title="Other Names" />
